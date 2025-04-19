@@ -3,3 +3,6 @@ gunicorn
 whitenoise
 psycopg2-binary
 playwright
+gunicorn
+whitenoise
+dj-database-url
