@@ -1,5 +1,4 @@
 from django.db import models
-from vehicles.models import Vehicle
 
 class Vehicle(models.Model):
     title = models.CharField(max_length=255)
