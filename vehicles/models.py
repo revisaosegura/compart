@@ -17,12 +17,3 @@ class Vehicle(models.Model):
 
     def __str__(self):
         return f"{self.brand} {self.model} ({self.year})"
-
-# Dentro do for card in cards:
-Vehicle.objects.get_or_create(
-    title=titulo,
-    defaults={
-        "bid": preco,
-        "origin_url": pagina.url
-    }
-)
