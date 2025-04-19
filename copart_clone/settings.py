@@ -35,7 +35,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'copart.urls'
+ROOT_URLCONF = 'copart_clone.urls'
 
 TEMPLATES = [
     {
