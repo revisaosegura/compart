@@ -1,0 +1,1 @@
+web: gunicorn copart_clone.wsgi

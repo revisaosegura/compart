@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}Leilões de Veículos{% endblock %}
+{% block content %}
+<h2 class="section-title">Veículos em Leilão</h2>
+<div class="vehicle-grid">
+    {% for vehicle in vehicles %}
+    <div class="vehicle-card">
+        <img src="{{ vehicle.image.url }}" alt="{{ vehicle.title }}">
+        <div class="vehicle-info">
+            <h3>{{ vehicle.title }}</h3>
+            <p><strong>Ano:</strong> {{ vehicle.year }}</p>
+            <p><strong>KM:</strong> {{ vehicle.mileage|intcomma }}</p>
+            <p><strong>Preço Base:</strong> R$ {{ vehicle.base_price|floatformat:2 }}</p>
+            <a class="btn" href="{% url 'vehicle_detail' vehicle.id %}">Ver Detalhes</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
