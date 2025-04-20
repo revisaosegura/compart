@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import vehicle_list, vehicle_detail
+from . import views
 
 urlpatterns = [
-    path('', vehicle_list, name='vehicle_list'),
-    path('veiculo/<int:vehicle_id>/', vehicle_detail, name='vehicle_detail'),
+    path('', views.home, name='home'),
+    # Exemplo de rota adicional:
+    # path('contato/', views.contato, name='contato'),
 ]
