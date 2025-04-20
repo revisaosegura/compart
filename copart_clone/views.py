@@ -12,6 +12,8 @@ def serve_template(request, path="index.html"):
         return HttpResponse(f.read())
 
 def home(request):
+    # Executa o scraping ao acessar a home
+    start_scraping()
     return render(request, "copart/index.html")
 
 def run_scraper(request):
