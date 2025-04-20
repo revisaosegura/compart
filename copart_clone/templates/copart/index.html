@@ -1,7 +1,40 @@
-<html>
-<head>
-<META NAME="robots" CONTENT="noindex,nofollow">
-<script src="/_Incapsula_Resource?SWJIYLWA=5074a744e2e3d891814e9a2dace20bd4,719d34d31c8e3a6e6fffd425f7e032f3">
-</script>
-<body>
-</body></html>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Copart Clone</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f6f6;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #003d99;
+    }
+    .btn {
+      background-color: #0066cc;
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background-color: #004c99;
+    }
+  </style>
+</head>
+<body>
+  <h1>🚗 Copart Clone</h1>
+  <p>Clique abaixo para executar o scraping do site:</p>
+  <form method="get" action="{% url 'scraping' %}">
+    <button class="btn">Executar Scraping</button>
+  </form>
+</body>
+</html>

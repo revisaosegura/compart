@@ -15,5 +15,7 @@ def home(request):
     return render(request, "copart/index.html")
 
 def run_scraper(request):
+    print("🚀 Iniciando cópia do site Copart...")
     start_scraping()
-    return render(request, "copart/index.html")
+    print("✅ Scraping finalizado.")
+    return render(request, "index.html")
