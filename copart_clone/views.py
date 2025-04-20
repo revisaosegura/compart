@@ -1,11 +1,19 @@
+import os
 from django.shortcuts import render
-from django.http import HttpResponseNotFound
+from django.http import HttpResponse, Http404
+from django.conf import settings
+from auto_scraper.scraper import start_scraping
 
-def index(request):
-    return render(request, 'copart/index.html')
+def serve_template(request, path="index.html"):
+    file_path = os.path.join(settings.TEMPLATES[0]["DIRS"][0], path)
+    if not os.path.isfile(file_path):
+        raise Http404("Página não encontrada")
+    with open(file_path, encoding="utf-8") as f:
+        return HttpResponse(f.read())
 
-def serve_template(request, template):
-    try:
-        return render(request, f'copart/{template}')
-    except:
-        return HttpResponseNotFound('Página não encontrada')
+def home(request):
+    return render(request, "copart/index.html")
+
+def run_scraper(request):
+    start_scraping()
+    return render(request, "copart/index.html")
