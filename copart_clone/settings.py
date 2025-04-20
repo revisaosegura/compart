@@ -37,7 +37,21 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'copart_clone.urls'
 
-TEMPLATES[0]['DIRS'] = [BASE_DIR / "templates"]
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],  # aqui é onde você quer alterar
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
 
 WSGI_APPLICATION = 'copart.wsgi.application'
 
