@@ -3,42 +3,48 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
+from tqdm import tqdm
 
 BASE_URL = "https://www.copart.com.br"
-OUTPUT_DIR = "vehicles/templates/vehicles"
+OUTPUT_DIR = "templates/copart"
+MAX_DEPTH = 2
 
-# Criar a pasta de destino se não existir
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+visited = set()
 
-# Visitar a página principal
-response = requests.get(BASE_URL)
-soup = BeautifulSoup(response.text, "html.parser")
-
-# Salvar a página principal
-with open(os.path.join(OUTPUT_DIR, "index.html"), "w", encoding="utf-8") as f:
-    f.write(soup.prettify())
-
-# Encontrar todos os links internos (mesmo domínio)
-internal_links = set()
-for link in soup.find_all("a", href=True):
-    href = link["href"]
-    if href.startswith("/") or BASE_URL in href:
-        full_url = urljoin(BASE_URL, href)
-        parsed = urlparse(full_url)
-        clean_path = parsed.path.strip("/")
-        if clean_path and not clean_path.startswith("javascript") and '.' not in clean_path:
-            internal_links.add((clean_path, full_url))
-
-# Baixar e salvar cada página
-for path, full_url in internal_links:
+def save_page(url, output_path):
     try:
-        resp = requests.get(full_url)
-        html = resp.text
-        file_name = f"{path.replace('/', '_')}.html"
-
-        with open(os.path.join(OUTPUT_DIR, file_name), "w", encoding="utf-8") as f:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        html = response.text
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, "w", encoding="utf-8") as f:
             f.write(html)
-
-        print(f"[✔] Página salva: {file_name}")
+        print(f"[✔] Página salva: {output_path}")
     except Exception as e:
-        print(f"[✘] Erro ao acessar {full_url}: {e}")
+        print(f"[✘] Erro ao acessar {url}: {e}")
+
+def crawl(url, depth=0):
+    if depth > MAX_DEPTH or url in visited:
+        return
+    visited.add(url)
+    parsed = urlparse(url)
+    path = parsed.path.strip("/") or "index"
+    filename = path.replace("/", "_") + ".html"
+    output_path = os.path.join(OUTPUT_DIR, filename)
+    save_page(url, output_path)
+
+    try:
+        response = requests.get(url, timeout=10)
+        soup = BeautifulSoup(response.text, "html.parser")
+        for link in soup.find_all("a", href=True):
+            href = link["href"]
+            next_url = urljoin(url, href)
+            if urlparse(next_url).netloc == urlparse(BASE_URL).netloc:
+                crawl(next_url, depth + 1)
+    except Exception as e:
+        print(f"[✘] Falha ao extrair links de {url}: {e}")
+
+if __name__ == "__main__":
+    print("🚀 Iniciando cópia recursiva do site Copart...")
+    crawl(BASE_URL)
+    print("✅ Finalizado! Arquivos salvos em:", OUTPUT_DIR)
