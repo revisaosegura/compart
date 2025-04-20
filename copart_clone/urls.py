@@ -1,7 +1,9 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('vehicles.urls')),  # ou o nome da sua app
+    path('', views.index),
+    path('<path:template>/', views.serve_template),
 ]
