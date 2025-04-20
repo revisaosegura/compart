@@ -4,6 +4,7 @@ from copart_clone import views  # ← Certifique-se que está importando correta
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.home, name="home"),                # Página inicial
+    path('', views.render_pagina, {'pagina': 'index'}, name='home'),
+    path('pagina/<str:pagina>/', views.render_pagina, name='pagina'),
     path("executar-scraping/", views.run_scraper, name="scraping"),  # Executa scraping
 ]

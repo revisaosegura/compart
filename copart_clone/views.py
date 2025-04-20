@@ -21,3 +21,10 @@ def run_scraper(request):
     start_scraping()
     print("✅ Scraping finalizado.")
     return render(request, "index.html")
+
+def render_pagina(request, pagina):
+    template_path = f"copart/{pagina}.html"
+    if os.path.exists(os.path.join('copart_clone/templates', template_path)):
+        return render(request, template_path)
+    else:
+        raise Http404("Página não encontrada.")

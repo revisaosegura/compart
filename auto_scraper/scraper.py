@@ -7,6 +7,7 @@ from urllib.parse import urljoin
 from tqdm import tqdm
 
 BASE_URL = "https://www.copart.com.br"
+start_urls = [base_url]
 SAVE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../templates/copart")
 
 def baixar_pagina(url, save_path):
