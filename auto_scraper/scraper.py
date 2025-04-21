@@ -1,47 +1,34 @@
-# auto_scraper/scraper.py
-
 import os
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
 from tqdm import tqdm
 
-# auto_scraper/scraper.py
+base_url = "https://www.copart.com.br"
+pages = [
+    "",  # homepage
+    "lotes", "sobre", "como-funciona", "vistorias", "vendedores",
+    "fale-conosco", "seguranca"
+]
 
-base_url = "https://www.copart.com.br"  # ← adicione isso ANTES de usar
-
-start_urls = [base_url]
-
-SAVE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../templates/copart")
-
-def baixar_pagina(url, save_path):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        os.makedirs(os.path.dirname(save_path), exist_ok=True)
-        with open(save_path, "w", encoding="utf-8") as f:
-            f.write(response.text)
-    except Exception as e:
-        print(f"❌ Erro ao baixar {url}: {e}")
+TEMPLATES_DIR = os.path.join("copart_clone", "templates", "copart")
+os.makedirs(TEMPLATES_DIR, exist_ok=True)
 
 def start_scraping():
     print("🚀 Iniciando cópia do site Copart...")
 
-    paginas = [
-        "",
-        "veiculos", 
-        "como-funciona",
-        "lotes", 
-        "vender-carro", 
-        "faq", 
-        "sobre-nos", 
-        "fale-conosco"
-    ]
+    for page in tqdm(pages, desc="Copiando páginas"):
+        url = f"{base_url}/{page}" if page else base_url
+        response = requests.get(url)
 
-    for pagina in tqdm(paginas, desc="Copiando páginas"):
-        url = urljoin(BASE_URL + "/", pagina)
-        nome_arquivo = "index.html" if pagina == "" else f"{pagina}.html"
-        caminho = os.path.join(SAVE_DIR, nome_arquivo)
-        baixar_pagina(url, caminho)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, "html.parser")
+
+            # Salva com nome index.html se for homepage
+            filename = "index.html" if page == "" else f"{page}.html"
+
+            with open(os.path.join(TEMPLATES_DIR, filename), "w", encoding="utf-8") as f:
+                f.write(str(soup))
+        else:
+            print(f"❌ Falha ao acessar: {url}")
 
     print("✅ Scraping finalizado.")
