@@ -77,3 +77,8 @@ def dynamic_template_view(request, page="index"):
         return render(request, template_name)
     else:
         raise Http404("Página não encontrada.")
+
+def index(request):
+    return render(request, 'copart/index.html')
+
+

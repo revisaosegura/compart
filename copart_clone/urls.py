@@ -13,4 +13,5 @@ urlpatterns = [
     path("privacidade/", views.privacidade, name="privacidade"),
     path("login/", views.login, name="login"),
     re_path(r"^(?P<page>[\w-]+)/$", views.dynamic_template_view, name="pagina_dinamica"),
+    path('', views.index, name='index'),
 ]
