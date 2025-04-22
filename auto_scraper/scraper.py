@@ -1,4 +1,6 @@
 import os
+import time
+import shutil
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import undetected_chromedriver as uc
@@ -13,46 +15,65 @@ PAGINAS = [
 TEMPLATE_DIR = os.path.join("copart_clone", "templates", "copart")
 os.makedirs(TEMPLATE_DIR, exist_ok=True)
 
+def limpar_templates_antigos():
+    print("🧹 Limpando templates antigos...")
+    pasta_templates = "copart_clone/templates/copart"
+    if os.path.exists(pasta_templates):
+        shutil.rmtree(pasta_templates)
+    os.makedirs(pasta_templates)
+    print("🧹 Templates antigos removidos.")
+
+
 def start_scraping():
+    urls = [
+        "https://www.copart.com.br/",
+        # Adicione mais URLs se quiser expandir a cópia
+    ]
+
+    pasta_destino = "copart_clone/templates/copart"
+    os.makedirs(pasta_destino, exist_ok=True)
+
     print("🚀 Iniciando cópia do site Copart com Selenium...")
 
     options = uc.ChromeOptions()
-    options.add_argument("--headless=new")
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-dev-shm-usage")
 
-    driver = uc.Chrome(options=options)
-
-    for url in tqdm(PAGINAS, desc="Copiando páginas"):
-        try:
-            driver.get(url)
-            driver.implicitly_wait(10)
-            html = driver.page_source
-
-            nome_arquivo = url.split("/")[-2] if url.rstrip("/").endswith("veiculos") else "index"
-            caminho = os.path.join(TEMPLATE_DIR, f"{nome_arquivo}.html")
-
-            soup = BeautifulSoup(html, "html.parser")
-
-            # Remove scripts e iframes
-            for tag in soup(["script", "iframe"]):
-                tag.decompose()
-
-            with open(caminho, "w", encoding="utf-8") as f:
-                f.write(str(soup))
-
-        except Exception as e:
-            print(f"❌ Erro ao copiar {url}: {e}")
-
+    driver = None
     try:
-        driver.quit()
-    except Exception:
-        pass
+        driver = uc.Chrome(options=options)
 
-    print("✅ Templates atualizados com sucesso.")
+        for url in tqdm(urls, desc="Copiando páginas"):
+            try:
+                driver.get(url)
+                time.sleep(2)
 
-    # Substituições automáticas para proteger tags JS do Django
-    template_dir = Path("copart_clone/templates/copart")
+                html = driver.page_source
+                nome_arquivo = url.split("/")[-2] if url.endswith("/") else url.split("/")[-1]
+                if not nome_arquivo:
+                    nome_arquivo = "index"
+                caminho = os.path.join(pasta_destino, f"{nome_arquivo}.html")
+                with open(caminho, "w", encoding="utf-8") as f:
+                    f.write(html)
+
+            except Exception as e:
+                print(f"❌ Erro ao copiar {url}: {e}")
+
+        print("✅ Templates atualizados com sucesso.")
+
+    finally:
+        if driver:
+            try:
+                driver.quit()
+            except Exception:
+                pass  # Silencia erro WinError 6 no Windows
+
+
+    # 🧠 Substituir blocos JS que causam erro de template
+    template_dir = Path(pasta_destino)
     for file in template_dir.rglob("*.html"):
         content = file.read_text(encoding="utf-8")
         if "{{" in content and "}}" in content:
@@ -60,19 +81,3 @@ def start_scraping():
             file.write_text(updated, encoding="utf-8")
 
     print("✅ Todos os templates HTML atualizados com blocos {% raw %} para evitar erros do Django.")
-
-def limpar_templates_antigos(pasta_templates="copart_clone/templates/copart"):
-    import os
-    import glob
-    import shutil
-
-    print("🧹 Limpando templates antigos...")
-    arquivos_html = glob.glob(os.path.join(pasta_templates, "*.html"))
-    for arquivo in arquivos_html:
-        os.remove(arquivo)
-
-    pastas = [d for d in os.listdir(pasta_templates) if os.path.isdir(os.path.join(pasta_templates, d))]
-    for pasta in pastas:
-        shutil.rmtree(os.path.join(pasta_templates, pasta))
-
-    print("🧹 Templates antigos removidos.")
