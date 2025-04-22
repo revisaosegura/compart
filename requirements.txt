@@ -8,3 +8,6 @@ tqdm
 urllib3
 psycopg2-binary
 dj-database-url
+selenium>=4.9.0
+undetected-chromedriver @ git+https://github.com/ultrafunkamsterdam/undetected-chromedriver.git
+whitenoise
