@@ -76,7 +76,7 @@ def start_scraping():
     for file in template_dir.rglob("*.html"):
         content = file.read_text(encoding="utf-8")
         if "{{" in content and "}}" in content:
-            updated = content.replace("{{", "{% verbatim %}{{").replace("}}", "}}{% endverbatim %}")
+            updated = content.replace("{{", "{% raw %}{{").replace("}}", "}}{% endraw %}")
             file.write_text(updated, encoding="utf-8")
 
     print("✅ Todos os templates HTML atualizados com blocos {% raw %} para evitar erros do Django.")
