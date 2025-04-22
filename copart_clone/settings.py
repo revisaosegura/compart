@@ -31,7 +31,7 @@ ROOT_URLCONF = 'copart_clone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'copart_clone' / 'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'copart_clone/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -54,5 +54,5 @@ DATABASES = {
 }
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'copart_clone' / 'static']
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'copart_clone/static')]
 STATIC_ROOT = BASE_DIR / 'staticfiles'

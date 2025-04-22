@@ -81,4 +81,9 @@ def dynamic_template_view(request, page="index"):
 def index(request):
     return render(request, 'copart/index.html')
 
-
+def render_template(request, template_name):
+    template_path = f"copart/{template_name}"
+    if os.path.exists(os.path.join("copart_clone/templates", template_path)):
+        return render(request, template_path)
+    else:
+        return render(request, "copart/index.html")  # fallback
