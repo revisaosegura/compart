@@ -22,6 +22,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         print("🚀 Iniciando atualização dos templates...")
-        start_scraping()
-        limpar_templates_antigos()
+        scraper.start_scraping()
+        scraper.limpar_templates_antigos("copart_clone/templates/copart")
         print("✅ Templates atualizados com sucesso.")
