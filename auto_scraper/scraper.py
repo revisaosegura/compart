@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 import undetected_chromedriver as uc
 from bs4 import BeautifulSoup
 from tqdm import tqdm
+from pathlib import Path
 
 PAGINAS = [
     "https://www.copart.com.br/",
@@ -49,6 +50,16 @@ def start_scraping():
         pass
 
     print("✅ Templates atualizados com sucesso.")
+
+    # Substituições automáticas para proteger tags JS do Django
+    template_dir = Path("copart_clone/templates/copart")
+    for file in template_dir.rglob("*.html"):
+        content = file.read_text(encoding="utf-8")
+        if "{{" in content and "}}" in content:
+            updated = content.replace("{{", "{% raw %}{{").replace("}}", "}}{% endraw %}")
+            file.write_text(updated, encoding="utf-8")
+
+    print("✅ Todos os templates HTML atualizados com blocos {% raw %} para evitar erros do Django.")
 
 def limpar_templates_antigos(pasta_templates="copart_clone/templates/copart"):
     import os
