@@ -31,12 +31,11 @@ def start_scraping():
     ]
 
     pasta_destino = "copart_clone/templates/copart"
-    os.makedirs(pasta_destino, exist_ok=True)
 
     print("🚀 Iniciando cópia do site Copart com Selenium...")
 
     options = uc.ChromeOptions()
-    options.add_argument("--headless")
+    options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-extensions")
@@ -73,7 +72,7 @@ def start_scraping():
 
 
     # 🧠 Substituir blocos JS que causam erro de template
-    template_dir = Path(pasta_destino)
+    template_dir = Path("copart_clone/templates/copart")
     for file in template_dir.rglob("*.html"):
         content = file.read_text(encoding="utf-8")
         if "{{" in content and "}}" in content:
@@ -81,3 +80,8 @@ def start_scraping():
             file.write_text(updated, encoding="utf-8")
 
     print("✅ Todos os templates HTML atualizados com blocos {% raw %} para evitar erros do Django.")
+
+if not list(Path("copart_clone/templates/copart").glob("*.html")):
+    print("❌ Nenhum template foi salvo. Algo deu errado no scraping.")
+else:
+    print("✅ Templates salvos com sucesso.")
