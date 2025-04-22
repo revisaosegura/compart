@@ -50,26 +50,18 @@ def start_scraping():
 
     print("✅ Templates atualizados com sucesso.")
 
-def limpar_templates_antigos(pasta_templates):
-    print("🧹 Limpando e corrigindo templates antigos...")
+def limpar_templates_antigos(pasta_templates="copart_clone/templates/copart"):
+    import os
+    import glob
+    import shutil
 
-    for root, dirs, files in os.walk(pasta_templates):
-        for file in files:
-            if file.endswith(".html"):
-                caminho = os.path.join(root, file)
-                with open(caminho, 'r', encoding='utf-8') as f:
-                    soup = BeautifulSoup(f, 'html.parser')
+    print("🧹 Limpando templates antigos...")
+    arquivos_html = glob.glob(os.path.join(pasta_templates, "*.html"))
+    for arquivo in arquivos_html:
+        os.remove(arquivo)
 
-                # Corrige {{ objeto['chave'] }} que quebra no Django
-                for tag in soup.find_all(string=True):
-                    if "{{" in tag and "['" in tag:
-                        tag.replace_with(tag.replace("{{", "").replace("}}", "").split("[")[0].strip())
+    pastas = [d for d in os.listdir(pasta_templates) if os.path.isdir(os.path.join(pasta_templates, d))]
+    for pasta in pastas:
+        shutil.rmtree(os.path.join(pasta_templates, pasta))
 
-                # Protege com {% raw %}
-                conteudo = str(soup)
-                conteudo = conteudo.replace("{{", "{% raw %}{{").replace("}}", "}}{% endraw %}")
-
-                with open(caminho, 'w', encoding='utf-8') as f:
-                    f.write(conteudo)
-
-    print("🧼 Templates corrigidos com sucesso.")
+    print("🧹 Templates antigos removidos.")
