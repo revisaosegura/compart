@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404
 from django.conf import settings
 from auto_scraper.scraper import start_scraping
 
-PAGES_DIR = os.path.join(settings.BASE_DIR, 'copart_clone', 'pages')
+PAGES_DIR = os.path.join(settings.BASE_DIR, 'copart_clone/templates/copart')
 
 def serve_template(request, path="index.html"):
     file_path = os.path.join(settings.TEMPLATES[0]["DIRS"][0], path)
@@ -16,7 +16,7 @@ def serve_template(request, path="index.html"):
 def home(request):
     # Executa o scraping ao acessar a home
     start_scraping()
-    return render(request, "copart/index.html")
+    return render(request, "copart_clone/templates/copart/index.html")
 
 def run_scraper(request):
     print("🚀 Iniciando cópia do site Copart...")
@@ -26,7 +26,7 @@ def run_scraper(request):
 
 def render_pagina(request, pagina):
     template_path = f"copart/{pagina}.html"
-    if os.path.exists(os.path.join('copart_clone/templates', template_path)):
+    if os.path.exists(os.path.join('copart_clone/templates/copart', template_path)):
         return render(request, template_path)
     else:
         raise Http404("Página não encontrada.")
