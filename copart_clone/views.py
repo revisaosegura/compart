@@ -16,17 +16,17 @@ def serve_template(request, path="index.html"):
 def home(request):
     # Executa o scraping ao acessar a home
     start_scraping()
-    return render(request, "copart_clone/templates/copart/index.html")
+    return render(request, "copart/index.html")
 
 def run_scraper(request):
     print("🚀 Iniciando cópia do site Copart...")
     start_scraping()
     print("✅ Scraping finalizado.")
-    return render(request, "index.html")
+    return render(request, "copart/index.html")
 
 def render_pagina(request, pagina):
     template_path = f"copart/{pagina}.html"
-    if os.path.exists(os.path.join('copart_clone/templates/copart', template_path)):
+    if os.path.exists(os.path.join(PAGES_DIR, f"{pagina}.html")):
         return render(request, template_path)
     else:
         raise Http404("Página não encontrada.")
@@ -46,32 +46,32 @@ def ver_pagina(request, nome_arquivo):
     return render(request, 'pagina_visualizacao.html', {'conteudo': conteudo})
 
 def homepage(request):
-    return render(request, "copart_clone/templates/copart/index.html")
+    return render(request, "copart/index.html")
 
 def sobre(request):
-    return render(request, "copart_clone/templates/copart/sobre.html")
+    return render(request, "copart/sobre.html")
 
 def lotes(request):
-    return render(request, "copart_clone/templates/copart/lotes.html")
+    return render(request, "copart/lotes.html")
 
 def contato(request):
-    return render(request, "copart_clone/templates/copart/contato.html")
+    return render(request, "copart/contato.html")
 
 def ajuda(request):
-    return render(request, "copart_clone/templates/copart/ajuda.html")
+    return render(request, "copart/ajuda.html")
 
 def termos(request):
-    return render(request, "copart_clone/templates/copart/termos.html")
+    return render(request, "copart/termos.html")
 
 def privacidade(request):
-    return render(request, "copart_clone/templates/copart/privacidade.html")
+    return render(request, "copart/privacidade.html")
 
 def login(request):
-    return render(request, "copart_clone/templates/copart/login.html")
+    return render(request, "copart/login.html")
 
 def dynamic_template_view(request, page="index"):
     template_name = f"copart/{page}.html"
-    template_path = os.path.join(settings.TEMPLATES[0]['DIRS'][0], template_name)
+    template_path = os.path.join(PAGES_DIR, f"{page}.html")
 
     if os.path.exists(template_path):
         return render(request, template_name)
@@ -79,11 +79,11 @@ def dynamic_template_view(request, page="index"):
         raise Http404("Página não encontrada.")
 
 def index(request):
-    return render(request, 'copart_clone/templates/copart/index.html')
+    return render(request, 'copart/index.html')
 
 def render_template(request, template_name):
     template_path = f"copart/{template_name}"
-    if os.path.exists(os.path.join("copart_clone/templates/copart", template_path)):
+    if os.path.exists(os.path.join(PAGES_DIR, template_name)):
         return render(request, template_path)
     else:
-        return render(request, "copart_clone/templates/copart/index.html")  # fallback
+        return render(request, "copart/index.html")  # fallback
