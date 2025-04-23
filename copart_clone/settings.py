@@ -1,10 +1,11 @@
 import os
 from pathlib import Path
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent  # Agora é um Path, não uma string
 
 SECRET_KEY = 'django-insecure-secret-key'
 DEBUG = True
+
 ALLOWED_HOSTS = ['copart-vmqk.onrender.com', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
@@ -19,7 +20,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # importante para static no Render
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -32,7 +33,7 @@ ROOT_URLCONF = 'copart_clone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'copart_clone/templates')],
+        'DIRS': [BASE_DIR / 'copart_clone' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -50,10 +51,10 @@ WSGI_APPLICATION = 'copart_clone.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # ✅ Agora é compatível com Path
     }
 }
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'copart_clone/static')]
+STATICFILES_DIRS = [BASE_DIR / 'copart_clone' / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
