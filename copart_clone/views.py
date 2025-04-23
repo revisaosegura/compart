@@ -46,28 +46,28 @@ def ver_pagina(request, nome_arquivo):
     return render(request, 'pagina_visualizacao.html', {'conteudo': conteudo})
 
 def homepage(request):
-    return render(request, "copart/index.html")
+    return render(request, "copart_clone/templates/copart/index.html")
 
 def sobre(request):
-    return render(request, "copart/sobre.html")
+    return render(request, "copart_clone/templates/copart/sobre.html")
 
 def lotes(request):
-    return render(request, "copart/lotes.html")
+    return render(request, "copart_clone/templates/copart/lotes.html")
 
 def contato(request):
-    return render(request, "copart/contato.html")
+    return render(request, "copart_clone/templates/copart/contato.html")
 
 def ajuda(request):
-    return render(request, "copart/ajuda.html")
+    return render(request, "copart_clone/templates/copart/ajuda.html")
 
 def termos(request):
-    return render(request, "copart/termos.html")
+    return render(request, "copart_clone/templates/copart/termos.html")
 
 def privacidade(request):
-    return render(request, "copart/privacidade.html")
+    return render(request, "copart_clone/templates/copart/privacidade.html")
 
 def login(request):
-    return render(request, "copart/login.html")
+    return render(request, "copart_clone/templates/copart/login.html")
 
 def dynamic_template_view(request, page="index"):
     template_name = f"copart/{page}.html"
@@ -79,11 +79,11 @@ def dynamic_template_view(request, page="index"):
         raise Http404("Página não encontrada.")
 
 def index(request):
-    return render(request, 'copart/index.html')
+    return render(request, 'copart_clone/templates/copart/index.html')
 
 def render_template(request, template_name):
     template_path = f"copart/{template_name}"
-    if os.path.exists(os.path.join("copart_clone/templates", template_path)):
+    if os.path.exists(os.path.join("copart_clone/templates/copart", template_path)):
         return render(request, template_path)
     else:
-        return render(request, "copart/index.html")  # fallback
+        return render(request, "copart_clone/templates/copart/index.html")  # fallback
