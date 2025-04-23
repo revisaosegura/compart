@@ -1,27 +1,28 @@
+
 import os
 import re
 import requests
 from bs4 import BeautifulSoup
 
 URL = "https://www.copart.com.br/"
-TEMPLATE_PATH = "templates/copart/index.html"
+TEMPLATE_PATH = "copart_clone/templates/copart/index.html"
 
-def proteger_variaveis(template_str):
-    # Protege blocos {{ ... }} e ::locale... com {% raw %}
-    template_str = re.sub(r'({{.*?}})', r'{% raw %}\1{% endraw %}', template_str)
-    template_str = re.sub(r'(::locale\.messages\[.*?\])', r'{% raw %}\1{% endraw %}', template_str)
-    return template_str
+def proteger_variaveis(html):
+    html = re.sub(r"({{.*?}})", r"{% raw %}\1{% endraw %}", html)
+    html = re.sub(r"(::locale\\.messages\[.*?\])", r"{% raw %}\1{% endraw %}", html)
+    return html
 
-def baixar_html_completo():
-    print("📥 Baixando HTML...")
+def baixar_e_salvar():
     headers = {
         "User-Agent": "Mozilla/5.0"
     }
+
     try:
+        print("📥 Baixando HTML da Copart...")
         response = requests.get(URL, headers=headers)
         response.raise_for_status()
     except requests.RequestException as e:
-        print(f"❌ Erro ao baixar: {e}")
+        print(f"❌ Erro ao baixar o HTML: {e}")
         return
 
     html = response.text
@@ -32,7 +33,7 @@ def baixar_html_completo():
     with open(TEMPLATE_PATH, "w", encoding="utf-8") as f:
         f.write(html_protegido)
 
-    print(f"✅ HTML salvo em {TEMPLATE_PATH}")
+    print(f"✅ index.html atualizado e protegido salvo em {TEMPLATE_PATH}")
 
 if __name__ == "__main__":
-    baixar_html_completo()
+    baixar_e_salvar()
