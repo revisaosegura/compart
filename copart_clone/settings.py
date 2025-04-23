@@ -1,7 +1,8 @@
 import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 SECRET_KEY = 'django-insecure-secret-key'
 DEBUG = True
 ALLOWED_HOSTS = ['copart-vmqk.onrender.com', 'localhost', '127.0.0.1']
@@ -31,7 +32,7 @@ ROOT_URLCONF = 'copart_clone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'copart_clone/templates/copart')],
+        'DIRS': [os.path.join(BASE_DIR, 'copart_clone/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
