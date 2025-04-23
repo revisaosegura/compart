@@ -31,7 +31,7 @@ ROOT_URLCONF = 'copart_clone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'copart_clone/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'copart_clone/templates/copart')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
