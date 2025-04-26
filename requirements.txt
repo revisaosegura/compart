@@ -1,15 +1,8 @@
-django<5.0,>=4.2
-whitenoise
-gunicorn
-playwright
-beautifulsoup4
-requests
-tqdm
-urllib3
-psycopg2-binary
-dj-database-url
-selenium>=4.9.0
-undetected-chromedriver @ git+https://github.com/ultrafunkamsterdam/undetected-chromedriver.git
-whitenoise
-bs4
-
+beautifulsoup4==4.13.4
+certifi==2025.4.26
+charset-normalizer==3.4.1
+idna==3.10
+requests==2.32.3
+soupsieve==2.7
+typing_extensions==4.13.2
+urllib3==2.4.0
