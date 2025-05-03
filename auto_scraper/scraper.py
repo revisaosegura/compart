@@ -1,95 +1,80 @@
 import os
-import time
-from pathlib import Path
+import requests
 from bs4 import BeautifulSoup
-from tqdm import tqdm
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import undetected_chromedriver as uc
+from urllib.parse import urljoin, urlparse
+import time
 
-# Caminho base do projeto Django
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_URL = "https://www.copart.com.br"
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static_site")
 
-URLS = [
-    "https://www.copart.com.br/",
-    # Adicione outras URLs importantes que deseja capturar aqui
-]
+def scrape_site():
+    session = requests.Session()
+    urls_to_scrape = [BASE_URL]
+    scraped_urls = set()
 
-TEMPLATE_PATH = Path("copart_clone/templates/copart")
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
 
+    while urls_to_scrape:
+        url = urls_to_scrape.pop(0)
+        if url in scraped_urls:
+            continue
 
-def limpar_templates_antigos():
-    print("🧹 Removendo templates antigos...")
-    pasta = os.path.join(BASE_DIR, "copart_clone", "templates", "copart")
-    if os.path.exists(pasta):
-        for arquivo in os.listdir(pasta):
-            if arquivo.endswith(".html"):
-                os.remove(os.path.join(pasta, arquivo))
-    print("🧹 Templates antigos removidos.")
-    
+        try:
+            response = session.get(url, timeout=10)
+            if response.status_code != 200:
+                continue
+        except Exception:
+            continue
 
-def extrair_html_renderizado(driver, url):
-    try:
-        driver.get(url)
-        WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.TAG_NAME, "body"))
-        )
-        return driver.page_source
-    except Exception as e:
-        print(f"❌ Erro ao copiar {url}: {e}")
-        return None
+        parsed_url = urlparse(url)
+        local_path = parsed_url.path.lstrip("/")
+        if not local_path or local_path.endswith("/"):
+            local_path += "index.html"
+        save_path = os.path.join(OUTPUT_DIR, local_path)
 
-def salvar_template(nome_arquivo, conteudo):
-    save_path = os.path.join(BASE_DIR, "copart_clone", "templates", "copart")
-    os.makedirs(save_path, exist_ok=True)
+        os.makedirs(os.path.dirname(save_path), exist_ok=True)
+        html_content = response.text
 
-    # Caminho fixo para salvar sempre como index.html
-    filename = "index.html"
-    filepath = os.path.join(save_path, filename)
+        soup = BeautifulSoup(html_content, "html.parser")
 
-    # Adiciona {% verbatim %} automaticamente ao redor de blocos com {{ }}
-    if "{{" in conteudo and "}}" in conteudo:
-        conteudo = conteudo.replace("{{", "{% verbatim %}{{").replace("}}", "}}{% endverbatim %}")
+        # Atualiza os links locais
+        for tag in soup.find_all(["a", "link", "script", "img"]):
+            attr = "href" if tag.name in ["a", "link"] else "src"
+            if tag.has_attr(attr):
+                file_url = urljoin(url, tag[attr])
+                parsed_file_url = urlparse(file_url)
 
-    with open(filepath, "w", encoding="utf-8") as f:
-        f.write(conteudo)
+                if parsed_file_url.netloc == urlparse(BASE_URL).netloc:
+                    file_local_path = parsed_file_url.path.lstrip("/")
+                    if not file_local_path or file_local_path.endswith("/"):
+                        file_local_path += "index.html"
+                    tag[attr] = f"/static_site/{file_local_path}"
 
-    print("✅ Template salvo como index.html.")
+                    # Baixar o arquivo se ainda não foi baixado
+                    full_file_path = os.path.join(OUTPUT_DIR, file_local_path)
+                    if not os.path.exists(full_file_path):
+                        try:
+                            file_response = session.get(file_url, timeout=10)
+                            if file_response.status_code == 200:
+                                os.makedirs(os.path.dirname(full_file_path), exist_ok=True)
+                                with open(full_file_path, "wb") as f:
+                                    f.write(file_response.content)
+                        except Exception:
+                            pass
+
+                # Adicionar novas páginas para scrape
+                if tag.name == "a" and parsed_file_url.netloc == urlparse(BASE_URL).netloc:
+                    if file_url not in scraped_urls:
+                        urls_to_scrape.append(file_url)
+
+        with open(save_path, "w", encoding="utf-8") as f:
+            f.write(str(soup))
+
+        scraped_urls.add(url)
+        time.sleep(1)  # Evitar banimento por scraping rápido
 
 def start_scraping():
-    print("📡 Iniciando cópia dos templates com Selenium...")
-
-    # Configurações do navegador
-    options = uc.ChromeOptions()
-    options.add_argument("--headless=new")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    
-    driver = uc.Chrome(options=options)
-
-    limpar_templates_antigos()
-
-    sucesso = False
-
-    for url in tqdm(URLS, desc="Copiando páginas"):
-        html = extrair_html_renderizado(driver, url)
-        if html:
-            salvar_template("index.html", html)
-            sucesso = True
-
-    driver.quit()
-
-    if sucesso:
-        print("✅ Todos os templates HTML atualizados com blocos {% verbatim %} para evitar erros do Django.")
-        print("✅ Templates salvos com sucesso.")
-    else:
-        print("❌ Nenhum template foi salvo. Algo deu errado no scraping.")
-
-# Garante que o driver será fechado mesmo com erro
-try:
-    driver.quit()
-except Exception:
+    print("Iniciando scraping da Copart...")
     pass
+

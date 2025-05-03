@@ -4,7 +4,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent  # Agora é um Path, não uma string
 
 SECRET_KEY = 'django-insecure-secret-key'
-DEBUG = True
+DEBUG = False  # Atualizado para produção
 
 ALLOWED_HOSTS = ['copart-vmqk.onrender.com', 'localhost', '127.0.0.1']
 
@@ -15,7 +15,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'auto_scraper.apps.AutoScraperConfig',
+    'django_cron',
+    'auto_scraper',  # Garantir que o app está registrado
 ]
 
 MIDDLEWARE = [
@@ -58,3 +59,16 @@ DATABASES = {
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'copart_clone' / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+CRON_CLASSES = [
+    "copart.cron.AtualizarCopartCron",
+]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LANGUAGE_CODE = 'pt-br'
+TIME_ZONE = 'America/Sao_Paulo'
+
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True

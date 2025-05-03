@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: copart
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn copart.wsgi --log-file -"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: copart_clone.settings
+  - type: worker
+    name: copart-cron
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python manage.py runcrons"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: copart_clone.settings

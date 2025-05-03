@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, re_path
 from copart_clone import views  # ← Certifique-se que está importando corretamente
+from copart_clone.admin_tools import FerramentasCopartAdmin
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -13,4 +14,5 @@ urlpatterns = [
     path("privacidade/", views.privacidade, name="privacidade"),
     path("login/", views.login, name="login"),
     re_path(r"^(?P<page>[\w-]+)/$", views.dynamic_template_view, name="pagina_dinamica"),
+    path('admin/', admin.site.urls),
 ]
