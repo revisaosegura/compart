@@ -1,9 +1,11 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, reverse
 from django.shortcuts import redirect
 from django.contrib import messages
 from .models import FerramentaCopart
 from .tasks import executar_scraper  # Se você usa Celery ou outro método
+from django.http import HttpResponseRedirect
+from django.utils.html import format_html
 
 @admin.register(FerramentaCopart)
 class FerramentaCopartAdmin(admin.ModelAdmin):
