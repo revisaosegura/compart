@@ -1,26 +1,23 @@
-from django.contrib import admin
-from django.urls import path, reverse
-from django.shortcuts import redirect
-from django.contrib import messages
-from .models import FerramentaCopart
-from .tasks import executar_scraper  # Se você usa Celery ou outro método
-from django.http import HttpResponseRedirect
-from django.utils.html import format_html
 
-@admin.register(FerramentaCopart)
-class FerramentaCopartAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nome', 'descricao')
+from django.contrib import admin
+from django.urls import path
+from django.http import HttpResponseRedirect
+from django.contrib import messages
+from .models import FerramentasCopart
+from .scraper import rodar_scraper  # Ajuste conforme o nome real do módulo
+
+@admin.register(FerramentasCopart)
+class FerramentasCopartAdmin(admin.ModelAdmin):
     change_list_template = "admin/index.html"
 
     def get_urls(self):
         urls = super().get_urls()
         custom_urls = [
-            path('run/', self.admin_site.admin_view(self.run_scraper), name='ferramenta_copart_run'),
+            path('run/', self.admin_site.admin_view(self.run_scraper), name='run-scraper'),
         ]
         return custom_urls + urls
 
     def run_scraper(self, request):
-        # Executa o scraper (ajuste para o seu método)
-        executar_scraper()
-        self.message_user(request, "🔄 Atualização iniciada com sucesso!", messages.SUCCESS)
-        return redirect("..")
+        rodar_scraper()
+        self.message_user(request, "Scraper executado com sucesso!", messages.SUCCESS)
+        return HttpResponseRedirect("../")

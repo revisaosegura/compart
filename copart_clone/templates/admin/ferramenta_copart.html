@@ -1,14 +1,18 @@
+
+{% extends "admin/base_site.html" %}
+
+{% block content %}
 <div style="margin:30px 0; padding:20px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
     <h2 style="color:#58a6ff;">🚗 Ferramentas Copart</h2>
     <p>
-        {% url 'admin:ferramenta_copart_run' as update_url %}
-        {% if update_url %}
-            <a class="button" href="{{ update_url }}"
-               style="background-color:#238636; color:white; padding:10px 15px; border-radius:5px; text-decoration:none;">
-               🔄 Atualizar Copart Agora
-            </a>
-        {% else %}
-            <span style="color:red;">🔴 ERRO: URL 'admin:ferramenta_copart_run' não encontrada</span>
-        {% endif %}
+        Clique no botão abaixo para atualizar o espelho do site.
     </p>
+    <form method="post" action="{% url 'admin:run-scraper' %}">
+        {% csrf_token %}
+        <button type="submit" style="padding:10px 20px; background:#238636; color:#fff; border:none; border-radius:5px; cursor:pointer;">
+            🔄 Atualizar Espelho
+        </button>
+    </form>
 </div>
+{{ block.super }}
+{% endblock %}

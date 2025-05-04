@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_cron',
     'auto_scraper',  # Garantir que o app está registrado
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
