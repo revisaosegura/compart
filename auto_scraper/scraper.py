@@ -76,5 +76,4 @@ def scrape_site():
 
 def start_scraping():
     print("Iniciando scraping da Copart...")
-    pass
-
+    scrape_site()

@@ -1,1 +1,1 @@
-# Nenhuma view necessária porque o botão está na action do admin
+pass

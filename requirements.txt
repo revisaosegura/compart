@@ -12,5 +12,5 @@ whitenoise==6.9.0
 tqdm==4.67.1
 selenium==4.31.0
 undetected-chromedriver==3.5.5
-django-cron
+django-cron==0.5.1
 django-extensions==3.2.3
