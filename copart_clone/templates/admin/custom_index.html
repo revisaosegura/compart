@@ -1,0 +1,8 @@
+
+{% extends "admin/index.html" %}
+{% block content %}
+<div style="margin: 20px 0;">
+    <a href="{% url 'admin:run-scraper' %}" class="button" style="background: #0C4B33; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">🔄 Rodar Scraper</a>
+</div>
+{{ block.super }}
+{% endblock %}

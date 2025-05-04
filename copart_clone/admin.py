@@ -2,20 +2,23 @@
 from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.contrib import messages
-from .models import AtualizarTemplates
 
-class AtualizarTemplatesAdmin(admin.ModelAdmin):
-    def has_add_permission(self, request):
-        return False
+class CustomAdminSite(admin.AdminSite):
+    site_header = 'Ferramentas Copart'
+    index_template = 'admin/custom_index.html'
 
-    def changelist_view(self, request, extra_context=None):
-        if 'executar' in request.GET:
-            # 🔥 Aqui você coloca sua função para rodar o scraper real
-            # from .scraper import rodar_scraper
-            # rodar_scraper()
-            messages.success(request, "✅ Scraper executado com sucesso!")
-            return HttpResponseRedirect(request.path)
-        return super().changelist_view(request, extra_context)
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path('run-scraper/', self.admin_view(self.run_scraper), name='run-scraper'),
+        ]
+        return custom_urls + urls
 
-admin.site.register(AtualizarTemplates, AtualizarTemplatesAdmin)
+    def run_scraper(self, request):
+        # Aqui você chama seu scraper real
+        self.message_user(request, "Scraper executado com sucesso!", messages.SUCCESS)
+        return HttpResponseRedirect(reverse('admin:index'))
+
+admin_site = CustomAdminSite(name='customadmin')
