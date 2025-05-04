@@ -1,0 +1,18 @@
+
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div style="margin:30px 0; padding:20px; background:#0d1117; border:1px solid #30363d; border-radius:8px;">
+    <h2 style="color:#58a6ff;">🚗 Ferramentas Copart</h2>
+    <p>
+        Clique no botão abaixo para atualizar o espelho do site.
+    </p>
+    <form method="post" action="{% url 'admin:run-scraper' %}">
+        {% csrf_token %}
+        <button type="submit" style="padding:10px 20px; background:#238636; color:#fff; border:none; border-radius:5px; cursor:pointer;">
+            🔄 Atualizar Espelho
+        </button>
+    </form>
+</div>
+{{ block.super }}
+{% endblock %}
