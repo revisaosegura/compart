@@ -6,7 +6,7 @@ requests==2.32.3
 soupsieve==2.7
 typing_extensions==4.13.2
 urllib3==2.4.0
-Django==4.2.20
+Django==3.2.25
 gunicorn==23.0.0
 whitenoise==6.9.0
 tqdm==4.67.1
