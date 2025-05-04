@@ -1,4 +1,4 @@
-
+import traceback
 from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponseRedirect
@@ -17,8 +17,16 @@ class CustomAdminSite(admin.AdminSite):
         return custom_urls + urls
 
     def run_scraper(self, request):
-        # Aqui você chama seu scraper real
-        self.message_user(request, "Scraper executado com sucesso!", messages.SUCCESS)
-        return HttpResponseRedirect(reverse('admin:index'))
+        try:
+            print("🚀 Iniciando o scraper...")  # Log inicial
+            rodar_scraper()  # Sua função real
+            print("✅ Scraper finalizado sem erro.")
+            self.message_user(request, "✅ Scraper executado com sucesso!", messages.SUCCESS)
+        except Exception as e:
+            tb = traceback.format_exc()
+            print("❌ Erro ao rodar scraper:")
+            print(tb)  # Isso vai mostrar TUDO no log da Render
+            self.message_user(request, f"Erro ao rodar o scraper: {str(e)}", messages.ERROR)
+        return redirect('/admin/')
 
 admin_site = CustomAdminSite(name='customadmin')

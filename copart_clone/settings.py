@@ -4,7 +4,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent  # Agora é um Path, não uma string
 
 SECRET_KEY = 'django-insecure-secret-key'
-DEBUG = False  # Atualizado para produção
+DEBUG = True  # Atualizado para produção
 
 ALLOWED_HOSTS = ['copart-vmqk.onrender.com', 'localhost', '127.0.0.1']
 
