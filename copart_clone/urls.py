@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path, re_path
 from copart_clone import views  # ← Certifique-se que está importando corretamente
-from copart_clone.admin_tools import FerramentasCopartAdmin
 
 urlpatterns = [
     path("admin/", admin.site.urls),
