@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Instala dependências
+pip install -r requirements.txt
+# Roda collectstatic sem perguntar nada
+python manage.py collectstatic --no-input
