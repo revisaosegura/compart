@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: copart-clone
+    env: python
+    pythonVersion: "3.9"
+    buildCommand: |
+      chmod +x ./scripts/setup_render.sh
+      ./scripts/setup_render.sh
+    startCommand: gunicorn copart_clone.wsgi --bind 0.0.0.0:$PORT
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: copart_clone.settings
+      - key: PYTHONUNBUFFERED
+        value: 1
+      - key: DISABLE_SCRAPER
+        value: 1  # Desativa o scraper após a primeira execução

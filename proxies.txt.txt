@@ -1,0 +1,21 @@
+# Lista de proxies HTTP/HT/SOCKS (um por linha)
+# Formato: protocolo://usuário:senha@ip:porta (ou sem autenticação)
+
+# Proxies HTTP
+http://45.95.147.106:8080
+http://103.83.232.122:80
+http://185.199.229.156:7492
+http://185.199.228.220:7300
+
+# Proxies HTTPS
+https://190.61.88.147:31138
+https://201.150.109.33:999
+https://186.125.223.10:8080
+
+# Proxies SOCKS (se suportado)
+# socks5://user:pass@192.168.1.1:1080
+# socks4://45.85.200.10:4145
+
+# Proxies premium (com autenticação)
+http://user:password@203.113.117.10:8080
+https://proxy_user:proxy_pass@154.16.202.22:3128

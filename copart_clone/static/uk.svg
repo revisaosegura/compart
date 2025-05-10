@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="98px" height="70px" viewBox="0 0 98 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>UK</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="98" height="70" rx="8"></rect>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F0F0F0" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-4" x="0" y="0" width="98" height="70" rx="1.5"></rect>
+        <filter x="-1.8%" y="-1.8%" width="103.6%" height="105.0%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="0.5" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-7">
+            <stop stop-color="#0A17A7" offset="0%"></stop>
+            <stop stop-color="#030E88" offset="100%"></stop>
+        </linearGradient>
+        <path d="M23.3580943,46.6666667 L0,46.6666667 L0,23.3333333 L23.3580943,23.3333333 L-9.70777596,1.0301222 L-4.48864219,-6.70756181 L37.3333333,21.5017169 L37.3333333,-4.66666667 L60.6666667,-4.66666667 L60.6666667,21.5017169 L102.488642,-6.70756181 L107.707776,1.0301222 L74.6419057,23.3333333 L98,23.3333333 L98,46.6666667 L74.6419057,46.6666667 L107.707776,68.9698778 L102.488642,76.7075618 L60.6666667,48.4982831 L60.6666667,74.6666667 L37.3333333,74.6666667 L37.3333333,48.4982831 L-4.48864219,76.7075618 L-9.70777596,68.9698778 L23.3580943,46.6666667 Z" id="path-8"></path>
+        <filter x="-0.6%" y="-0.9%" width="101.3%" height="101.8%" filterUnits="objectBoundingBox" id="filter-9">
+            <feMorphology radius="0.25" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.06 0" type="matrix" in="shadowOffsetOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-10">
+            <stop stop-color="#E6273E" offset="0%"></stop>
+            <stop stop-color="#CF152B" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-11" x="0" y="0" width="98" height="70" rx="1.5"></rect>
+        <filter x="-0.3%" y="-0.4%" width="100.5%" height="100.7%" filterUnits="objectBoundingBox" id="filter-13">
+            <feOffset dx="0" dy="-0.5" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.04 0" type="matrix" in="shadowInnerInner1" result="shadowMatrixInner1"></feColorMatrix>
+            <feOffset dx="0" dy="0.5" in="SourceAlpha" result="shadowOffsetInner2"></feOffset>
+            <feComposite in="shadowOffsetInner2" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner2"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.12 0" type="matrix" in="shadowInnerInner2" result="shadowMatrixInner2"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixInner1"></feMergeNode>
+                <feMergeNode in="shadowMatrixInner2"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="V3---Vinnie-Edits" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="CorpSite_Homepage_V2.4" transform="translate(-293.000000, -3067.000000)">
+            <g id="Footer" transform="translate(0.000000, 2789.000000)">
+                <g id="Footer-Bottom" transform="translate(100.000000, 264.000000)">
+                    <g id="Flags">
+                        <g id="UK" transform="translate(172.000000, 0.000000)">
+                            <g transform="translate(21.000000, 14.000000)">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <use id="Mask" fill="#D8D8D8" xlink:href="#path-1"></use>
+                                <g id="GB" mask="url(#mask-2)">
+                                    <mask id="mask-5" fill="white">
+                                        <use xlink:href="#path-4"></use>
+                                    </mask>
+                                    <g id="Mask">
+                                        <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-4"></use>
+                                        <use fill="url(#linearGradient-3)" fill-rule="evenodd" xlink:href="#path-4"></use>
+                                    </g>
+                                    <rect id="Mask-Copy" fill="url(#linearGradient-7)" mask="url(#mask-5)" x="0" y="0" width="98" height="70"></rect>
+                                    <g id="Rectangle-2" mask="url(#mask-5)">
+                                        <use fill="black" fill-opacity="1" filter="url(#filter-9)" xlink:href="#path-8"></use>
+                                        <use fill="url(#linearGradient-3)" fill-rule="evenodd" xlink:href="#path-8"></use>
+                                    </g>
+                                    <path d="M65.9792019,23.1371313 L110.307869,-6.02533533 C110.846161,-6.37946137 110.995457,-7.10290948 110.641331,-7.64120191 C110.287205,-8.17949435 109.563757,-8.32879071 109.025465,-7.97466467 L64.6967981,21.187802 C64.1585057,21.541928 64.0092093,22.2653761 64.3633353,22.8036686 C64.7174614,23.341961 65.4409095,23.4912574 65.9792019,23.1371313 Z" id="Line" fill="#DB1F35" fill-rule="nonzero" mask="url(#mask-5)"></path>
+                                    <path d="M69.3927292,48.9085602 L109.131263,75.6933602 C109.665558,76.053489 110.390631,75.9122992 110.75076,75.3780041 C111.110889,74.843709 110.969699,74.1186352 110.435404,73.7585064 L70.6968708,46.9737064 C70.1625756,46.6135777 69.4375018,46.7547674 69.0773731,47.2890626 C68.7172444,47.8233577 68.8584341,48.5484315 69.3927292,48.9085602 Z" id="Line-Copy-2" fill="#DB1F35" fill-rule="nonzero" mask="url(#mask-5)"></path>
+                                    <path d="M28.6716108,21.1193994 L-12.7791225,-6.81573396 C-13.3134399,-7.17582961 -14.038505,-7.03459495 -14.3986006,-6.50027752 C-14.7586963,-5.96596008 -14.6174616,-5.24089502 -14.0831442,-4.88079937 L27.3675892,23.054334 C27.9019066,23.4144296 28.6269716,23.2731949 28.9870673,22.7388775 C29.3471629,22.2045601 29.2059283,21.479495 28.6716108,21.1193994 Z" id="Line-Copy" fill="#DB1F35" fill-rule="nonzero" mask="url(#mask-5)"></path>
+                                    <path d="M31.4813238,47.0338591 L-14.4648095,77.5034591 C-15.0017941,77.8595653 -15.1484249,78.5835584 -14.7923187,79.1205429 C-14.4362125,79.6575274 -13.7122194,79.8041582 -13.1752349,79.448052 L32.7708984,48.978452 C33.3078829,48.6223458 33.4545138,47.8983527 33.0984076,47.3613682 C32.7423014,46.8243837 32.0183083,46.6777529 31.4813238,47.0338591 Z" id="Line-Copy-3" fill="#DB1F35" fill-rule="nonzero" mask="url(#mask-5)"></path>
+                                    <polygon id="Rectangle-2-Copy-3" fill="url(#linearGradient-10)" mask="url(#mask-5)" points="0 42 42 42 42 70 56 70 56 42 98 42 98 28 56 28 56 0 42 0 42 28 0 28"></polygon>
+                                    <mask id="mask-12" fill="white">
+                                        <use xlink:href="#path-11"></use>
+                                    </mask>
+                                    <g id="Depth" fill-opacity="1" fill="black">
+                                        <use filter="url(#filter-13)" xlink:href="#path-11"></use>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
