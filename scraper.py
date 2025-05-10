@@ -2,11 +2,12 @@ import asyncio
 from playwright.async_api import async_playwright
 import os
 import re
+import sys
 from urllib.parse import urljoin, urlparse
 import mimetypes
 import logging
 from bs4 import BeautifulSoup
-import random
+from playwright.__main__ import main as playwright_install
 
 # Configuração de logging
 logging.basicConfig(
@@ -39,6 +40,22 @@ SUBSTITUTIONS = [
 # Diretórios
 SAVE_DIR = 'copart_clone/templates'
 STATIC_DIR = 'copart_clone/static'
+
+def install_playwright_browsers():
+    """Instala os browsers necessários para o Playwright"""
+    logger.info("Instalando browsers do Playwright...")
+    try:
+        # Instala dependências do sistema (para Linux - ajuste conforme necessário)
+        if sys.platform == 'linux':
+            os.system('apt-get update && apt-get install -y libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2')
+        
+        # Instala os browsers do Playwright
+        playwright_install(['install'])
+        playwright_install(['install-deps'])
+        logger.info("Browsers instalados com sucesso!")
+    except Exception as e:
+        logger.error(f"Erro ao instalar browsers: {str(e)}")
+        raise
 
 def is_valid_url(url):
     """Verifica se a URL é válida para download"""
@@ -89,10 +106,22 @@ async def scrape_index():
     for attempt in range(1, MAX_RETRIES + 1):
         try:
             async with async_playwright() as p:
-                browser = await p.chromium.launch(
-                    headless=False,  # Mude para True em produção
-                    timeout=TIMEOUT
-                )
+                # Configuração do browser com opções adicionais para Linux
+                browser_args = {
+                    'headless': True,
+                    'timeout': TIMEOUT
+                }
+                
+                if sys.platform == 'linux':
+                    browser_args.update({
+                        'args': [
+                            '--no-sandbox',
+                            '--disable-setuid-sandbox',
+                            '--disable-dev-shm-usage'
+                        ]
+                    })
+                
+                browser = await p.chromium.launch(**browser_args)
                 
                 context = await browser.new_context(
                     user_agent=USER_AGENT,
@@ -108,15 +137,22 @@ async def scrape_index():
                 try:
                     logger.info(f"Tentativa {attempt} para {BASE_URL}")
                     
-                    # Acessar a página principal
-                    await page.goto(BASE_URL, timeout=TIMEOUT, wait_until='domcontentloaded')
+                    # Acessar a página principal com timeout configurável
+                    await page.goto(
+                        BASE_URL,
+                        timeout=TIMEOUT,
+                        wait_until='domcontentloaded',
+                        referer='https://www.google.com/'
+                    )
                     
-                    # Verificar se a página foi carregada corretamente
+                    # Verificação robusta do carregamento
+                    await page.wait_for_function('() => document.readyState === "complete"', timeout=TIMEOUT)
                     title = await page.title()
-                    if not title or "404" in title:
+                    
+                    if not title or "404" in title.lower():
                         raise Exception("Página não encontrada ou inválida")
                     
-                    # Baixar assets
+                    # Baixar assets com tratamento de erros individual
                     assets = await page.query_selector_all("""
                         link[href], script[src], img[src], source[src], 
                         video[src], audio[src], embed[src], object[data], iframe[src]
@@ -124,20 +160,28 @@ async def scrape_index():
                     
                     downloaded_assets = {}
                     for asset in assets:
-                        src = await asset.get_attribute('href') or await asset.get_attribute('src') or await asset.get_attribute('data')
-                        if src:
-                            original_url, filename = await download_asset(page, src, BASE_URL)
-                            if original_url and filename:
-                                downloaded_assets[original_url] = filename
+                        try:
+                            src = await asset.get_attribute('href') or await asset.get_attribute('src') or await asset.get_attribute('data')
+                            if src:
+                                original_url, filename = await download_asset(page, src, BASE_URL)
+                                if original_url and filename:
+                                    downloaded_assets[original_url] = filename
+                        except Exception as e:
+                            logger.warning(f"Erro ao processar asset: {str(e)}")
+                            continue
                     
-                    # Processar conteúdo
+                    # Processar conteúdo com BeautifulSoup
                     content = await page.content()
                     soup = BeautifulSoup(content, 'html.parser')
                     
-                    # Aplicar substituições
+                    # Aplicar substituições com tratamento de erros
                     text = str(soup)
                     for pattern, replacement in SUBSTITUTIONS:
-                        text = re.sub(pattern, replacement, text)
+                        try:
+                            text = re.sub(pattern, replacement, text)
+                        except re.error as e:
+                            logger.warning(f"Erro na regex {pattern}: {str(e)}")
+                            continue
                     
                     # Atualizar referências para os assets baixados
                     soup = BeautifulSoup(text, 'html.parser')
@@ -148,12 +192,14 @@ async def scrape_index():
                             if original_url in downloaded_assets:
                                 tag[attr] = f"/static/{downloaded_assets[original_url]}"
                     
-                    # Salvar o HTML
+                    # Garantir que o diretório existe antes de salvar
                     os.makedirs(SAVE_DIR, exist_ok=True)
-                    with open(os.path.join(SAVE_DIR, 'index.html'), 'w', encoding='utf-8') as f:
+                    output_path = os.path.join(SAVE_DIR, 'index.html')
+                    
+                    with open(output_path, 'w', encoding='utf-8') as f:
                         f.write(str(soup))
                     
-                    logger.info(f"Página principal salva com sucesso em {os.path.join(SAVE_DIR, 'index.html')}")
+                    logger.info(f"Página principal salva com sucesso em {output_path}")
                     return True
                     
                 except Exception as e:
@@ -163,25 +209,40 @@ async def scrape_index():
                     continue
                     
                 finally:
-                    await page.close()
-                    await context.close()
-                    await browser.close()
+                    try:
+                        await page.close()
+                        await context.close()
+                        await browser.close()
+                    except Exception as e:
+                        logger.warning(f"Erro ao fechar recursos: {str(e)}")
                     
         except Exception as e:
             logger.error(f"Erro geral na tentativa {attempt}: {str(e)}")
+            if attempt < MAX_RETRIES:
+                await asyncio.sleep(RETRY_DELAY * attempt)
             continue
             
     return False
 
 async def main():
     """Função principal"""
-    logger.info("Iniciando scraping da página principal...")
-    success = await scrape_index()
-    
-    if success:
-        logger.info("Scraping concluído com sucesso!")
-    else:
-        logger.error("Falha ao raspar a página principal após várias tentativas")
+    try:
+        # Instala os browsers primeiro
+        install_playwright_browsers()
+        
+        logger.info("Iniciando scraping da página principal...")
+        success = await scrape_index()
+        
+        if success:
+            logger.info("Scraping concluído com sucesso!")
+            return True
+        else:
+            logger.error("Falha ao raspar a página principal após várias tentativas")
+            return False
+    except Exception as e:
+        logger.error(f"Erro fatal no main: {str(e)}")
+        return False
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    result = asyncio.run(main())
+    sys.exit(0 if result else 1)
