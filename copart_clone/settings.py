@@ -65,11 +65,12 @@ USE_TZ = True
 # Static files
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # para Render
-
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # onde ficam os arquivos copiados pelo scraper
+    os.path.join(BASE_DIR, 'static'),  # ← isso garante que index.html seja coletado
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Security
