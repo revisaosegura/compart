@@ -64,9 +64,11 @@ USE_TZ = True
 
 # Static files
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # para Render
+
 STATICFILES_DIRS = [
-    BASE_DIR / 'copart_clone/static',
+    os.path.join(BASE_DIR, 'static'),  # onde ficam os arquivos copiados pelo scraper
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
