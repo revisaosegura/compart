@@ -21,7 +21,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
 INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',  # Para desenvolvimento
-    'mirror.apps.MirrorConfig',  # Forma mais explícita de registrar o app
+    'mirror.apps.MirrorConfig',  # Em vez de apenas 'mirror'
 ]
 
 MIDDLEWARE = [
