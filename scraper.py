@@ -9,6 +9,14 @@ import logging
 from bs4 import BeautifulSoup
 from playwright.__main__ import main as playwright_install
 
+if __name__ == "__main__":
+    if '--install-only' in sys.argv:
+        install_playwright_browsers()
+        sys.exit(0)
+        
+    result = asyncio.run(main())
+    sys.exit(0 if result else 1)
+    
 # Configuração de logging
 logging.basicConfig(
     level=logging.INFO,
@@ -42,13 +50,23 @@ SAVE_DIR = 'copart_clone/templates'
 STATIC_DIR = 'copart_clone/static'
 
 def install_playwright_browsers():
-    """Instala os browsers necessários para o Playwright em ambiente restrito"""
+    """Instala os browsers necessários para o Playwright"""
     logger.info("Instalando browsers do Playwright...")
     try:
-        # Modificação para ambientes somente-leitura
-        os.environ['PLAYWRIGHT_BROWSERS_PATH'] = '0'  # Usa browsers bundlados
-        from playwright.__main__ import main
-        main(["install"])  # Instala apenas os browsers
+        # Modificação para corrigir o erro de argumentos
+        import sys
+        from playwright.__main__ import main as playwright_main
+        
+        # Salva os argumentos originais
+        original_argv = sys.argv
+        
+        # Simula a chamada via linha de comando
+        sys.argv = ['playwright', 'install']
+        playwright_main()
+        
+        # Restaura os argumentos originais
+        sys.argv = original_argv
+        
         logger.info("Browsers instalados com sucesso!")
     except Exception as e:
         logger.error(f"Erro ao instalar browsers: {str(e)}")
