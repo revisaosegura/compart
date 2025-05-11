@@ -259,5 +259,5 @@ async def main():
         return False
 
 if __name__ == "__main__":
-    result = asyncio.run(main())
+    result = asyncio.run(scrape_page('https://www.copart.com.br/'))
     sys.exit(0 if result else 1)
