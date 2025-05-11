@@ -4,8 +4,14 @@ services:
     env: python
     buildCommand: |
       pip install -r requirements.txt
-      python manage.py collectstatic --noinput
+      playwright install
     startCommand: |
-      export PYTHONPATH="${PYTHONPATH}:/opt/render/project/src"
-      python manage.py migrate
-      gunicorn copart_clone.wsgi:application --bind 0.0.0.0:$PORT
+      python scraper.py &&
+      python manage.py migrate &&
+      python manage.py collectstatic --noinput &&
+      gunicorn copart_clone.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: copart_clone.settings
+      - key: PYTHON_VERSION
+        value: 3.10
