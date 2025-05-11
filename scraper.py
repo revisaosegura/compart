@@ -42,16 +42,13 @@ SAVE_DIR = 'copart_clone/templates'
 STATIC_DIR = 'copart_clone/static'
 
 def install_playwright_browsers():
-    """Instala os browsers necessários para o Playwright"""
+    """Instala os browsers necessários para o Playwright em ambiente restrito"""
     logger.info("Instalando browsers do Playwright...")
     try:
-        # Instala dependências do sistema (para Linux - ajuste conforme necessário)
-        if sys.platform == 'linux':
-            os.system('apt-get update && apt-get install -y libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2')
-        
-        # Instala os browsers do Playwright
-        playwright_install(['install'])
-        playwright_install(['install-deps'])
+        # Modificação para ambientes somente-leitura
+        os.environ['PLAYWRIGHT_BROWSERS_PATH'] = '0'  # Usa browsers bundlados
+        from playwright.__main__ import main
+        main(["install"])  # Instala apenas os browsers
         logger.info("Browsers instalados com sucesso!")
     except Exception as e:
         logger.error(f"Erro ao instalar browsers: {str(e)}")
