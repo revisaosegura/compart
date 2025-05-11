@@ -63,10 +63,11 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # ← isso garante que index.html seja coletado
+    os.path.join(BASE_DIR, 'copart_clone', 'static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
