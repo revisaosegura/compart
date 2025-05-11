@@ -7,7 +7,7 @@
            |_|
 
 https://copart.com/career
---><html dir="ltr" lang="pt-BR"><head><script src="/nly-Fathere-Heeresembraue-of-your-His-Cesse-pass" async></script>
+--><html dir="ltr" lang="en"><head><script src="/nly-Fathere-Heeresembraue-of-your-His-Cesse-pass" async></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="format-detection" content="telephone=no">
@@ -18,7 +18,7 @@ https://copart.com/career
         <meta name="fragment" content="!">
         <meta http-equiv="Expires" content="-1">
         <meta name="apple-itunes-app" content="app-id=414275302">
-        <base href="https://www.copart.com.br/">
+        <base href="https://www.copart.com.br/en/">
         <title ng-bind-html="title">Online Vehicle Auctions Copart Brazil: Salvage &amp; Used Cars, Trucks &amp; More</title>
         <meta name="description" ng-attr-content="{{description}}" content="Join live online vehicle auctions and bid to buy salvage &amp; used cars, trucks, motorcycles, construction equipment, boats, fleet vehicles and more.">
 
@@ -26,6 +26,18 @@ https://copart.com/career
         <link ng-if="nextPage" rel="next" href="{{nextPage}}">
         
     
+    <!-- Language tags -->
+    <link ng-if="showLanguageHref" rel="alternate" href="https://www.copart.com{{languageHrefPath | sanitizeUrl}}" hreflang="en-us" />
+    <link ng-if="showLanguageHref" rel="alternate" href="https://www.copart.ca{{languageHrefPath | sanitizeUrl}} " hreflang="en-ca" />
+    <link ng-if="showLanguageHref" rel="alternate" href="https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}" hreflang="en-gb" />
+    <link ng-if="showLanguageHref" rel="alternate" href="https://www.copart.ie{{languageHrefPath | sanitizeUrl}}" hreflang="en-ie" />
+    <link ng-if="showLanguageHref" rel="alternate" href="https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}" hreflang="en-om" />
+    <link ng-if="showLanguageHref" rel="alternate" href="https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}" hreflang="en-ae" />
+    <link ng-if="showLanguageHref" rel="alternate" href="https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}" hreflang="en-bh" />
+    <link ng-if="showLanguageHref" rel="alternate" href="https://www.copart.com{{languageHrefPath | sanitizeUrl}}" hreflang="en" />
+    <link ng-if="showLanguageHref" rel="alternate" href="https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}" hreflang="en-br" />
+    <meta ng-if="::languageMeta" http-equiv="content-language" content="{{::languageMeta}}">
+
 
         <link ng-if="canonicalHref" rel="canonical" href="{{canonicalHref}}">
         
@@ -118,7 +130,7 @@ https://copart.com/career
                 insertDelayedCSS("/wro/bootstrap_reduced-33a78c7cdff88c877964abaf073a24c7.css");
                 insertDelayedCSS("/wro/lib-14a48eff9005bec05fdc3221203f2adc.css");
                 insertDelayedCSS("/wro/main-170a5d557c6d01e91eeb9da2bb16feeb.css");
-                insertDelayedCSS("/wro/pt-BR-d46fe42bbabc398ea1198ff78513845e.css");
+                insertDelayedCSS("/wro/en-86192a692ed9d53c9394044d95a4eee7.css");
                 
             }
         }
@@ -128,14 +140,14 @@ https://copart.com/career
     <script>
         /*<![CDATA[*/
         var appInit = {
-            userLang: "pt",//this language code is used for whole i18n JS files, careful when you change
+            userLang: "en",//this language code is used for whole i18n JS files, careful when you change
             userVariant: "",
             userTerritory: 'BR',//this is the value used for CLDR
             logLevel: 'debug',
             buildNumber: "1031",
-            localeString: "pt-BR",//this is value that is used for content & site analyst
-            redirectUrl: "/pt-BR/",
-            serverName: "rnpbaw211.corp.copart.com",
+            localeString: "en",//this is value that is used for content & site analyst
+            redirectUrl: "",
+            serverName: "rnpbaw213.corp.copart.com",
             isBrowserOld: false,
             oldBrowser: null,
             regionCode: "br",
@@ -152,7 +164,7 @@ https://copart.com/career
             initialPageLayout: "NON_OPTIMIZED_PAGE",
             layout: {"NON_OPTIMIZED_PAGE":"NON_OPTIMIZED_PAGE","LOCATIONS_PAGE":"LOCATIONS_PAGE","VEHICLE_FINDER_PAGE":"VEHICLE_FINDER_PAGE"},
             enableModularResources: false,
-            staticResources: {"SONGBIRD":{"path":"https://songbird.cardinalcommerce.com/edge/v1/songbird.js","crossOrigin":"true","originalPath":"https://songbird.cardinalcommerce.com/edge/v1/songbird.js"},"MAIN_STYLES":{"path":"/wro/main-170a5d557c6d01e91eeb9da2bb16feeb.css","originalPath":"/wro/main.css"},"PAYMENT_LIBRARIES":{"path":"/wro/payments-lib.js","originalPath":"/wro/payments-lib.js"},"SITE_STYLES":{"path":"/wro/CPRTBRCSS-6e9721c94ff110dd77b8a64bc968eb13.css","originalPath":"/wro/CPRTBRCSS.css"},"SERVER_SIDE_DATA_TABLEJS":{"path":"/wro/serverSideDataTableJs-65fa613ce55c9938d9e639d79fda470d.js","originalPath":"/wro/serverSideDataTableJs.js"},"ANGULARJS":{"path":"/wro/angular-eea52224ccea57ea019d7666314e90c1.js","originalPath":"/wro/angular.js"},"CMSJS":{"path":"/wro/cmsjs-e539338b737116cf093f7de61797c75c.js","originalPath":"/wro/cmsjs.js"},"LIB_STYLES":{"path":"/wro/lib-14a48eff9005bec05fdc3221203f2adc.css","originalPath":"/wro/lib.css"},"COPART_FONTS":{"path":"/wro/copartFonts.css","originalPath":"/wro/copartFonts.css"},"LANGUAGE_STYLES":{"path":"/wro/pt-BR-d46fe42bbabc398ea1198ff78513845e.css","originalPath":"/wro/pt-BR.css"},"CONTROLLERSJS":{"path":"/wro/controllers-3287ae7df9f18b63c8857b92cc188a48.js","originalPath":"/wro/controllers.js"},"REFERENCE_DATA_LESS":{"path":"/public/data/referenceData/less-163519e4695fcaa8916adc6422b094cd.js","originalPath":"/public/data/referenceData/less-163519e4695fcaa8916adc6422b094cd.js"},"ALL_APP_STYLES":{"path":"/wro/all_app_styles.css","originalPath":"/wro/all_app_styles.css"},"DATATABLEJS":{"path":"/wro/datatableJS-57a9af828d27fc0ed7709bf62caa7acb.js","originalPath":"/wro/datatableJS.js"},"SONGBIRD_QA":{"path":"https://songbirdstag.cardinalcommerce.com/edge/v1/songbird.js","crossOrigin":"true","originalPath":"https://songbirdstag.cardinalcommerce.com/edge/v1/songbird.js"},"BOOTSTRAP_STYLES":{"path":"/wro/bootstrap_reduced-33a78c7cdff88c877964abaf073a24c7.css","originalPath":"/wro/bootstrap_reduced.css"},"CLDR_BUNDLE":{"path":"/wro/CLDR_pt_BR-a06e5c0bb7f89bbe82d4b4bb147d007e.js","originalPath":"/wro/CLDR_pt_BR.js"},"STARTUPJS":{"path":"/wro/startup-be958d1912db644bc47119f06b87c381.js","originalPath":"/wro/startup.js"},"SERVICESJS":{"path":"/wro/services-e8845d62d06125c147b91e3d7ccfe50e.js","originalPath":"/wro/services.js"},"JQUERY":{"path":"/wro/jQuery-da778ed42e342ccf78e664a33f718a7e.js","originalPath":"/wro/jQuery.js"},"FLEX_MICROFORM":{"path":"https://flex.cybersource.com/cybersource/assets/microform/0.11/flex-microform.min.js","crossOrigin":"true","originalPath":"https://flex.cybersource.com/cybersource/assets/microform/0.11/flex-microform.min.js"},"LIBJS":{"path":"/wro/lib-f9a3f6f8514fa45d4fb640cd1a0fc790.js","originalPath":"/wro/lib.js"},"FONT_AWESOME_STYLES":{"path":"/wro/font-awesome-a8d6613f1ee1139c7df2def84ce8afdb.css","originalPath":"/wro/font-awesome.css"},"FLEX_MICROFORM_QA":{"path":"https://testflex.cybersource.com/cybersource/assets/microform/0.11/flex-microform.min.js","crossOrigin":"true","originalPath":"https://testflex.cybersource.com/cybersource/assets/microform/0.11/flex-microform.min.js"}},
+            staticResources: {"SONGBIRD":{"path":"https://songbird.cardinalcommerce.com/edge/v1/songbird.js","crossOrigin":"true","originalPath":"https://songbird.cardinalcommerce.com/edge/v1/songbird.js"},"MAIN_STYLES":{"path":"/wro/main-170a5d557c6d01e91eeb9da2bb16feeb.css","originalPath":"/wro/main.css"},"PAYMENT_LIBRARIES":{"path":"/wro/payments-lib.js","originalPath":"/wro/payments-lib.js"},"SITE_STYLES":{"path":"/wro/CPRTBRCSS-6e9721c94ff110dd77b8a64bc968eb13.css","originalPath":"/wro/CPRTBRCSS.css"},"SERVER_SIDE_DATA_TABLEJS":{"path":"/wro/serverSideDataTableJs-65fa613ce55c9938d9e639d79fda470d.js","originalPath":"/wro/serverSideDataTableJs.js"},"ANGULARJS":{"path":"/wro/angular-eea52224ccea57ea019d7666314e90c1.js","originalPath":"/wro/angular.js"},"CMSJS":{"path":"/wro/cmsjs-e539338b737116cf093f7de61797c75c.js","originalPath":"/wro/cmsjs.js"},"LIB_STYLES":{"path":"/wro/lib-14a48eff9005bec05fdc3221203f2adc.css","originalPath":"/wro/lib.css"},"COPART_FONTS":{"path":"/wro/copartFonts.css","originalPath":"/wro/copartFonts.css"},"LANGUAGE_STYLES":{"path":"/wro/en-86192a692ed9d53c9394044d95a4eee7.css","originalPath":"/wro/en.css"},"CONTROLLERSJS":{"path":"/wro/controllers-3287ae7df9f18b63c8857b92cc188a48.js","originalPath":"/wro/controllers.js"},"REFERENCE_DATA_LESS":{"path":"/public/data/referenceData/less-ff0181c4e60fa3a1413ed492153d9d10.js","originalPath":"/public/data/referenceData/less-ff0181c4e60fa3a1413ed492153d9d10.js"},"ALL_APP_STYLES":{"path":"/wro/all_app_styles.css","originalPath":"/wro/all_app_styles.css"},"DATATABLEJS":{"path":"/wro/datatableJS-57a9af828d27fc0ed7709bf62caa7acb.js","originalPath":"/wro/datatableJS.js"},"SONGBIRD_QA":{"path":"https://songbirdstag.cardinalcommerce.com/edge/v1/songbird.js","crossOrigin":"true","originalPath":"https://songbirdstag.cardinalcommerce.com/edge/v1/songbird.js"},"BOOTSTRAP_STYLES":{"path":"/wro/bootstrap_reduced-33a78c7cdff88c877964abaf073a24c7.css","originalPath":"/wro/bootstrap_reduced.css"},"CLDR_BUNDLE":{"path":"/wro/CLDR_en-292c6bce8bf015ca527cf783fa32b9ed.js","originalPath":"/wro/CLDR_en.js"},"STARTUPJS":{"path":"/wro/startup-be958d1912db644bc47119f06b87c381.js","originalPath":"/wro/startup.js"},"SERVICESJS":{"path":"/wro/services-e8845d62d06125c147b91e3d7ccfe50e.js","originalPath":"/wro/services.js"},"JQUERY":{"path":"/wro/jQuery-da778ed42e342ccf78e664a33f718a7e.js","originalPath":"/wro/jQuery.js"},"FLEX_MICROFORM":{"path":"https://flex.cybersource.com/cybersource/assets/microform/0.11/flex-microform.min.js","crossOrigin":"true","originalPath":"https://flex.cybersource.com/cybersource/assets/microform/0.11/flex-microform.min.js"},"LIBJS":{"path":"/wro/lib-f9a3f6f8514fa45d4fb640cd1a0fc790.js","originalPath":"/wro/lib.js"},"FONT_AWESOME_STYLES":{"path":"/wro/font-awesome-a8d6613f1ee1139c7df2def84ce8afdb.css","originalPath":"/wro/font-awesome.css"},"FLEX_MICROFORM_QA":{"path":"https://testflex.cybersource.com/cybersource/assets/microform/0.11/flex-microform.min.js","crossOrigin":"true","originalPath":"https://testflex.cybersource.com/cybersource/assets/microform/0.11/flex-microform.min.js"}},
             isAngularRoute: null,
             angularJsBundles: ["LIBJS","STARTUPJS","SERVICESJS","CONTROLLERSJS","DATATABLEJS","SERVER_SIDE_DATA_TABLEJS","CMSJS","REFERENCE_DATA_LESS","CLDR_BUNDLE"],
             memberType: "ANONYMOUS"
@@ -248,16 +260,16 @@ https://copart.com/career
             <script defer src="/wro/cmsjs-e539338b737116cf093f7de61797c75c.js"></script>
         
         
-            <script defer src="/public/data/referenceData/less-163519e4695fcaa8916adc6422b094cd.js"></script>
+            <script defer src="/public/data/referenceData/less-ff0181c4e60fa3a1413ed492153d9d10.js"></script>
         
         
-            <script defer src="/wro/CLDR_pt_BR-a06e5c0bb7f89bbe82d4b4bb147d007e.js"></script>
+            <script defer src="/wro/CLDR_en-292c6bce8bf015ca527cf783fa32b9ed.js"></script>
         
     
 
 <!--    <script th:defer="${!isBrowserOld}"-->
 <!--            th:src="${'/public/data/referenceData/less-'+referenceDataHashCode+'.js'}"></script>-->
-    <script src="/wro/messages_CPRTBR_pt-BR-7562d1bb8e89e6186dd118bd907f050c.js" defer="defer"></script>
+    <script src="/wro/messages_CPRTBR_en-15d5fa8c1b8a4daf03aa0a4dac14abb1.js" defer="defer"></script>
 <!--    <script th:defer="${!isBrowserOld}"-->
 <!--            th:src="${@copartUrl.getPath('/wro/CLDR_' + userConfig.getLocale() + '.js')}"></script>-->
 
@@ -332,7 +344,7 @@ https://copart.com/career
         <link href="/wro/main-170a5d557c6d01e91eeb9da2bb16feeb.css" rel="stylesheet"/>
     
     
-        <link href="/wro/pt-BR-d46fe42bbabc398ea1198ff78513845e.css" rel="stylesheet"/>
+        <link href="/wro/en-86192a692ed9d53c9394044d95a4eee7.css" rel="stylesheet"/>
     
 
         
@@ -1017,13 +1029,13 @@ https://copart.com/career
                         </a>
                     </li>
                     <li class="first_group_navs" ng-show="locale.messages['app.label.memberProtectionPledge']">
-                        <a href="pt-BR/Content/br/pt-BR/Member-Protection-Pledge"
+                        <a href="/en/en/Content/br/en/Member-Protection-Pledge"
                            class="menu_click pad-left-30" ng-click="doTagHeaderClick('memberProtectionPledge')">
                             {{locale.messages['app.label.memberProtectionPledge']}}
                         </a>
                     </li>
                     <li class="first_group_navs" ng-show="locale.messages['support.services.buyingCatBs']">
-                        <a href="pt-BR/Content/br/pt-BR/Support/Services/Category-B-Vehicles"
+                        <a href="/en/en/Content/br/en/Support/Services/Category-B-Vehicles"
                            class="menu_click pad-left-30" ng-click="doTagHeaderClick('buyingCatBs')">
                             {{locale.messages['support.services.buyingCatBs']}}
                         </a>
@@ -1243,13 +1255,13 @@ https://copart.com/career
                         </a>
                     </li>
                     <li class="first_group_navs" ng-show="locale.messages['app.label.memberProtectionPledge']">
-                        <a href="pt-BR/Content/br/pt-BR/Member-Protection-Pledge"
+                        <a href="/en/en/Content/br/en/Member-Protection-Pledge"
                            class="menu_click pad-left-30" ng-click="doTagHeaderClick('memberProtectionPledge')">
                             {{locale.messages['app.label.memberProtectionPledge']}}
                         </a>
                     </li>
                     <li class="first_group_navs" ng-show="locale.messages['support.services.buyingCatBs']">
-                        <a href="pt-BR/Content/br/pt-BR/Support/Services/Category-B-Vehicles"
+                        <a href="/en/en/Content/br/en/Support/Services/Category-B-Vehicles"
                            class="menu_click pad-left-30" ng-click="doTagHeaderClick('buyingCatBs')">
                             {{locale.messages['support.services.buyingCatBs']}}
                         </a>

@@ -320,10 +320,7 @@ async def main():
     
     if success:
         logger.info("2. Scraping da página principal concluído!")
-        
-        answer = input("Deseja raspar todo o site? (s/n): ").strip().lower()
-        if answer == 's':
-            await scrape_full_site()
+        await scrape_full_site()
     else:
         logger.error("Falha ao raspar a página principal")
 
