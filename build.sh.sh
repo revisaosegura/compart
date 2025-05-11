@@ -1,17 +1,20 @@
 #!/bin/bash
 set -o errexit
 
-# Configura o ambiente para o Playwright
-export PLAYWRIGHT_BROWSERS_PATH=/opt/render/.cache/ms-playwright
+# Configura caminhos absolutos
+PROJECT_DIR="/opt/render/project/src"
+cd $PROJECT_DIR
 
-# Instala dependências Python
+# Instala dependências
 pip install -r requirements.txt
 
-# Instala os browsers
-python scraper.py --install-only
+# Instala Playwright
+export PLAYWRIGHT_BROWSERS_PATH=$PROJECT_DIR/.playwright
+python -m playwright install
+python -m playwright install-deps
 
-# Executa o scraper principal
+# Executa o scraper
 python scraper.py
 
-# Prepara arquivos estáticos
+# Coleta arquivos estáticos
 python manage.py collectstatic --noinput

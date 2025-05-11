@@ -34,17 +34,21 @@ def install_playwright():
     """Instala os browsers do Playwright de forma confiável"""
     logger.info("Instalando Playwright browsers...")
     try:
-        # Força o Playwright a usar o cache correto
-        os.environ['PLAYWRIGHT_BROWSERS_PATH'] = '0'
+        # Configura o caminho de instalação
+        os.environ['PLAYWRIGHT_BROWSERS_PATH'] = os.path.join(os.getcwd(), '.playwright')
         
-        # Instala via subprocess para garantir isolamento
-        import subprocess
-        subprocess.run(['playwright', 'install'], check=True)
-        subprocess.run(['playwright', 'install-deps'], check=True)
+        # Instala via módulo para maior confiabilidade
+        from playwright.__main__ import main
+        import sys
+        original_argv = sys.argv
+        sys.argv = ['playwright', 'install']
+        main()
+        sys.argv = original_argv
+        
         logger.info("Playwright instalado com sucesso!")
     except Exception as e:
         logger.error(f"Falha na instalação: {str(e)}")
-        raise
+        sys.exit(1)
 
 def is_valid_url(url):
     """Verifica se a URL é válida para download"""
