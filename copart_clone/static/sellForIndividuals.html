@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=0" name="viewport"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
+<meta content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' ajax.googleapis.com maxcdn.bootstrapcdn.com *.googletagmanager.com;
+    style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com  maxcdn.bootstrapcdn.com;
+    connect-src 'self' *.copartmea.com maps.googleapis.com *.google-analytics.com;
+    font-src 'self' data: fonts.gstatic.com maxcdn.bootstrapcdn.com cdnjs.cloudflare.com" http-equiv="Content-Security-Policy"/>
+<meta content="NOODP" name="robots"/>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="!" name="fragment"/>
+<meta content="-1" http-equiv="Expires"/>
+<meta content="-1" http-equiv="Expires"/>
+<meta content="26dc5eb9-b3bf-47b8-aecc-2458fab15941" name="_csrf"/>
+<!-- default header name is X-CSRF-TOKEN -->
+<meta content="X-CSRF-TOKEN" name="_csrf_header"/>
+<!-- Print server details and Build details using Thymeleaf template expression inlining -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0R4NV85SCP&amp;l=copart_dataLayer&amp;cx=c&amp;gtm=45He5580h2v9138208640za200&amp;tag_exp=101509156~102015666~103101750~103101752~103116026~103200004~103233424~103251618~103251620~103284320~103284322~103301114~103301116" type="text/javascript"></script><script async="" plugin="googletagmanager" src="https://www.googletagmanager.com/gtm.js?id=GTM-T9LWTQP8&amp;l=copart_dataLayer"></script><script>
+        var appInit = {
+            serverName: "rnpbsl301.corp.copart.com",
+            serverOS: "Linux",
+            buildNumber: "g2seller-br-jdk-11-Build_106",
+            buildTimestamp: "202504291615"
+        };
+        console.log('Server Name : ' + appInit.serverName + ', ' + 'Server OS : ' + appInit.serverOS);
+        console.log('Build Number : ' + appInit.buildNumber + ', ' + 'Build Time Stamp: ' + appInit.buildTimestamp);
+    </script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.setAttribute('plugin','googletagmanager');j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','copart_dataLayer',"GTM-T9LWTQP8");</script>
+<!-- End Google Tag Manager -->
+<title>Copart Seller</title>
+<link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png"/>
+<!-- for Drive-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet"/>
+<link href="/assets/lib_external/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<!-- <link href="../css/font-awesome.min.css" rel="stylesheet" /> -->
+<link href="assets/css/login.css?ts=202504291615" rel="stylesheet"/>
+<script src="assets/lib_external/google/js/googleapis.jquery.min.1.11.3.js"></script><!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+<script src="assets/lib_external/bootstrap-3.3.7/js/bootstrap.min.js"></script><!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<script src="assets/js/login/login.js?ts=202504291615"></script>
+<!-- flow Player -->
+<link href="assets/lib_external/flowplayer-7.0.4/css/flowplayer.skin.css" rel="stylesheet"/><!--<link rel="stylesheet" href="https://releases.flowplayer.org/7.0.4/skin/skin.css">-->
+<script src="assets/lib_external/flowplayer-7.0.4/js/flowplayer.min.js"></script><!--<script src="https://releases.flowplayer.org/7.0.4/flowplayer.min.js"></script>-->
+<script src="assets/lib_external/flowplayer-7.0.4/js/flowplayer.hlsjs.min.js"></script><!--<script src="https://releases.flowplayer.org/hlsjs/flowplayer.hlsjs.min.js"></script>-->
+<script src="assets/lib_external/flowplayer-7.0.4/js/flowplayer.hlsjs.light.min.js"></script><!--<script src="https://releases.flowplayer.org/hlsjs/flowplayer.hlsjs.light.min.js"></script>-->
+<script>/*<![CDATA[*/ var siteCode = "CPRTBR"; /*]]>*/ </script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-T9LWTQP8" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!--  Add header Here -->
+<header class="slim-header">
+<div class="container-fluid">
+<img alt="Copart" class="img-responsive copart-img" src="assets/images/logo.svg"/>
+</div>
+</header>
+<!--start index-->
+<div class="inner-wrap login-container">
+<div class="container">
+<div class="row">
+<div class="col-xs-12">
+<h1 class="nmt" data-uname="loginSignInHeader">Entre com sua conta Copart</h1>
+<div class="form-group validation-error text-center" id="personalizeError" style="display: none">
+<span>Please enter User ID to personalize your account</span>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+<div class="formbox">
+<h3 class="nmt bg-lblue white login-header"><span data-uname="loginFormTitle">Acesso de comitente</span>
+<select class="form-control pull-right select-lang" id="language" onchange="g2sLogin.changeLanguage()">
+<option>Selecione o idioma</option>
+<option value="en">English</option>
+<option value="pt_BR">Português do Brasil</option>
+</select>
+</h3>
+<div class="login container-content">
+<p>Por favor insira suas credenciais</p>
+<form class="form-horizontal clearfix" id="loginForm" method="POST" onsubmit="event.preventDefault(); g2sLogin.submitForm('dologin',this, siteCode)">
+<div class="form-group">
+<label data-uname="loginEmailUserIDLabel" for="email">Email</label>
+<input class="input-md form-control" data-uname="loginEmailUserIDTextBox" id="username" name="username"/>
+<p class="error" id="emailErrorLogin" style="display: none">Por favor insira um E-mail válido</p>
+<script>/*<![CDATA[*/ var yrdNo = null;/*]]>*/</script>
+</div>
+<div class="form-group">
+<label data-uname="loginPasswordLabel" for="password">Senha</label>
+<input class="input-md form-control" data-uname="loginPasswordTextBox" id="password" maxlength="15" name="password" type="password"/>
+</div>
+<input name="_csrf" type="hidden" value="26dc5eb9-b3bf-47b8-aecc-2458fab15941"/>
+<div class="login-actions">
+<span class="pull-left remember" data-uname="loginRememberMeLabel">Lembrar?</span>
+<input class="pull-left" data-uname="loginRememberMeCheckbox" id="rememberMe" name="remember-me" type="checkbox"/>
+</div>
+<div class="login-btn">
+<button class="btn btn-lblue btn-small pull-right" data-uname="loginSignIntoYourAccount" type="submit">Entrar com sua conta</button>
+</div>
+</form>
+</div>
+</div>
+<p class="login-note">
+<span>Se você chegou a esta página por engano, você pode voltar para a página</span>
+<a data-uname="loginCopartHomeRedirect" href="https://www.copart.com.br/">inicial da Copart</a>
+</p>
+<!-- forgot UserId/Password Modal -->
+<div class="modal fade" id="forgotuserid" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button aria-label="Close" class="close" data-dismiss="modal" type="button">
+<span aria-hidden="true">×</span>
+</button>
+<h4 class="modal-title" data-uname="loginForgotIDPasswordModal">Esqueceu sua senha?</h4>
+</div>
+<div class="modal-body" id="forgotPasswordPopup">
+<p data-uname="loginForgotIDPasswordText">To retrieve your password please enter the email address associated with your account.</p>
+<form class="form-horizontal">
+<div class="formbox">
+<div class="form-group">
+<label class="col-sm-3 col-xs-12 control-label" data-uname="loginForgotIDEmailLabel" for="Email">E-mail</label>
+<div class="col-sm-9 col-xs-12">
+<input class="form-control" data-uname="loginForgotIDEmailtextBox" id="email"/>
+<p class="error" data-uname="personalizeEmailError" id="emailError" style="display: none">Por favor insira um E-mail válido</p>
+<p class="error" id="invalidEmailError" style="display: none">To retrieve your login credentials please enter the email address associated with your account.</p>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn btn-dgray" data-dismiss="modal" data-uname="loginForgotIDCancel" type="submit">Cancelar</button>
+<button class="btn btn-lblue" data-uname="loginForgotIDSubmit" onclick="g2sLogin.forgotPassword()" type="button">Buscar</button>
+</div>
+</form>
+</div>
+<p class="container-content" id="confirmPasswordReset" style="display: none">Your password has been sent to<span id="emailSentConfirmation"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
+<iframe frameborder="0" id="ifrm" onload="g2sLogin.resizeIframe()" scrolling="no" src="./CMS/pt-br/Content/BR/pt-br/Seller/login/index.html" width="100%"></iframe>
+<!--<div th:if="${siteCode != 'CPRTCA'}">-->
+<!--<div id="FlowDiv"></div>-->
+<!--<script>-->
+<!--var container = document.getElementById('FlowDiv');-->
+<!--var api = flowplayer(container, {-->
+<!--splash: true,-->
+<!--ratio: 9/16,-->
+<!--// optional: HLS levels offered for manual selection-->
+<!--hlsQualities: [-1, 1, 3, 6],-->
+<!--clip: {-->
+<!--sources: [{-->
+<!--type: "application/x-mpegurl",-->
+<!--src: "./CMS/content/us/en/videos/login/login.m3u8"-->
+<!--}]-->
+<!--},-->
+<!--embed: false,-->
+<!--share: false-->
+<!--}).one("ready", function (e, api) {-->
+<!--if (true) {-->
+<!--// hack to hide engine and pretend loading in paused state-->
+<!--//    container.className = container.className + " is-splash is-loading";-->
+<!--}-->
+<!--});-->
+<!--</script>-->
+<!--</div>-->
+</div>
+</div>
+</div>
+</div>
+<!--end index-->
+<div class="footer-container">
+<footer class="footer">
+<div class="container-fluid">
+</div>
+</footer>
+<div class="footer-btm">
+<div class="container-fluid">
+<div class="col-xs-12 col-sm-12">
+<div class="info country-footer text-center">
+<ul class="country">
+<li><a class="usa" href="https://www.copart.com" target="_blank"><span class="flag flag-us"></span></a></li>
+<li><a class="uk" href="http://www.copart.co.uk/" target="_blank"><span class="flag flag-uk"></span></a></li>
+<li><a class="uk" href="https://www.copart.ca" target="_blank"><span class="flag flag-canada"></span></a></li>
+<li><a class="uk" href="https://www.copart.de/" target="_blank"><span class="flag flag-germany"></span></a></li>
+<li><a class="uk" href="https://www.copart.es/" target="_blank"><span class="flag flag-spain"></span></a></li>
+<li><a class="uk" href="http://www.copart.ie/ " target="_blank"><span class="flag flag-ireland"></span></a></li>
+<li><a class="uk" href="http://www.copartmea.com/" target="_blank"><span class="flag flag-dubai"></span></a></li>
+<li><a class="uk" href="http://www.copartmea.com/" target="_blank"><span class="flag flag-bahrain"></span></a></li>
+<li><a class="uk" href="http://www.copartmea.com/" target="_blank"><span class="flag flag-oman"></span></a></li>
+<li><a class="uk" href="http://www.copart.com.br/" target="_blank"><span class="flag flag-brazil"></span></a></li>
+</ul>
+</div>
+<div class="footer-mobile-country o-hidden text-center">
+<label class="col-xs-6">Country:</label>
+<select class="form-control col-xs-4" id="countryselect">
+<option value="">Region</option>
+<option label="USA" value="https://www.copart.com/">USA</option>
+<option label="UK" value="http://www.copart.co.uk/">UK</option>
+<option label="Canada" value="https://www.copart.ca/">Canada</option>
+<option label="Germany" value="https://www.copart.de/">Germany</option>
+<option label="Spain" value="https://www.copart.es/">Spain</option>
+<option label="Ireland" value="http://www.copart.ie">Ireland</option>
+<option label="Dubai" value="http://www.copartmea.com/">Dubai</option>
+<option label="Bahrain" value="http://www.copartmea.com/">Bahrain</option>
+<option label="Oman" value="http://www.copartmea.com/">Oman</option>
+<option label="Brazil" value="http://www.copart.com.br/">Brazil</option>
+</select>
+</div>
+<div class="row">
+<div class="col-sm-12 col-xs-12 text-center sitemaplink">
+<ul class="list-in">
+<li>
+<a data-uname="homeFooterGreyContactUs" href="./contact-us_static.html">Entre em contato conosco</a>
+</li>
+<li>
+<a data-uname="homeFooterGreyTerms" href="./terms-of-service_static.html">Termos e Condições</a>
+</li>
+<li>
+<a data-uname="homeFooterGreyPrivacyP" href="./privacy-policy_static.html">Política de Privacidade</a>
+</li>
+<li>
+<a data-uname="homeFooterGreyCopyright" href="./copyright_static.html">Direito Autoral</a>
+</li>
+</ul>
+</div>
+<div class="col-xs-12 col-sm-12 text-center">
+<p class="copy"><span>Direito Autoral</span> © <span>2019 Copart Inc. Todos os direitos reservados</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>/*<![CDATA[*/ var isMobile = null;/*]]>*/</script>
+</body></html>
