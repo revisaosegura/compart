@@ -745,3 +745,614 @@ Call log:
 
 2025-05-11 11:48:19,003 - __main__ - INFO - Página salva: copart_clone/static\accountInformation\documentSetting.html
 2025-05-11 11:48:19,008 - __main__ - INFO - Scraping completo concluído com sucesso!
+2025-05-11 11:57:02,160 - __main__ - INFO - 1. Iniciando scraping da página principal...
+2025-05-11 11:57:07,056 - __main__ - INFO - Tentativa 1 para https://www.copart.com.br
+2025-05-11 11:57:21,661 - __main__ - INFO - Página principal salva com sucesso em copart_clone/static\index.html
+2025-05-11 11:57:22,600 - __main__ - INFO - 2. Scraping da página principal concluído!
+2025-05-11 11:57:22,600 - __main__ - INFO - Iniciando scraping completo do site...
+2025-05-11 11:57:25,661 - __main__ - INFO - Raspando: https://www.copart.com.br (profundidade 0)
+2025-05-11 11:57:38,519 - __main__ - INFO - Página salva: copart_clone/static\index.html
+2025-05-11 11:57:38,532 - __main__ - INFO - Raspando: https://www.copart.com.br/public/watchList (profundidade 1)
+2025-05-11 11:57:38,971 - __main__ - WARNING - Página inválida: https://www.copart.com.br/public/watchList
+2025-05-11 11:57:38,971 - __main__ - INFO - Raspando: https://www.copart.com.br/salesListResult (profundidade 1)
+2025-05-11 11:57:52,053 - __main__ - INFO - Página salva: copart_clone/static\salesListResult.html
+2025-05-11 11:57:52,067 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/contact-us/media-inquiries?intcmp=web_footer_mediainquiries_pt (profundidade 2)
+2025-05-11 11:58:04,525 - __main__ - INFO - Página salva: copart_clone/static\content\br\pt-br\contact-us\media-inquiries.html
+2025-05-11 11:58:04,527 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/about-copart/our-history?intcmp=web_footer_ourhistory_pt (profundidade 2)
+2025-05-11 11:58:14,547 - __main__ - INFO - Página salva: copart_clone/static\content\br\pt-br\about-copart\our-history.html
+2025-05-11 11:58:14,549 - __main__ - INFO - Raspando: https://www.copart.com.br/vehicleFinder (profundidade 2)
+2025-05-11 11:58:26,496 - __main__ - INFO - Página salva: copart_clone/static\vehicleFinder.html
+2025-05-11 11:58:26,498 - __main__ - INFO - Raspando: https://www.copart.com.br/todaysAuction (profundidade 2)
+2025-05-11 11:58:37,387 - __main__ - INFO - Página salva: copart_clone/static\todaysAuction.html
+2025-05-11 11:58:37,389 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/en/videos/about-copart (profundidade 2)
+2025-05-11 11:58:52,038 - __main__ - INFO - Página salva: copart_clone/static\content\br\en\videos\about-copart.html
+2025-05-11 11:58:52,041 - __main__ - INFO - Raspando: https://www.copart.com.br/saleListResult/9130/2025-05-12?location=Itaquaquecetuba%20-%20SP&saleDate=1747054800000&liveAuction=false&from=/salesListResult&auctioneer=Eduardo%20da%20Silva%20Pinto%20-%20Jucesp%20980&yardNum=46 (profundidade 2)
+2025-05-11 11:59:04,854 - __main__ - INFO - Página salva: copart_clone/static\saleListResult\9130\2025-05-12.html
+2025-05-11 11:59:04,856 - __main__ - INFO - Raspando: https://www.copart.com.br/sellForIndividuals?intcmp=web_footer_sellforindividuals_pt (profundidade 2)
+2025-05-11 11:59:15,809 - __main__ - INFO - Página salva: copart_clone/static\sellForIndividuals.html
+2025-05-11 11:59:15,811 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/support/faq-topics/index (profundidade 2)
+2025-05-11 11:59:32,041 - __main__ - INFO - Página salva: copart_clone/static\content\br\pt-br\support\faq-topics\index.html
+2025-05-11 11:59:32,044 - __main__ - INFO - Raspando: https://www.copart.com.br/pt-BR/ (profundidade 2)
+2025-05-11 11:59:42,850 - __main__ - INFO - Página salva: copart_clone/static\pt-BR.html
+2025-05-11 11:59:42,852 - __main__ - INFO - Raspando: https://www.copart.com.br/overview?intcmp=web_footer_howtobuyoverview_pt (profundidade 2)
+2025-05-11 11:59:52,932 - __main__ - INFO - Página salva: copart_clone/static\overview.html
+2025-05-11 11:59:52,934 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/support/faq-topics/index?intcmp=web_footer_buying_pt (profundidade 2)
+2025-05-11 12:00:03,943 - __main__ - INFO - Página salva: copart_clone/static\content\br\pt-br\support\faq-topics\index.html
+2025-05-11 12:00:03,946 - __main__ - INFO - Raspando: https://www.copart.com.br/#forgotuserid (profundidade 2)
+2025-05-11 12:00:13,516 - __main__ - INFO - Página salva: copart_clone/static\index.html
+2025-05-11 12:00:13,518 - __main__ - INFO - Raspando: https://www.copart.com.br/saleListResult/9140/2025-05-15?location=Itaquaquecetuba%20-%20SP&saleDate=1747328400000&from=/salesListResult&auctioneer=Wendell%20F%C3%A9lix%20-%20Jucesp%20759&yardNum=46 (profundidade 2)
+2025-05-11 12:00:24,650 - __main__ - INFO - Página salva: copart_clone/static\saleListResult\9140\2025-05-15.html
+2025-05-11 12:00:24,652 - __main__ - INFO - Raspando: https://www.copart.com.br/locations?region=NORTH_AMERICA (profundidade 2)
+2025-05-11 12:00:36,826 - __main__ - INFO - Página salva: copart_clone/static\locations.html
+2025-05-11 12:00:36,828 - __main__ - INFO - Raspando: https://www.copart.com.br/saleListResult/9134/2025-05-13?location=Curitiba%20-%20PR&saleDate=1747155600000&from=/salesListResult&auctioneer=Lucas%20Eduardo%20Dalcanale%20-%20Jucepar%2020/319L&yardNum=53 (profundidade 2)
+2025-05-11 12:00:48,795 - __main__ - INFO - Página salva: copart_clone/static\saleListResult\9134\2025-05-13.html
+2025-05-11 12:00:48,797 - __main__ - INFO - Raspando: https://www.copart.com.br/doRegistration (profundidade 2)
+2025-05-11 12:01:00,507 - __main__ - INFO - Página salva: copart_clone/static\doRegistration.html
+2025-05-11 12:01:00,509 - __main__ - INFO - Raspando: https://www.copart.com.br/vehicleAlerts (profundidade 2)
+2025-05-11 12:01:21,875 - __main__ - INFO - Página salva: copart_clone/static\vehicleAlerts.html
+2025-05-11 12:01:21,877 - __main__ - INFO - Raspando: https://www.copart.com.br/locations?region=MIDDLE_EAST (profundidade 2)
+2025-05-11 12:01:42,414 - __main__ - INFO - Página salva: copart_clone/static\locations.html
+2025-05-11 12:01:42,419 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/terms-of-use (profundidade 2)
+2025-05-11 12:01:55,114 - __main__ - INFO - Página salva: copart_clone/static\content\br\pt-br\terms-of-use.html
+2025-05-11 12:01:55,121 - __main__ - INFO - Raspando: https://www.copart.com.br/overview (profundidade 2)
+2025-05-11 12:02:12,660 - __main__ - INFO - Página salva: copart_clone/static\overview.html
+2025-05-11 12:02:12,663 - __main__ - INFO - Raspando: https://www.copart.com.br/en/ (profundidade 2)
+2025-05-11 12:02:17,037 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:17,088 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:02:17,133 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:17,184 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:17,286 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:17,374 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:17,458 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:17,526 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:17,749 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:29,007 - __main__ - INFO - Página salva: copart_clone/static\en.html
+2025-05-11 12:02:29,007 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/copyright?intcmp=web_footer_copyright_pt (profundidade 2)
+2025-05-11 12:02:32,758 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:32,783 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:02:32,801 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:33,027 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:33,043 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:33,060 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:33,078 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:33,098 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:33,117 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:42,530 - __main__ - INFO - Página salva: copart_clone/static\content\br\pt-br\copyright.html
+2025-05-11 12:02:42,532 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/cookie-policy?intcmp=web_footer_cookiepolicy_pt (profundidade 2)
+2025-05-11 12:02:47,304 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:47,329 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:02:47,346 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:47,364 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:47,385 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:47,405 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:47,422 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:47,439 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:47,456 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:02:56,674 - __main__ - INFO - Página salva: copart_clone/static\content\br\pt-br\cookie-policy.html
+2025-05-11 12:02:56,675 - __main__ - INFO - Raspando: https://www.copart.com.br/saleListResult/9136/2025-05-14?location=Goi%C3%A2nia%20-%20GO&saleDate=1747236600000&from=/salesListResult&auctioneer=Ygor%20Ferreira%20Brasil%20-%20Juceg%20074/20&yardNum=56 (profundidade 2)
+2025-05-11 12:03:02,073 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:02,091 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:03:02,115 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:02,238 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:02,271 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:02,300 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:02,326 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:02,367 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:02,405 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:10,973 - __main__ - INFO - Página salva: copart_clone/static\saleListResult\9136\2025-05-14.html
+2025-05-11 12:03:10,975 - __main__ - INFO - Raspando: https://www.copart.com.br/saleListResult/9133/2025-05-13?location=Curitiba%20-%20PR&saleDate=1747143000000&liveAuction=false&from=/salesListResult&auctioneer=Luiz%20Rafael%20L%20de%20Lima%20-%20Jucepar%2020/315-L&yardNum=53 (profundidade 2)
+2025-05-11 12:03:17,569 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:17,606 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:03:17,640 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:17,764 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:17,934 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:17,989 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:18,019 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:18,040 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:18,087 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:31,247 - __main__ - INFO - Página salva: copart_clone/static\saleListResult\9133\2025-05-13.html
+2025-05-11 12:03:31,250 - __main__ - INFO - Raspando: https://www.copart.com.br/locations (profundidade 2)
+2025-05-11 12:03:35,512 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:35,547 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:03:35,627 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:35,659 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:35,687 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:35,706 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:35,727 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:35,747 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:35,767 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:45,079 - __main__ - INFO - Página salva: copart_clone/static\locations.html
+2025-05-11 12:03:45,082 - __main__ - INFO - Raspando: https://www.copart.com.br/saleListResult/9135/2025-05-14?location=Goi%C3%A2nia%20-%20GO&saleDate=1747227600000&liveAuction=false&from=/salesListResult&auctioneer=Claudio%20Moreira%20Santos%20-%20Juceg%20071/19&yardNum=56 (profundidade 2)
+2025-05-11 12:03:49,109 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:49,129 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:03:49,151 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:49,168 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:49,337 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:49,353 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:49,369 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:49,388 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:49,417 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:03:56,630 - __main__ - INFO - Página salva: copart_clone/static\saleListResult\9135\2025-05-14.html
+2025-05-11 12:03:56,631 - __main__ - INFO - Raspando: https://www.copart.com.br/saleListResult/9132/2025-05-13?location=Leil%C3%A3o%20P%C3%A1tio%20Porto%20Seguro%20-%20SP&saleDate=1747141200000&liveAuction=false&from=/salesListResult&auctioneer=Andr%C3%A9%20Cencin%20-%20Jucesp%201143&yardNum=3 (profundidade 2)
+2025-05-11 12:04:15,488 - __main__ - INFO - Página salva: copart_clone/static\saleListResult\9132\2025-05-13.html
+2025-05-11 12:04:15,489 - __main__ - INFO - Raspando: https://www.copart.com.br/ (profundidade 2)
+2025-05-11 12:04:32,178 - __main__ - INFO - Página salva: copart_clone/static\index.html
+2025-05-11 12:04:32,179 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/contact-us (profundidade 2)
+2025-05-11 12:04:36,726 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:36,741 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:04:36,757 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:36,772 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:36,789 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:36,810 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:36,828 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:36,843 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:36,859 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:44,727 - __main__ - INFO - Página salva: copart_clone/static\content\br\pt-br\contact-us.html
+2025-05-11 12:04:44,729 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/privacy-policy?intcmp=web_footer_privacypolicy_pt (profundidade 2)
+2025-05-11 12:04:47,532 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:47,553 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:04:47,583 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:47,617 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:47,646 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:47,665 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:47,700 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:47,729 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:47,758 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:04:55,963 - __main__ - INFO - Página salva: copart_clone/static\content\br\pt-br\privacy-policy.html
+2025-05-11 12:04:55,965 - __main__ - INFO - Raspando: https://www.copart.com.br/login (profundidade 2)
+2025-05-11 12:05:07,556 - __main__ - INFO - Página salva: copart_clone/static\login.html
+2025-05-11 12:05:07,558 - __main__ - INFO - Raspando: https://www.copart.com.br/banner/www/delivery/ck.php?ct=1&oaparams=2__bannerid=11336__zoneid=426__cb=36a9a3958d__oadest=https%3A%2F%2Fwww.copart.com.br%2Fsearch%2Fcompre_agora%2F (profundidade 2)
+2025-05-11 12:05:12,618 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:12,742 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:05:12,773 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:12,797 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:12,817 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:12,835 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:12,853 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:12,873 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:12,890 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:21,176 - __main__ - INFO - Página salva: copart_clone/static\banner\www\delivery\ck.php.html
+2025-05-11 12:05:21,177 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/en/buy-it-now (profundidade 2)
+2025-05-11 12:05:24,675 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:24,724 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:05:24,766 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:24,813 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:24,859 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:24,900 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:24,943 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:24,986 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:25,034 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:32,912 - __main__ - INFO - Página salva: copart_clone/static\content\br\en\buy-it-now.html
+2025-05-11 12:05:32,914 - __main__ - INFO - Raspando: https://www.copart.com.br/saleListResult/9143/2025-05-15?location=Osasco%20-%20SP&saleDate=1747344600000&from=/salesListResult&auctioneer=Luiz%20Eduardo%20Gomes%20-%20Jucesp%20969&yardNum=1 (profundidade 2)
+2025-05-11 12:05:36,175 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:36,331 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:05:36,463 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:36,573 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:36,613 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:36,641 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:36,664 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:36,689 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:36,717 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:44,431 - __main__ - INFO - Página salva: copart_clone/static\saleListResult\9143\2025-05-15.html
+2025-05-11 12:05:44,433 - __main__ - INFO - Raspando: https://www.copart.com.br/pt-BR/Content/br/pt-BR/Member-Protection-Pledge (profundidade 2)
+2025-05-11 12:05:55,657 - __main__ - INFO - Página salva: copart_clone/static\pt-BR\Content\br\pt-BR\Member-Protection-Pledge.html
+2025-05-11 12:05:55,658 - __main__ - INFO - Raspando: https://www.copart.com.br/saleListResult/9142/2025-05-15?location=Recife%20-%20PE&saleDate=1747328400000&liveAuction=false&from=/salesListResult&auctioneer=Adriano%20Santos%20Venceslau%20da%20Silva%20-%20Jucepe%2032/99&yardNum=55 (profundidade 2)
+2025-05-11 12:05:59,455 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:59,478 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:05:59,495 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:59,512 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:59,530 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:59,561 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:59,580 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:59,599 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:05:59,616 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:08,753 - __main__ - INFO - Página salva: copart_clone/static\saleListResult\9142\2025-05-15.html
+2025-05-11 12:06:08,755 - __main__ - INFO - Raspando: https://www.copart.com.br/driverseat/mylots (profundidade 2)
+2025-05-11 12:06:19,897 - __main__ - INFO - Página salva: copart_clone/static\driverseat\mylots.html
+2025-05-11 12:06:19,900 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/member-news/index?intcmp=web_footer_membernewsindex_pt (profundidade 2)
+2025-05-11 12:06:23,185 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:23,282 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:06:23,298 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:23,313 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:23,329 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:23,347 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:23,364 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:23,381 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:23,401 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:31,601 - __main__ - INFO - Página salva: copart_clone/static\content\br\pt-br\member-news\index.html
+2025-05-11 12:06:31,602 - __main__ - INFO - Raspando: https://www.copart.com.br/locations?region=EUROPE (profundidade 2)
+2025-05-11 12:06:35,379 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:35,438 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:06:36,168 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:36,205 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:36,227 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:36,258 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:36,280 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:36,318 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:36,376 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:44,850 - __main__ - INFO - Página salva: copart_clone/static\locations.html
+2025-05-11 12:06:44,852 - __main__ - INFO - Raspando: https://www.copart.com.br/sellForIndividuals (profundidade 2)
+2025-05-11 12:06:47,685 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:47,701 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:06:47,717 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:47,734 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:47,753 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:47,770 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:47,786 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:47,802 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:47,904 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:06:56,818 - __main__ - INFO - Página salva: copart_clone/static\sellForIndividuals.html
+2025-05-11 12:06:56,820 - __main__ - INFO - Raspando: https://www.copart.com.br/search/compre_agora/?displayStr=Compre%20Agora&from=%2FvehicleFinder (profundidade 2)
+2025-05-11 12:07:02,175 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:02,212 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:07:02,284 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:02,311 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:02,345 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:02,372 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:02,400 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:02,426 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:02,483 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:16,369 - __main__ - INFO - Página salva: copart_clone/static\search\compre_agora.html
+2025-05-11 12:07:16,371 - __main__ - INFO - Raspando: https://www.copart.com.br/savedsearch (profundidade 2)
+2025-05-11 12:07:21,605 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:21,627 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:07:21,650 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:21,673 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:21,701 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:21,730 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:21,768 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:21,792 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:21,818 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:07:29,473 - __main__ - INFO - Página salva: copart_clone/static\savedsearch.html
+2025-05-11 12:07:29,475 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/glossary?intcmp=web_footer_commonterms_pt (profundidade 2)
+2025-05-11 12:07:39,859 - __main__ - INFO - Página salva: copart_clone/static\content\br\pt-br\glossary.html
+2025-05-11 12:07:39,865 - __main__ - INFO - Raspando: https://www.copart.com.br/how-it-works (profundidade 2)
+2025-05-11 12:07:58,089 - __main__ - INFO - Página salva: copart_clone/static\how-it-works.html
+2025-05-11 12:07:58,090 - __main__ - INFO - Raspando: https://www.copart.com.br/accountInformation/documentSetting?showAcc=Y&skipTC=000 (profundidade 2)
+2025-05-11 12:08:02,022 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,108 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,208 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,272 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,291 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,314 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,324 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,341 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,371 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,420 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,448 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,460 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,484 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,533 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,540 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,558 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,585 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,625 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,669 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,703 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,721 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,735 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,752 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,770 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,790 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,872 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,891 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,903 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,921 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,940 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:02,988 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:03,011 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:03,053 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:03,069 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:03,079 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:03,088 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:03,107 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:03,125 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:03,142 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:03,252 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:03,287 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:03,310 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-11 12:08:07,465 - __main__ - INFO - Página salva: copart_clone/static\accountInformation\documentSetting.html
+2025-05-11 12:08:07,466 - __main__ - INFO - Raspando: https://www.copart.com.br/sellForIndividuals/ (profundidade 2)
+2025-05-11 12:08:11,363 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:08:11,488 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-11 12:08:11,521 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:08:11,544 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:08:11,572 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:08:11,593 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:08:11,616 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:08:11,635 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:08:11,671 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-11 12:08:20,104 - __main__ - INFO - Página salva: copart_clone/static\sellForIndividuals.html
+2025-05-11 12:08:20,106 - __main__ - INFO - Scraping completo concluído com sucesso!
+2025-05-11 12:13:49,892 - __main__ - INFO - 1. Iniciando scraping da página principal...
+2025-05-11 12:13:58,284 - __main__ - INFO - Tentativa 1 para https://www.copart.com.br
+2025-05-11 12:14:15,518 - __main__ - INFO - Página principal salva com sucesso em copart_clone/static\index.html
+2025-05-11 12:14:16,650 - __main__ - INFO - 2. Scraping da página principal concluído!
+2025-05-11 12:14:16,651 - __main__ - INFO - Iniciando scraping completo do site...
+2025-05-11 12:14:20,079 - __main__ - INFO - Raspando: https://www.copart.com.br (profundidade 0)
+2025-05-11 12:14:37,999 - __main__ - INFO - Página salva: copart_clone/static\index.html
+2025-05-11 12:14:38,013 - __main__ - INFO - Raspando: https://www.copart.com.br/doRegistration (profundidade 1)
+2025-05-11 12:14:38,732 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/doRegistration
+2025-05-11 12:14:38,734 - __main__ - INFO - Raspando: https://www.copart.com.br/todaysAuction (profundidade 1)
+2025-05-11 12:14:50,560 - __main__ - INFO - Página salva: copart_clone/static\todaysAuction.html
+2025-05-11 12:14:50,575 - __main__ - INFO - Raspando: https://www.copart.com.br/auctionCalendar?intcmp=web_footer_auctioncalendar_pt (profundidade 2)
+2025-05-11 12:15:05,030 - __main__ - INFO - Página salva: copart_clone/static\auctionCalendar.html
+2025-05-11 12:15:05,030 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/support/faq-topics/index?intcmp=web_footer_buying_pt (profundidade 2)
+2025-05-11 12:15:24,770 - __main__ - INFO - Página salva: copart_clone/static\content\br\pt-br\support\faq-topics\index.html
+2025-05-11 12:15:24,771 - __main__ - INFO - Raspando: https://www.copart.com.br/complete-registration (profundidade 2)
+2025-05-11 12:15:42,410 - __main__ - INFO - Página salva: copart_clone/static\complete-registration.html
+2025-05-11 12:15:42,411 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/contact-us/media-inquiries?intcmp=web_footer_mediainquiries_pt (profundidade 2)
+2025-05-11 12:16:12,647 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:12,666 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:12,686 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:12,736 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:12,829 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:12,890 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:12,935 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,008 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,053 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,090 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,125 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,142 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,169 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,185 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,212 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,234 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,259 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,304 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,328 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,343 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,355 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,367 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,389 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,413 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,434 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,445 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,457 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,468 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,479 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,499 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,517 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,536 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,543 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,556 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,566 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,585 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,617 - __main__ - WARNING - Erro ao processar asset: ElementHandle.get_attribute: Target page, context or browser has been closed
+2025-05-11 12:16:13,646 - __main__ - ERROR - Erro na tentativa 1 para https://www.copart.com.br/content/br/pt-br/contact-us/media-inquiries?intcmp=web_footer_mediainquiries_pt: Page.content: Target page, context or browser has been closed
+2025-05-11 12:17:09,497 - __main__ - INFO - 1. Iniciando scraping da página principal...
+2025-05-11 12:17:13,464 - __main__ - INFO - Tentativa 1 para https://www.copart.com.br
+2025-05-11 12:17:26,271 - __main__ - INFO - Página principal salva com sucesso em copart_clone/static\index.html
+2025-05-11 12:17:27,155 - __main__ - INFO - 2. Scraping da página principal concluído!
+2025-05-11 12:17:27,156 - __main__ - INFO - Iniciando scraping completo do site...
+2025-05-11 12:17:30,273 - __main__ - INFO - Raspando: https://www.copart.com.br (profundidade 0)
+2025-05-11 12:17:43,469 - __main__ - INFO - Página salva: copart_clone/static\index.html
+2025-05-11 12:17:43,484 - __main__ - INFO - Raspando: https://www.copart.com.br/ (profundidade 1)
+2025-05-11 12:17:44,121 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/
+2025-05-11 12:17:44,124 - __main__ - INFO - Raspando: https://www.copart.com.br/doRegistration (profundidade 1)
+2025-05-11 12:18:02,424 - __main__ - INFO - Página salva: copart_clone/static\doRegistration.html
+2025-05-11 12:18:02,441 - __main__ - INFO - Raspando: https://www.copart.com.br/en/ (profundidade 2)
+2025-05-11 12:18:03,920 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/en/
+2025-05-11 12:18:03,921 - __main__ - INFO - Raspando: https://www.copart.com.br/aboutus?intcmp=web_footer_aboutus_pt (profundidade 2)
+2025-05-11 12:18:05,082 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/aboutus?intcmp=web_footer_aboutus_pt
+2025-05-11 12:18:05,083 - __main__ - INFO - Raspando: https://www.copart.com.br/#0 (profundidade 2)
+2025-05-11 12:18:07,865 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/#0
+2025-05-11 12:18:07,880 - __main__ - INFO - Raspando: https://www.copart.com.br/salesListResult (profundidade 2)
+2025-05-11 12:18:09,088 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/salesListResult
+2025-05-11 12:18:09,088 - __main__ - INFO - Raspando: https://www.copart.com.br/login (profundidade 2)
+2025-05-11 12:18:10,728 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/login
+2025-05-11 12:18:10,728 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/contact-us/media-inquiries?intcmp=web_footer_mediainquiries_pt (profundidade 2)
+2025-05-11 12:18:11,872 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-br/contact-us/media-inquiries?intcmp=web_footer_mediainquiries_pt
+2025-05-11 12:18:11,876 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/copyright?intcmp=web_footer_copyright_pt (profundidade 2)
+2025-05-11 12:18:13,533 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-br/copyright?intcmp=web_footer_copyright_pt
+2025-05-11 12:18:13,536 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/cookie-policy?intcmp=web_footer_cookiepolicy_pt (profundidade 2)
+2025-05-11 12:18:15,599 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-br/cookie-policy?intcmp=web_footer_cookiepolicy_pt
+2025-05-11 12:18:15,632 - __main__ - INFO - Raspando: https://www.copart.com.br/sellForIndividuals (profundidade 2)
+2025-05-11 12:18:17,803 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/sellForIndividuals
+2025-05-11 12:18:17,804 - __main__ - INFO - Raspando: https://www.copart.com.br/#privacypolicy (profundidade 2)
+2025-05-11 12:18:19,420 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/#privacypolicy
+2025-05-11 12:18:19,421 - __main__ - INFO - Raspando: https://www.copart.com.br/todaysAuction?intcmp=web_footer_todaysauctions_pt (profundidade 2)
+2025-05-11 12:18:20,843 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/todaysAuction?intcmp=web_footer_todaysauctions_pt
+2025-05-11 12:18:20,845 - __main__ - INFO - Raspando: https://www.copart.com.br/sellForIndividuals/ (profundidade 2)
+2025-05-11 12:18:22,801 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/sellForIndividuals/
+2025-05-11 12:18:22,803 - __main__ - INFO - Raspando: https://www.copart.com.br/locations?region=MIDDLE_EAST (profundidade 2)
+2025-05-11 12:18:24,243 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/locations?region=MIDDLE_EAST
+2025-05-11 12:18:24,244 - __main__ - INFO - Raspando: https://www.copart.com.br/savedsearch (profundidade 2)
+2025-05-11 12:18:25,695 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/savedsearch
+2025-05-11 12:18:25,698 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/en/videos/about-copart (profundidade 2)
+2025-05-11 12:18:27,097 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/en/videos/about-copart
+2025-05-11 12:18:27,098 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/contact-us?intcmp=web_footer_contactus_pt (profundidade 2)
+2025-05-11 12:18:28,530 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-br/contact-us?intcmp=web_footer_contactus_pt
+2025-05-11 12:18:28,532 - __main__ - INFO - Raspando: https://www.copart.com.br/vehicleFinder?intcmp=web_footer_vehiclefinder_pt (profundidade 2)
+2025-05-11 12:18:29,898 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/vehicleFinder?intcmp=web_footer_vehiclefinder_pt
+2025-05-11 12:18:29,898 - __main__ - INFO - Raspando: https://www.copart.com.br/pt-BR/Content/br/pt-BR/Member-Protection-Pledge (profundidade 2)
+2025-05-11 12:18:40,368 - __main__ - INFO - Página salva: copart_clone/static\pt-BR\Content\br\pt-BR\Member-Protection-Pledge.html
+2025-05-11 12:18:40,369 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/support/faq-topics/index?intcmp=web_footer_buying_pt (profundidade 2)
+2025-05-11 12:18:41,657 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-br/support/faq-topics/index?intcmp=web_footer_buying_pt
+2025-05-11 12:18:41,658 - __main__ - INFO - Raspando: https://www.copart.com.br/auctionCalendar?intcmp=web_footer_auctioncalendar_pt (profundidade 2)
+2025-05-11 12:18:42,968 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/auctionCalendar?intcmp=web_footer_auctioncalendar_pt
+2025-05-11 12:18:43,020 - __main__ - INFO - Raspando: https://www.copart.com.br/overview (profundidade 2)
+2025-05-11 12:18:44,402 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/overview
+2025-05-11 12:18:44,453 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/en/buy-it-now (profundidade 2)
+2025-05-11 12:18:45,865 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/en/buy-it-now
+2025-05-11 12:18:45,913 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-BR/cookie-policy (profundidade 2)
+2025-05-11 12:18:47,218 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-BR/cookie-policy
+2025-05-11 12:18:47,219 - __main__ - INFO - Raspando: https://www.copart.com.br/locations (profundidade 2)
+2025-05-11 12:18:49,142 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/locations
+2025-05-11 12:18:49,143 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-BR/support/FAQ-Topics/Index (profundidade 2)
+2025-05-11 12:18:51,140 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-BR/support/FAQ-Topics/Index
+2025-05-11 12:18:51,141 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/privacy-policy?intcmp=web_footer_privacypolicy_pt (profundidade 2)
+2025-05-11 12:18:52,602 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-br/privacy-policy?intcmp=web_footer_privacypolicy_pt
+2025-05-11 12:18:52,613 - __main__ - INFO - Raspando: https://www.copart.com.br/accountInformation/documentSetting?showAcc=Y&skipTC=000 (profundidade 2)
+2025-05-11 12:18:53,982 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/accountInformation/documentSetting?showAcc=Y&skipTC=000
+2025-05-11 12:18:54,025 - __main__ - INFO - Raspando: https://www.copart.com.br/pt-BR/ (profundidade 2)
+2025-05-11 12:19:06,060 - __main__ - INFO - Página salva: copart_clone/static\pt-BR.html
+2025-05-11 12:19:06,061 - __main__ - INFO - Raspando: https://www.copart.com.br/complete-registration (profundidade 2)
+2025-05-11 12:19:07,401 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/complete-registration
+2025-05-11 12:19:07,401 - __main__ - INFO - Raspando: https://www.copart.com.br/locations?region=EUROPE (profundidade 2)
+2025-05-11 12:19:09,307 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/locations?region=EUROPE
+2025-05-11 12:19:09,311 - __main__ - INFO - Raspando: https://www.copart.com.br/auctionCalendar (profundidade 2)
+2025-05-11 12:19:10,641 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/auctionCalendar
+2025-05-11 12:19:10,643 - __main__ - INFO - Raspando: https://www.copart.com.br/#forgotuserid (profundidade 2)
+2025-05-11 12:19:11,980 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/#forgotuserid
+2025-05-11 12:19:11,980 - __main__ - INFO - Raspando: https://www.copart.com.br/vehicleFinder (profundidade 2)
+2025-05-11 12:19:13,429 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/vehicleFinder
+2025-05-11 12:19:13,434 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/veiculos-media-monta (profundidade 2)
+2025-05-11 12:19:14,807 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-br/veiculos-media-monta
+2025-05-11 12:19:14,808 - __main__ - INFO - Raspando: https://www.copart.com.br/how-it-works (profundidade 2)
+2025-05-11 12:19:24,083 - __main__ - INFO - Página salva: copart_clone/static\how-it-works.html
+2025-05-11 12:19:24,087 - __main__ - INFO - Raspando: https://www.copart.com.br/#termConditionModal (profundidade 2)
+2025-05-11 12:19:25,315 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/#termConditionModal
+2025-05-11 12:19:25,316 - __main__ - INFO - Raspando: https://www.copart.com.br/driverseat/mylots (profundidade 2)
+2025-05-11 12:19:35,394 - __main__ - INFO - Página salva: copart_clone/static\driverseat\mylots.html
+2025-05-11 12:19:35,395 - __main__ - INFO - Raspando: https://www.copart.com.br/todaysAuction (profundidade 2)
+2025-05-11 12:19:36,944 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/todaysAuction
+2025-05-11 12:19:36,945 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/about-copart/our-history?intcmp=web_footer_ourhistory_pt (profundidade 2)
+2025-05-11 12:19:38,438 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-br/about-copart/our-history?intcmp=web_footer_ourhistory_pt
+2025-05-11 12:19:38,441 - __main__ - INFO - Raspando: https://www.copart.com.br/sellForIndividuals?intcmp=web_footer_sellforindividuals_pt (profundidade 2)
+2025-05-11 12:19:39,775 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/sellForIndividuals?intcmp=web_footer_sellforindividuals_pt
+2025-05-11 12:19:39,776 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/member-news/index?intcmp=web_footer_membernewsindex_pt (profundidade 2)
+2025-05-11 12:19:41,201 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-br/member-news/index?intcmp=web_footer_membernewsindex_pt
+2025-05-11 12:19:41,203 - __main__ - INFO - Raspando: https://www.copart.com.br/accountInformation/accountSetting?showAcc=Y (profundidade 2)
+2025-05-11 12:19:42,577 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/accountInformation/accountSetting?showAcc=Y
+2025-05-11 12:19:42,581 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/glossary?intcmp=web_footer_commonterms_pt (profundidade 2)
+2025-05-11 12:19:43,966 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-br/glossary?intcmp=web_footer_commonterms_pt
+2025-05-11 12:19:43,967 - __main__ - INFO - Raspando: https://www.copart.com.br/locations?region=NORTH_AMERICA (profundidade 2)
+2025-05-11 12:19:45,078 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/locations?region=NORTH_AMERICA
+2025-05-11 12:19:45,080 - __main__ - INFO - Raspando: https://www.copart.com.br/locations?region=SOUTH_AMERICA (profundidade 2)
+2025-05-11 12:19:46,516 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/locations?region=SOUTH_AMERICA
+2025-05-11 12:19:46,516 - __main__ - INFO - Raspando: https://www.copart.com.br/#termsofservice (profundidade 2)
+2025-05-11 12:19:47,899 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/#termsofservice
+2025-05-11 12:19:47,899 - __main__ - INFO - Raspando: https://www.copart.com.br/content/br/pt-br/terms-of-use (profundidade 2)
+2025-05-11 12:19:49,113 - __main__ - INFO - Ignorando página não-portuguesa: https://www.copart.com.br/content/br/pt-br/terms-of-use
+2025-05-11 12:19:49,113 - __main__ - INFO - Scraping completo concluído com sucesso!
+2025-05-11 12:41:35,548 - __main__ - INFO - Iniciando scraping da página principal...
+2025-05-11 12:41:40,518 - __main__ - INFO - Tentativa 1 para https://www.copart.com.br
+2025-05-11 12:41:58,582 - __main__ - INFO - Página principal salva com sucesso em copart_clone/static\index.html
+2025-05-11 12:41:59,818 - __main__ - INFO - Scraping concluído com sucesso!
