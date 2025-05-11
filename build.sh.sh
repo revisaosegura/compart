@@ -1,16 +1,16 @@
 #!/bin/bash
 set -o errexit
 
-# Configuração específica para o Render
-export PLAYWRIGHT_BROWSERS_PATH=0  # Usa browsers bundlados
+# Configura o ambiente para o Playwright
+export PLAYWRIGHT_BROWSERS_PATH=/opt/render/.cache/ms-playwright
 
 # Instala dependências Python
 pip install -r requirements.txt
 
-# Instala browsers do Playwright (modo bundlado)
-python -c "from playwright.__main__ import main; main(['install'])"
+# Instala os browsers
+python scraper.py --install-only
 
-# Roda o scraper
+# Executa o scraper principal
 python scraper.py
 
 # Prepara arquivos estáticos

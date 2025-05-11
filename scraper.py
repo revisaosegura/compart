@@ -1,13 +1,11 @@
 import asyncio
 import os
-import re
 import sys
 from urllib.parse import urljoin, urlparse
 import mimetypes
 import logging
 from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright
-from playwright.__main__ import main as playwright_main
 
 # Configuração de logging
 logging.basicConfig(
@@ -32,18 +30,20 @@ RETRY_DELAY = 10  # segundos
 SAVE_DIR = 'copart_clone/templates'
 STATIC_DIR = 'copart_clone/static'
 
-def install_playwright_browsers():
-    """Instala os browsers necessários para o Playwright"""
-    logger.info("Instalando browsers do Playwright...")
+def install_playwright():
+    """Instala os browsers do Playwright de forma confiável"""
+    logger.info("Instalando Playwright browsers...")
     try:
-        # Simula a chamada via linha de comando
-        original_argv = sys.argv
-        sys.argv = ['playwright', 'install']
-        playwright_main()
-        sys.argv = original_argv
-        logger.info("Browsers instalados com sucesso!")
+        # Força o Playwright a usar o cache correto
+        os.environ['PLAYWRIGHT_BROWSERS_PATH'] = '0'
+        
+        # Instala via subprocess para garantir isolamento
+        import subprocess
+        subprocess.run(['playwright', 'install'], check=True)
+        subprocess.run(['playwright', 'install-deps'], check=True)
+        logger.info("Playwright instalado com sucesso!")
     except Exception as e:
-        logger.error(f"Erro ao instalar browsers: {str(e)}")
+        logger.error(f"Falha na instalação: {str(e)}")
         raise
 
 def is_valid_url(url):
@@ -97,7 +97,13 @@ async def scrape_page():
             async with async_playwright() as p:
                 browser = await p.chromium.launch(
                     headless=True,
-                    timeout=TIMEOUT
+                    timeout=TIMEOUT,
+                    # Configurações específicas para ambientes restritos
+                    args=[
+                        '--no-sandbox',
+                        '--disable-setuid-sandbox',
+                        '--disable-dev-shm-usage'
+                    ]
                 )
                 
                 context = await browser.new_context(
@@ -113,38 +119,9 @@ async def scrape_page():
                     logger.info(f"Tentativa {attempt} para {BASE_URL}")
                     await page.goto(BASE_URL, timeout=TIMEOUT, wait_until='domcontentloaded')
                     
-                    # Baixar assets
-                    assets = await page.query_selector_all("""
-                        link[href], script[src], img[src], source[src], 
-                        video[src], audio[src], embed[src], object[data], iframe[src]
-                    """)
+                    # Processamento da página...
+                    # ... (mantenha o resto do seu código de scraping aqui)
                     
-                    downloaded_assets = {}
-                    for asset in assets:
-                        src = await asset.get_attribute('href') or await asset.get_attribute('src') or await asset.get_attribute('data')
-                        if src:
-                            original_url, filename = await download_asset(page, src, BASE_URL)
-                            if original_url and filename:
-                                downloaded_assets[original_url] = filename
-                    
-                    # Processar conteúdo
-                    content = await page.content()
-                    soup = BeautifulSoup(content, 'html.parser')
-                    
-                    # Atualizar referências para os assets baixados
-                    for tag in soup.find_all(['link', 'script', 'img', 'source', 'video', 'audio', 'embed', 'object', 'iframe']):
-                        attr = 'href' if tag.name == 'link' else ('src' if tag.has_attr('src') else 'data')
-                        if tag.has_attr(attr):
-                            original_url = tag[attr]
-                            if original_url in downloaded_assets:
-                                tag[attr] = f"/static/{downloaded_assets[original_url]}"
-                    
-                    # Salvar o HTML
-                    os.makedirs(SAVE_DIR, exist_ok=True)
-                    with open(os.path.join(SAVE_DIR, 'index.html'), 'w', encoding='utf-8') as f:
-                        f.write(str(soup))
-                    
-                    logger.info(f"Página salva em {os.path.join(SAVE_DIR, 'index.html')}")
                     return True
                     
                 finally:
@@ -171,9 +148,16 @@ async def main():
     return success
 
 if __name__ == "__main__":
+    # Verifica se é apenas para instalação
     if '--install-only' in sys.argv:
-        install_playwright_browsers()
+        install_playwright()
         sys.exit(0)
         
+    # Verifica se os browsers estão instalados
+    if not os.path.exists('/opt/render/.cache/ms-playwright'):
+        logger.info("Browsers não detectados, instalando...")
+        install_playwright()
+    
+    # Executa o scraping
     result = asyncio.run(main())
     sys.exit(0 if result else 1)
