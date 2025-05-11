@@ -37,7 +37,7 @@ SUBSTITUTIONS = [
 ]
 
 # Diretórios
-SAVE_DIR = 'copart_clone/templates'
+SAVE_DIR = 'copart_clone/static'
 STATIC_DIR = 'copart_clone/static'
 
 def is_valid_url(url):

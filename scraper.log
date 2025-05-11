@@ -1,0 +1,4 @@
+2025-05-10 23:43:53,540 - __main__ - INFO - Iniciando scraping da página principal...
+2025-05-10 23:43:59,589 - __main__ - INFO - Tentativa 1 para https://www.copart.com.br
+2025-05-10 23:44:25,962 - __main__ - INFO - Página principal salva com sucesso em copart_clone/static\index.html
+2025-05-10 23:44:27,734 - __main__ - INFO - Scraping concluído com sucesso!
