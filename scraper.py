@@ -81,97 +81,11 @@ async def download_asset(page, url, base_url):
         logger.warning(f"Erro ao baixar {url}: {str(e)}")
         return None, None
 
-async def scrape_index():
-    """Faz scraping apenas da página index"""
-    for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            async with async_playwright() as p:
-                browser = await p.chromium.launch(
-                    headless=False,  # Mude para True em produção
-                    timeout=TIMEOUT
-                )
-                
-                context = await browser.new_context(
-                    user_agent=USER_AGENT,
-                    viewport=VIEWPORT,
-                    locale='pt-BR',
-                    timezone_id='America/Sao_Paulo',
-                    java_script_enabled=True,
-                    ignore_https_errors=True
-                )
-                
-                page = await context.new_page()
-                
-                try:
-                    logger.info(f"Tentativa {attempt} para {BASE_URL}")
-                    
-                    # Acessar a página principal
-                    await page.goto(BASE_URL, timeout=TIMEOUT, wait_until='domcontentloaded')
-                    
-                    # Verificar se a página foi carregada corretamente
-                    title = await page.title()
-                    if not title or "404" in title:
-                        raise Exception("Página não encontrada ou inválida")
-                    
-                    # Baixar assets
-                    assets = await page.query_selector_all("""
-                        link[href], script[src], img[src], source[src], 
-                        video[src], audio[src], embed[src], object[data], iframe[src]
-                    """)
-                    
-                    downloaded_assets = {}
-                    for asset in assets:
-                        src = await asset.get_attribute('href') or await asset.get_attribute('src') or await asset.get_attribute('data')
-                        if src:
-                            original_url, filename = await download_asset(page, src, BASE_URL)
-                            if original_url and filename:
-                                downloaded_assets[original_url] = filename
-                    
-                    # Processar conteúdo
-                    content = await page.content()
-                    soup = BeautifulSoup(content, 'html.parser')
-                    
-                    # Aplicar substituições
-                    text = str(soup)
-                    for pattern, replacement in SUBSTITUTIONS:
-                        text = re.sub(pattern, replacement, text)
-                    
-                    # Atualizar referências para os assets baixados
-                    soup = BeautifulSoup(text, 'html.parser')
-                    for tag in soup.find_all(['link', 'script', 'img', 'source', 'video', 'audio', 'embed', 'object', 'iframe']):
-                        attr = 'href' if tag.name == 'link' else ('src' if tag.has_attr('src') else 'data')
-                        if tag.has_attr(attr):
-                            original_url = tag[attr]
-                            if original_url in downloaded_assets:
-                                tag[attr] = f"/static/{downloaded_assets[original_url]}"
-                    
-                    # Salvar o HTML
-                    os.makedirs(SAVE_DIR, exist_ok=True)
-                    with open(os.path.join(SAVE_DIR, 'index.html'), 'w', encoding='utf-8') as f:
-                        f.write(str(soup))
-                    
-                    logger.info(f"Página principal salva com sucesso em {os.path.join(SAVE_DIR, 'index.html')}")
-                    return True
-                    
-                except Exception as e:
-                    logger.error(f"Erro na tentativa {attempt}: {str(e)}")
-                    if attempt < MAX_RETRIES:
-                        await asyncio.sleep(RETRY_DELAY * attempt)
-                    continue
-                    
-                finally:
-                    await page.close()
-                    await context.close()
-                    await browser.close()
-                    
-        except Exception as e:
-            logger.error(f"Erro geral na tentativa {attempt}: {str(e)}")
-            continue
-            
-    return False
+async def crawl_all_pages_with_assets():
+    """Crawler completo com download de todos os assets e páginas HTML do domínio Copart BR"""
+    visited = set()
+    to_visit = [BASE_URL]
 
-async def scrape_additional_pages():
-    """Faz scraping de todas as páginas internas encontradas na home"""
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=False, timeout=TIMEOUT)
         context = await browser.new_context(
@@ -184,27 +98,17 @@ async def scrape_additional_pages():
         )
         page = await context.new_page()
 
-        logger.info("Acessando a página principal para extrair os links internos...")
-        await page.goto(BASE_URL, timeout=TIMEOUT, wait_until='domcontentloaded')
-        content = await page.content()
-        soup = BeautifulSoup(content, 'html.parser')
+        while to_visit:
+            url = to_visit.pop(0)
+            if url in visited:
+                continue
 
-        links = set()
-        for a in soup.find_all('a', href=True):
-            href = a['href']
-            if href.startswith('/'):
-                href = urljoin(BASE_URL, href)
-            if BASE_URL in href and '#' not in href and not any(href.startswith(p) for p in ['mailto:', 'tel:']):
-                links.add(href.split('?')[0])
-
-        logger.info(f"{len(links)} links encontrados para scraping adicional.")
-
-        for link in links:
+            logger.info(f"📄 Visitando: {url}")
             try:
-                logger.info(f"Scraping: {link}")
-                await page.goto(link, timeout=TIMEOUT, wait_until='domcontentloaded')
+                await page.goto(url, timeout=TIMEOUT, wait_until='domcontentloaded')
+                html = await page.content()
 
-                # Baixar assets
+                # Baixar todos os assets
                 assets = await page.query_selector_all("""
                     link[href], script[src], img[src], source[src], 
                     video[src], audio[src], embed[src], object[data], iframe[src]
@@ -214,16 +118,17 @@ async def scrape_additional_pages():
                 for asset in assets:
                     src = await asset.get_attribute('href') or await asset.get_attribute('src') or await asset.get_attribute('data')
                     if src:
-                        original_url, filename = await download_asset(page, src, link)
+                        original_url, filename = await download_asset(page, src, url)
                         if original_url and filename:
                             downloaded_assets[original_url] = filename
 
-                # Substituições
-                html = await page.content()
+                # Substituições de dados sensíveis
                 for pattern, replacement in SUBSTITUTIONS:
                     html = re.sub(pattern, replacement, html)
 
                 soup = BeautifulSoup(html, 'html.parser')
+
+                # Atualizar caminhos para assets locais
                 for tag in soup.find_all(['link', 'script', 'img', 'source', 'video', 'audio', 'embed', 'object', 'iframe']):
                     attr = 'href' if tag.name == 'link' else ('src' if tag.has_attr('src') else 'data')
                     if tag.has_attr(attr):
@@ -231,35 +136,41 @@ async def scrape_additional_pages():
                         if original_url in downloaded_assets:
                             tag[attr] = f"/static/{downloaded_assets[original_url]}"
 
-                # Salvar como arquivo HTML separado
-                parsed = urlparse(link)
-                name = parsed.path.strip('/').replace('/', '_') or 'home'
+                # Salvar o HTML local
+                parsed = urlparse(url)
+                name = parsed.path.strip('/').replace('/', '_') or 'index'
                 filename = os.path.join(SAVE_DIR, f'{name}.html')
                 os.makedirs(os.path.dirname(filename), exist_ok=True)
                 with open(filename, 'w', encoding='utf-8') as f:
                     f.write(str(soup))
+                logger.info(f"✅ Página salva: {filename}")
 
-                logger.info(f"{name}.html salvo com sucesso.")
+                # Encontrar novos links internos para visitar
+                for a in soup.find_all('a', href=True):
+                    href = a['href'].split('?')[0].split('#')[0]
+                    full_url = urljoin(BASE_URL, href)
+                    if (
+                        full_url.startswith(BASE_URL)
+                        and full_url not in visited
+                        and full_url not in to_visit
+                        and not full_url.endswith('.pdf')
+                        and not any(prefix in full_url for prefix in ['mailto:', 'tel:', 'javascript:'])
+                    ):
+                        to_visit.append(full_url)
+
+                visited.add(url)
 
             except Exception as e:
-                logger.warning(f"Erro ao processar {link}: {str(e)}")
+                logger.warning(f"⚠️ Falha ao processar {url}: {str(e)}")
 
         await page.close()
         await context.close()
         await browser.close()
+        logger.info("🧭 Crawler completo finalizado.")
 
 async def main():
-    """Função principal"""
-    print("🔧 Iniciando o scraper da Copart...")
-    logger.info("Iniciando scraping da página principal...")
-    success = await scrape_index()
-    
-    if success:
-        logger.info("Página principal raspada. Iniciando scraping de páginas internas...")
-        await scrape_additional_pages()
-        logger.info("Scraping completo de todas as páginas!")
-    else:
-        logger.error("Falha ao raspar a página principal. Abandonando scraping das outras.")
+    logger.info("🚀 Iniciando crawler completo da Copart BR com download de todas as páginas e assets...")
+    await crawl_all_pages_with_assets()
 
 if __name__ == "__main__":
     asyncio.run(main())

@@ -1384,3 +1384,183 @@ Call log:
 2025-05-21 18:02:20,710 - __main__ - INFO - Scraping: https://www.copart.com.br/doRegistration
 2025-05-21 18:02:32,799 - __main__ - INFO - doRegistration.html salvo com sucesso.
 2025-05-21 18:02:33,972 - __main__ - INFO - Scraping completo de todas as páginas!
+2025-05-21 18:23:53,764 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:23:53,779 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:23:53,800 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:23:53,815 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:23:53,829 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:23:53,844 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:23:53,858 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:23:53,873 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:23:53,889 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:05,065 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:05,082 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:24:05,098 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:05,117 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:05,131 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:05,146 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:05,161 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:05,179 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:05,204 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:15,435 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:15,450 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:24:15,464 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:15,481 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:15,494 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:15,509 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:15,522 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:15,537 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:15,552 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:25,108 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:25,135 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:24:25,155 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:25,175 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:25,193 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:25,217 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:25,239 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:25,258 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:25,334 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:37,237 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:37,252 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:24:37,268 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:37,288 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:37,309 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:37,322 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:37,337 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:37,350 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:37,365 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:46,890 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:46,906 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:24:46,922 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:46,940 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:46,957 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:46,972 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:46,987 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:47,002 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:47,016 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:58,083 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:58,115 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:24:58,139 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:58,169 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:58,195 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:58,228 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:58,256 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:58,391 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:24:58,413 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:25:08,217 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:25:08,232 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:25:08,246 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:25:08,261 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:25:08,276 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:25:08,290 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:25:08,304 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:25:08,319 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:25:08,335 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:18,360 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:18,381 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:26:18,444 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:18,469 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:18,494 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:18,517 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:18,550 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:18,577 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:18,604 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:29,632 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:29,648 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:26:29,668 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:29,685 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:29,702 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:29,722 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:29,745 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:29,764 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:26:29,786 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:28,096 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:28,122 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:27:28,143 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:28,164 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:28,188 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:28,210 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:28,231 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:28,257 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:28,282 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:43,807 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:43,875 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:27:43,896 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:43,920 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:43,938 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:43,956 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:43,975 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:43,994 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:27:44,013 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:21,835 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:21,861 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:28:21,892 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:21,923 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:21,947 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:21,973 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:22,007 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:22,035 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:22,057 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:46,517 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:46,536 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:28:46,559 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:46,575 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:46,589 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:46,603 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:46,618 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:46,634 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:46,649 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:55,896 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:55,911 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:28:55,926 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:55,941 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:55,958 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:55,973 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:55,987 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:56,001 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:28:56,016 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:06,890 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:06,940 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:29:06,998 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:07,030 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:07,049 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:07,067 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:07,085 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:07,101 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:07,118 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:16,331 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:16,349 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:29:16,363 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:16,377 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:16,391 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:16,405 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:16,420 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:16,434 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:16,449 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:26,451 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:26,464 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:29:26,479 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:26,493 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:26,509 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:26,523 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:26,538 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:26,553 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:26,567 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:36,624 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:36,639 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:29:36,659 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:36,680 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:36,699 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:36,719 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:36,738 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:36,754 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:36,771 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:58,506 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:58,530 - __main__ - WARNING - Erro ao baixar https://www.copart.ca{{languageHrefPath | sanitizeUrl}} : APIRequestContext.get: Invalid URL
+2025-05-21 18:29:58,589 - __main__ - WARNING - Erro ao baixar https://www.copart.co.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:58,951 - __main__ - WARNING - Erro ao baixar https://www.copart.ie{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:59,113 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:59,165 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:59,186 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:59,213 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 18:29:59,256 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL

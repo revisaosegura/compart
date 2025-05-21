@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="98px" height="70px" viewBox="0 0 98 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52 (66869) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F0F0F0" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="98" height="70" rx="5"></rect>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#0848A6" offset="0%"></stop>
+            <stop stop-color="#003480" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-5" points="-5 41.4705882 27.5652174 41.4705882 27.5652174 74 41.5217391 74 41.5217391 41.4705882 102 41.4705882 102 27.5294118 41.5217391 27.5294118 41.5217391 -5 27.5652174 -5 27.5652174 27.5294118 -5 27.5294118"></polygon>
+        <filter x="-0.2%" y="-0.3%" width="100.5%" height="100.6%" filterUnits="objectBoundingBox" id="filter-6">
+            <feMorphology radius="0.5" operator="erode" in="SourceAlpha" result="shadowSpreadInner1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.06 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Finland">
+            <mask id="mask-3" fill="white">
+                <use xlink:href="#path-2"></use>
+            </mask>
+            <use id="Mask" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+            <g id="Rectangle-2" mask="url(#mask-3)">
+                <use fill="url(#linearGradient-4)" fill-rule="evenodd" xlink:href="#path-5"></use>
+                <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"></use>
+            </g>
+        </g>
+    </g>
+</svg>
