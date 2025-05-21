@@ -4,13 +4,14 @@ import os
 import re
 from urllib.parse import urljoin, urlparse
 import mimetypes
+import hashlib
 import logging
 from bs4 import BeautifulSoup
 
 # Configuração de logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
         logging.FileHandler('scraper.log', encoding='utf-8'),
         logging.StreamHandler()
@@ -18,170 +19,143 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Configurações
-BASE_URL = 'https://www.copart.com.br'  # Site original
-TARGET_DOMAIN = 'www.copartbr.com.br'  # Seu domínio
+# Configurações principais
+BASE_URL = 'https://www.copart.com.br'
+TARGET_DOMAIN = 'www.copartbr.com.br'
+TARGET_URL = f'https://{TARGET_DOMAIN}'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
 VIEWPORT = {'width': 1280, 'height': 1024}
 TIMEOUT = 120000
 
-# Substituições
+# Substituições no conteúdo
 SUBSTITUTIONS = [
-    (r'\(\d{2}\)\s\d{4,5}-\d{4}', '(11) 11 91471-9390'),
+    (r'\(\d{2}\)\s?\d{4,5}-\d{4}', '(11) 11 91471-9390'),
     (r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', 'contato@copartbr.com.br'),
-    (r'https?://www\.copart\.com\.br', f'https://{TARGET_DOMAIN}'),
-    (r'//www\.copart\.com\.br', f'//{TARGET_DOMAIN}')
+    (r'https?://(www\.)?copart\.com\.br', TARGET_URL),
+    (r'//(www\.)?copart\.com\.br', f'//{TARGET_DOMAIN}'),
 ]
 
 # Diretórios
-SAVE_DIR = 'copart_clone/static'
+SAVE_DIR = 'copart_clone/pages'
 STATIC_DIR = 'copart_clone/static'
+
+def sanitize_filename(url):
+    parsed = urlparse(url)
+    hash_digest = hashlib.md5(url.encode()).hexdigest()
+    ext = os.path.splitext(parsed.path)[1] or '.bin'
+    return f"{hash_digest}{ext}"
 
 def is_valid_url(url):
     try:
         result = urlparse(url)
-        return all([result.scheme, result.netloc]) and result.scheme in ['http', 'https']
-    except ValueError:
+        return all([result.scheme, result.netloc])
+    except:
         return False
 
 async def download_asset(page, url, base_url):
     if not is_valid_url(url):
         url = urljoin(base_url, url)
-    
-    if any(url.startswith(p) for p in ['data:', 'javascript:', 'mailto:', 'tel:']):
+
+    if url.startswith(('data:', 'javascript:', 'mailto:', 'tel:')):
         return None, None
-    
+
     try:
         response = await page.request.get(url)
         if response.status != 200:
             return None, None
-            
+
         content = await response.body()
-        if not content:
-            return None, None
-            
         content_type = response.headers.get('content-type', '')
-        ext = mimetypes.guess_extension(content_type) or '.bin'
-        
-        parsed = urlparse(url)
-        path = parsed.path.split('/')[-1] or 'asset'
-        filename = f"{path.split('.')[0]}{ext}"
+        ext = mimetypes.guess_extension(content_type.split(';')[0]) or '.bin'
+        filename = sanitize_filename(url)
         filepath = os.path.join(STATIC_DIR, filename)
-        
+
         os.makedirs(os.path.dirname(filepath), exist_ok=True)
-        
         with open(filepath, 'wb') as f:
             f.write(content)
-        
-        # Processar arquivos CSS/JS
-        if filename.endswith(('.css', '.js')):
-            with open(filepath, 'r+', encoding='utf-8', errors='ignore') as f:
-                content = f.read()
-                for pattern, replacement in SUBSTITUTIONS:
-                    content = re.sub(pattern, replacement, content)
-                f.seek(0)
-                f.write(content)
-                f.truncate()
-            
+
+        if ext in ['.css', '.js']:
+            try:
+                with open(filepath, 'r+', encoding='utf-8', errors='ignore') as f:
+                    txt = f.read()
+                    for pattern, repl in SUBSTITUTIONS:
+                        txt = re.sub(pattern, repl, txt)
+                    f.seek(0)
+                    f.write(txt)
+                    f.truncate()
+            except:
+                pass
+
         return url, filename
-        
     except Exception as e:
-        logger.warning(f"Erro ao baixar {url}: {str(e)}")
+        logger.warning(f"Erro ao baixar {url}: {e}")
         return None, None
 
 async def crawl_site():
     visited = set()
     to_visit = [BASE_URL]
-    
+
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=False)
-        context = await browser.new_context(
-            user_agent=USER_AGENT,
-            viewport=VIEWPORT,
-            locale='pt-BR',
-            timezone_id='America/Sao_Paulo'
-        )
+        context = await browser.new_context(user_agent=USER_AGENT, viewport=VIEWPORT, locale='pt-BR')
         page = await context.new_page()
 
         while to_visit:
             current_url = to_visit.pop(0)
-            
             if current_url in visited:
                 continue
-                
-            logger.info(f"Coletando: {current_url}")
-            
+
             try:
+                logger.info(f"Visitando: {current_url}")
                 await page.goto(current_url, timeout=TIMEOUT, wait_until='domcontentloaded')
-                
-                # Verificar idioma
                 html = await page.content()
-                if 'lang="pt-BR"' not in html and 'lang="pt"' not in html:
-                    logger.info(f"Ignorando página não-PT: {current_url}")
-                    continue
-                
-                # Baixar assets
-                assets = await page.query_selector_all("link[href], script[src], img[src]")
-                downloaded = {}
-                
-                for asset in assets:
-                    attr = 'href' if await asset.get_attribute('href') else 'src'
-                    url = await asset.get_attribute(attr)
-                    if url:
-                        orig_url, filename = await download_asset(page, url, current_url)
-                        if orig_url and filename:
-                            downloaded[orig_url] = filename
-                
-                # Processar HTML
-                html = await page.content()
-                for pattern, replacement in SUBSTITUTIONS:
-                    html = re.sub(pattern, replacement, html)
-                
+
+                # Substituir domínios, e-mails e telefones
+                for pattern, repl in SUBSTITUTIONS:
+                    html = re.sub(pattern, repl, html)
+
                 soup = BeautifulSoup(html, 'html.parser')
-                
-                # Atualizar links de assets
+                downloaded = {}
+
+                # Baixar e substituir assets
                 for tag in soup.find_all(['link', 'script', 'img']):
                     attr = 'href' if tag.name == 'link' else 'src'
-                    if tag.has_attr(attr) and tag[attr] in downloaded:
-                        tag[attr] = f"/static/{downloaded[tag[attr]]}"
-                
-                # Salvar página
-                parsed_url = urlparse(current_url)
-                path = parsed_url.path.replace('/', '_').strip('_') or 'index'
-                save_path = os.path.join(SAVE_DIR, f'{path}.html')
-                os.makedirs(os.path.dirname(save_path), exist_ok=True)
-                
-                with open(save_path, 'w', encoding='utf-8') as f:
-                    f.write(str(soup))
-                logger.info(f"Página salva: {save_path}")
-                
-                # Coletar novos links
-                links = await page.query_selector_all('a[href]')
-                for link in links:
-                    href = await link.get_attribute('href')
+                    if tag.has_attr(attr):
+                        asset_url = tag[attr]
+                        orig, local = await download_asset(page, asset_url, current_url)
+                        if orig and local:
+                            downloaded[orig] = local
+                            tag[attr] = f"/static/{local}"
+
+                # Substituir links absolutos do domínio original
+                for a in soup.find_all('a', href=True):
+                    href = a['href']
                     full_url = urljoin(BASE_URL, href.split('#')[0].split('?')[0])
-                    
-                    if (
-                        urlparse(full_url).netloc == urlparse(BASE_URL).netloc and
-                        '/pt-BR/' in full_url and
-                        full_url not in visited and
-                        full_url not in to_visit and
-                        not any(full_url.endswith(ext) for ext in ['.pdf', '.jpg', '.png'])
-                    ):
+                    if BASE_URL in full_url and full_url not in visited and not full_url.endswith(('.pdf', '.jpg', '.png')):
                         to_visit.append(full_url)
-                
+                    a['href'] = href.replace(BASE_URL, TARGET_URL)
+
+                parsed_url = urlparse(current_url)
+                filename = parsed_url.path.strip('/') or 'index'
+                filename = filename.replace('/', '_')
+                final_path = os.path.join(SAVE_DIR, f'{filename}.html')
+
+                os.makedirs(os.path.dirname(final_path), exist_ok=True)
+                with open(final_path, 'w', encoding='utf-8') as f:
+                    f.write(str(soup))
+
+                logger.info(f"Salvo: {final_path}")
                 visited.add(current_url)
-                
+
             except Exception as e:
-                logger.error(f"Erro em {current_url}: {str(e)}")
-                continue
+                logger.error(f"Erro na URL {current_url}: {e}")
 
         await context.close()
         await browser.close()
-        logger.info("Scraping completo!")
+        logger.info("Scraping completo.")
 
 async def main():
-    logger.info("Iniciando scraping do site original...")
+    logger.info("🌀 Iniciando espelhamento completo do site Copart...")
     await crawl_site()
 
 if __name__ == "__main__":
