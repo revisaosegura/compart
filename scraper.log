@@ -1364,3 +1364,23 @@ Call log:
 2025-05-21 17:38:06,736 - __main__ - INFO - Tentativa 1 para https://www.copart.com.br
 2025-05-21 17:38:41,339 - __main__ - INFO - Página principal salva com sucesso em copart_clone/static\index.html
 2025-05-21 17:38:42,610 - __main__ - INFO - Scraping concluído com sucesso!
+2025-05-21 18:00:45,369 - __main__ - INFO - Iniciando scraping da página principal...
+2025-05-21 18:00:53,707 - __main__ - INFO - Tentativa 1 para https://www.copart.com.br
+2025-05-21 18:01:12,418 - __main__ - INFO - Página principal salva com sucesso em copart_clone/static\index.html
+2025-05-21 18:01:13,734 - __main__ - INFO - Página principal raspada. Iniciando scraping de páginas internas...
+2025-05-21 18:01:17,987 - __main__ - INFO - Acessando a página principal para extrair os links internos...
+2025-05-21 18:01:21,975 - __main__ - INFO - 5 links encontrados para scraping adicional.
+2025-05-21 18:01:21,982 - __main__ - INFO - Scraping: https://www.copart.com.br/accountInformation/documentSetting
+2025-05-21 18:01:26,523 - __main__ - WARNING - Erro ao processar https://www.copart.com.br/accountInformation/documentSetting: ElementHandle.get_attribute: Execution context was destroyed, most likely because of a navigation
+Call log:
+  - waiting for locator(":scope")
+
+2025-05-21 18:01:26,535 - __main__ - INFO - Scraping: https://www.copart.com.br/content/br/en/videos/about-copart
+2025-05-21 18:01:52,269 - __main__ - INFO - content_br_en_videos_about-copart.html salvo com sucesso.
+2025-05-21 18:01:52,269 - __main__ - INFO - Scraping: https://www.copart.com.br/search/compre_agora/
+2025-05-21 18:02:08,136 - __main__ - INFO - search_compre_agora.html salvo com sucesso.
+2025-05-21 18:02:08,138 - __main__ - INFO - Scraping: https://www.copart.com.br/content/br/en/buy-it-now
+2025-05-21 18:02:20,709 - __main__ - INFO - content_br_en_buy-it-now.html salvo com sucesso.
+2025-05-21 18:02:20,710 - __main__ - INFO - Scraping: https://www.copart.com.br/doRegistration
+2025-05-21 18:02:32,799 - __main__ - INFO - doRegistration.html salvo com sucesso.
+2025-05-21 18:02:33,972 - __main__ - INFO - Scraping completo de todas as páginas!
