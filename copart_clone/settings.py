@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security settings
 SECRET_KEY = env('SECRET_KEY', default='your-secret-key-here')
 DEBUG = env.bool('DEBUG', default=True)
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
+ALLOWED_HOSTS = ['copart-clone.onrender.com', 'localhost', '127.0.0.1', 'copartbr.com.br', 'www.copartbr.com.br']
 
 # Application definition
 INSTALLED_APPS = [

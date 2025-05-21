@@ -29,11 +29,8 @@ RETRY_DELAY = 10  # segundos
 
 # Substituições de dados sensíveis
 SUBSTITUTIONS = [
-    (r'\(\d{2}\)\s\d{4,5}-\d{4}', '(00) 0000-0000'),
-    (r'\d{3}\.\d{3}\.\d{3}-\d{2}', '000.000.000-00'),
-    (r'\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}', '00.000.000/0000-00'),
-    (r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', 'contato@seudominio.com'),
-    (r'\d{5}-\d{3}', '00000-000')
+    (r'\(\d{2}\)\s\d{4,5}-\d{4}', '(11) 11 91471-9390'),
+    (r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', 'contato@copartbr.com.br'),
 ]
 
 # Diretórios
