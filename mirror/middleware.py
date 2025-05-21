@@ -6,7 +6,7 @@ class ClonedSiteMiddleware(MiddlewareMixin):
     def process_request(self, request):
         # Verifica se o template solicitado existe
         path = request.path.lstrip('/') or 'index.html'
-        template_path = os.path.join('copart_clone/templates', path)
+        template_path = os.path.join('copart_clone/static', path)
         
         if os.path.exists(template_path):
             with open(template_path, 'r', encoding='utf-8') as f:
