@@ -1564,3 +1564,23 @@ Call log:
 2025-05-21 18:29:59,186 - __main__ - WARNING - Erro ao baixar https://www.copartmea.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
 2025-05-21 18:29:59,213 - __main__ - WARNING - Erro ao baixar https://www.copart.com{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
 2025-05-21 18:29:59,256 - __main__ - WARNING - Erro ao baixar https://www.copart.com.uk{{languageHrefPath | sanitizeUrl}}: APIRequestContext.get: Invalid URL
+2025-05-21 19:36:46,936 - __main__ - INFO - Iniciando scraping do site original...
+2025-05-21 19:36:53,954 - __main__ - INFO - Visitando: https://www.copart.com.br
+2025-05-21 19:37:21,659 - __main__ - INFO - Pagina salva: copart_clone/static\index.html
+2025-05-21 19:37:21,714 - __main__ - INFO - Visitando: https://www.copartbr.com.br/pt-BR/Content/br/pt-BR/Member-Protection-Pledge
+2025-05-21 19:37:22,959 - __main__ - INFO - Pagina salva: copart_clone/static\pt-BR_Content_br_pt-BR_Member-Protection-Pledge.html
+2025-05-21 19:37:22,962 - __main__ - INFO - Visitando: https://www.copartbr.com.br/pt-BR/Content/br/pt-BR/Support/Services/Category-B-Vehicles
+2025-05-21 19:37:23,557 - __main__ - INFO - Pagina salva: copart_clone/static\pt-BR_Content_br_pt-BR_Support_Services_Category-B-Vehicles.html
+2025-05-21 19:37:25,361 - __main__ - INFO - Crawler finalizado.
+2025-05-21 19:40:46,317 - __main__ - INFO - Iniciando scraping do site original...
+2025-05-21 19:40:51,839 - __main__ - INFO - Coletando: https://www.copart.com.br
+2025-05-21 19:41:17,127 - __main__ - INFO - Página salva: copart_clone/static\index.html
+2025-05-21 19:41:20,794 - __main__ - INFO - Coletando: https://www.copart.com.br/content/br/pt-BR/cookie-policy
+2025-05-21 19:41:31,967 - __main__ - INFO - Página salva: copart_clone/static\content_br_pt-BR_cookie-policy.html
+2025-05-21 19:41:33,664 - __main__ - INFO - Coletando: https://www.copart.com.br/pt-BR/Content/br/pt-BR/Member-Protection-Pledge
+2025-05-21 19:41:45,624 - __main__ - INFO - Página salva: copart_clone/static\pt-BR_Content_br_pt-BR_Member-Protection-Pledge.html
+2025-05-21 19:41:46,826 - __main__ - INFO - Coletando: https://www.copart.com.br/pt-BR/Content/br/pt-BR/Support/Services/Category-B-Vehicles
+2025-05-21 19:41:57,721 - __main__ - INFO - Página salva: copart_clone/static\pt-BR_Content_br_pt-BR_Support_Services_Category-B-Vehicles.html
+2025-05-21 19:41:58,943 - __main__ - INFO - Coletando: https://www.copart.com.br/pt-BR/
+2025-05-21 19:42:09,972 - __main__ - INFO - Página salva: copart_clone/static\pt-BR.html
+2025-05-21 19:42:12,114 - __main__ - INFO - Scraping completo!
