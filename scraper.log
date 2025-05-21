@@ -1356,3 +1356,11 @@ Call log:
 2025-05-11 12:41:40,518 - __main__ - INFO - Tentativa 1 para https://www.copart.com.br
 2025-05-11 12:41:58,582 - __main__ - INFO - Página principal salva com sucesso em copart_clone/static\index.html
 2025-05-11 12:41:59,818 - __main__ - INFO - Scraping concluído com sucesso!
+2025-05-21 17:36:03,319 - __main__ - INFO - Iniciando scraping da página principal...
+2025-05-21 17:36:31,275 - __main__ - INFO - Tentativa 1 para https://www.copart.com.br
+2025-05-21 17:37:10,923 - __main__ - INFO - Página principal salva com sucesso em copart_clone/static\index.html
+2025-05-21 17:37:12,861 - __main__ - INFO - Scraping concluído com sucesso!
+2025-05-21 17:38:00,220 - __main__ - INFO - Iniciando scraping da página principal...
+2025-05-21 17:38:06,736 - __main__ - INFO - Tentativa 1 para https://www.copart.com.br
+2025-05-21 17:38:41,339 - __main__ - INFO - Página principal salva com sucesso em copart_clone/static\index.html
+2025-05-21 17:38:42,610 - __main__ - INFO - Scraping concluído com sucesso!
