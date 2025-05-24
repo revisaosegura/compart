@@ -4,19 +4,17 @@ from django.views.generic import TemplateView, RedirectView
 from mirror import views
 
 urlpatterns = [
-    # Rota para a página inicial
-    path('', views.home_redirect, name='home'),
-    
-    # Inclui as URLs do app mirror
-    path('', include('mirror.urls')),
-    
-    # Rotas padrão para páginas comuns
+    # Página inicial redireciona para index.html no static
+    path('', RedirectView.as_view(url='/static/index.html', permanent=False), name='home'),
+
+    # URLs do app mirror
+    path('mirror/', include('mirror.urls')),
+
+    # Páginas estáticas comuns
     path('login/', TemplateView.as_view(template_name='login.html'), name='login'),
     path('sobre/', TemplateView.as_view(template_name='sobre.html'), name='about'),
     path('contato/', TemplateView.as_view(template_name='contato.html'), name='contact'),
-    
-    # Redirecionamento para áreas administrativas
-    path('admin/', views.admin_redirect),
-    path('painel/', views.admin_redirect),
-    path('', RedirectView.as_view(url='/static/index.html')),
+
+    # Painel de administração
+    path('admin/', admin.site.urls),
 ]
