@@ -38,6 +38,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware', # ✅ necessário
     'django.contrib.messages.middleware.MessageMiddleware',  # ✅ necessário
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'mirror.middleware.ClonedSiteMiddleware',
 ]
 
 ROOT_URLCONF = 'copart_clone.urls'
