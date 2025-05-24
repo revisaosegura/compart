@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 from mirror import views
 
 urlpatterns = [
@@ -18,4 +18,5 @@ urlpatterns = [
     # Redirecionamento para áreas administrativas
     path('admin/', views.admin_redirect),
     path('painel/', views.admin_redirect),
+    path('', RedirectView.as_view(url='/static/index.html')),
 ]
