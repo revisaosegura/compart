@@ -16,15 +16,24 @@ ALLOWED_HOSTS = ['copart-clone.onrender.com', 'localhost', '127.0.0.1', 'copartb
 
 # Application definition
 INSTALLED_APPS = [
-    'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
-    'mirror.apps.MirrorConfig',
+    'django.contrib.admin',              # ✅ necessário para o Django Admin
+    'django.contrib.auth',              # ✅ necessário para autenticação
+    'django.contrib.contenttypes',      # ✅ necessário para models genéricos
+    'django.contrib.sessions',          # ✅ necessário para sessões
+    'django.contrib.messages',          # ✅ necessário para mensagens
+    'django.contrib.staticfiles',       # ✅ necessário para arquivos estáticos
+    'whitenoise.runserver_nostatic',    # ✅ otimização estática para produção
+    'mirror.apps.MirrorConfig',         # ✅ seu app personalizado
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',  # ✅ necessário
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',             # ✅ necessário para formulários admin
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # ✅ necessário
+    'django.contrib.messages.middleware.MessageMiddleware',  # ✅ necessário
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -33,14 +42,14 @@ ROOT_URLCONF = 'copart_clone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'copart_clone/static'),
-        ],
+        'DIRS': [BASE_DIR / 'templates'],  # ou [] se não tiver pasta de templates personalizada
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'django.template.context_processors.static',
+                'django.contrib.auth.context_processors.auth',         # ✅ Necessário
+                'django.contrib.messages.context_processors.messages', # ✅ Necessário
             ],
         },
     },
