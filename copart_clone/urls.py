@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.views.generic import TemplateView, RedirectView
 from mirror import views
 from .views import cadastro_view, agendar_scraper_view
@@ -16,6 +16,8 @@ urlpatterns = [
     path('login/', TemplateView.as_view(template_name='login.html'), name='login'),
     path('sobre/', TemplateView.as_view(template_name='sobre.html'), name='about'),
     path('contato/', TemplateView.as_view(template_name='contato.html'), name='contact'),
+    re_path(r'^$', TemplateView.as_view(template_name="index.html")),
+    re_path(r'^(?:.*)/?$', TemplateView.as_view(template_name='index.html')),  # fallback
 
     # Painel de administração
     path('admin/', admin.site.urls),

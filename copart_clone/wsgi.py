@@ -10,4 +10,4 @@ application = get_wsgi_application()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-application = WhiteNoise(application, root=STATIC_ROOT, prefix='/static/')
+application = WhiteNoise(application, root=os.path.join(BASE_DIR, 'copart_clone/static'))
