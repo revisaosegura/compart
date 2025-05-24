@@ -6,6 +6,7 @@ pip install -r requirements.txt
 # Configura o Playwright
 playwright install
 playwright install-deps
+playwright install --with-deps
 
 # Executa o scraper
 python scraper.py

@@ -12,6 +12,7 @@ pip install -r requirements.txt
 export PLAYWRIGHT_BROWSERS_PATH=$PROJECT_DIR/.playwright
 python -m playwright install
 python -m playwright install-deps
+playwright install --with-deps
 
 # Executa o scraper
 python scraper.py

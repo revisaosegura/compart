@@ -12,9 +12,10 @@ import logging
 BASE_URL = "https://www.copart.com.br"
 TARGET_URL = "https://copartbr.com.br"
 STATIC_DIR = "copart_clone/static"
-TIMEOUT = 30000
+TIMEOUT = 40000
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/90.0.4430.85 Safari/537.36"
 VIEWPORT = {"width": 1280, "height": 720}
+PORTUGUESE_PATHS = ["/pt-br/", "/pt-BR/", "/pt/", "/content/br/pt", ".com.br"]
 
 SUBSTITUTIONS = [
     (r'https://www\.copart\.com\.br', TARGET_URL),
@@ -41,10 +42,14 @@ def limpar_static():
         shutil.rmtree(STATIC_DIR)
     os.makedirs(STATIC_DIR, exist_ok=True)
 
+def is_portuguese_url(url):
+    url_lower = url.lower()
+    return any(segment in url_lower for segment in PORTUGUESE_PATHS)
+
 async def download_asset(page, url, base_url):
     try:
         full_url = urljoin(base_url, url)
-        if not full_url.startswith("http"):
+        if not full_url.startswith("http") or 'Incapsula' in full_url:
             return None, None
         response = await page.request.get(full_url, timeout=TIMEOUT)
         if response.status != 200:
@@ -86,11 +91,12 @@ async def crawl_site():
 
         while to_visit:
             current_url = to_visit.pop(0)
-            if current_url in visited:
+            if current_url in visited or not is_portuguese_url(current_url):
                 continue
             try:
                 logger.info(f"🌐 Visitando: {current_url}")
-                await page.goto(current_url, timeout=TIMEOUT, wait_until='domcontentloaded')
+                await page.goto(current_url, timeout=TIMEOUT, wait_until='networkidle')
+                await asyncio.sleep(1.5)
                 html = await page.content()
 
                 for pattern, repl in SUBSTITUTIONS:
@@ -112,24 +118,21 @@ async def crawl_site():
                     href = a['href']
                     full_url = urljoin(BASE_URL, href.split('#')[0].split('?')[0])
                     if BASE_URL in full_url and full_url not in visited and not full_url.endswith(('.pdf', '.jpg', '.png', '.zip')):
-                        to_visit.append(full_url)
+                        if is_portuguese_url(full_url):
+                            to_visit.append(full_url)
                     a['href'] = href.replace(BASE_URL, TARGET_URL)
 
-                # Nome do arquivo
                 filename = sanitize_filename(current_url)
-                if filename.endswith('.html'):
-                    final_path = os.path.join(STATIC_DIR, filename)
-                else:
-                    final_path = os.path.join(STATIC_DIR, f"{filename}.html")
+                final_path = os.path.join(STATIC_DIR, filename)
 
                 os.makedirs(os.path.dirname(final_path), exist_ok=True)
                 with open(final_path, 'w', encoding='utf-8') as f:
                     f.write(str(soup))
 
-                # Copia index.html se for a home
                 if current_url == BASE_URL:
                     index_path = os.path.join(STATIC_DIR, "index.html")
-                    shutil.copyfile(final_path, index_path)
+                    if os.path.abspath(final_path) != os.path.abspath(index_path):
+                        shutil.copyfile(final_path, index_path)
 
                 logger.info(f"✅ Salvo: {final_path}")
                 visited.add(current_url)
