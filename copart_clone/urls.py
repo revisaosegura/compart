@@ -11,6 +11,7 @@ urlpatterns = [
     path('mirror/', include('mirror.urls')),
 
     # Páginas estáticas comuns
+    path('', TemplateView.as_view(template_name="index.html")),
     path('login/', TemplateView.as_view(template_name='login.html'), name='login'),
     path('sobre/', TemplateView.as_view(template_name='sobre.html'), name='about'),
     path('contato/', TemplateView.as_view(template_name='contato.html'), name='contact'),
