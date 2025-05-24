@@ -23,8 +23,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',          # ✅ necessário para mensagens
     'django.contrib.staticfiles',       # ✅ necessário para arquivos estáticos
     'whitenoise.runserver_nostatic',    # ✅ otimização estática para produção
-    'mirror.apps.MirrorConfig',         # ✅ seu app personalizado
+    'mirror.apps.MirrorConfig',
+    'copart_clone',# ✅ seu app personalizado
 ]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -42,7 +45,7 @@ ROOT_URLCONF = 'copart_clone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # ou [] se não tiver pasta de templates personalizada
+        'DIRS': [BASE_DIR / 'copart_clone', 'templates'],  # ou [] se não tiver pasta de templates personalizada
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView, RedirectView
 from mirror import views
+from .views import cadastro_view, agendar_scraper_view
 
 urlpatterns = [
     # Página inicial redireciona para index.html no static
@@ -18,4 +19,6 @@ urlpatterns = [
 
     # Painel de administração
     path('admin/', admin.site.urls),
+    path('cadastro/', cadastro_view, name='cadastro'),
+    path('admin/copart_clone/agendar/<int:pk>/', agendar_scraper_view, name='copart_clone_agendar_scraper'),
 ]

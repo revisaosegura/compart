@@ -8,11 +8,10 @@ from urllib.parse import urljoin, urlparse
 from playwright.async_api import async_playwright
 import logging
 
-# CONFIG
+# CONFIGURAÇÕES
 BASE_URL = "https://www.copart.com.br"
 TARGET_URL = "https://copartbr.com.br"
 STATIC_DIR = "copart_clone/static"
-SAVE_DIR = STATIC_DIR
 TIMEOUT = 30000
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/90.0.4430.85 Safari/537.36"
 VIEWPORT = {"width": 1280, "height": 720}
@@ -30,12 +29,12 @@ logger = logging.getLogger("COPART_SCRAPER")
 
 def sanitize_filename(url):
     parsed = urlparse(url)
-    filename = parsed.path.lstrip('/').replace('/', '_')
-    if not filename:
-        filename = "index"
-    if '.' not in os.path.basename(filename):
-        filename += '.bin'
-    return filename
+    path = parsed.path.strip('/')
+    if not path or path.endswith('/'):
+        path += 'index.html'
+    if '.' not in os.path.basename(path):
+        path += '.html'
+    return path.replace('/', '_')
 
 def limpar_static():
     if os.path.exists(STATIC_DIR):
@@ -74,7 +73,7 @@ async def download_asset(page, url, base_url):
 
         return url, filename
     except Exception as e:
-        logger.warning(f"Erro ao baixar {url}: {e}")
+        logger.warning(f"⚠️ Erro ao baixar {url}: {e}")
         return None, None
 
 async def crawl_site():
@@ -90,7 +89,7 @@ async def crawl_site():
             if current_url in visited:
                 continue
             try:
-                logger.info(f"Visitando: {current_url}")
+                logger.info(f"🌐 Visitando: {current_url}")
                 await page.goto(current_url, timeout=TIMEOUT, wait_until='domcontentloaded')
                 html = await page.content()
 
@@ -112,31 +111,39 @@ async def crawl_site():
                 for a in soup.find_all('a', href=True):
                     href = a['href']
                     full_url = urljoin(BASE_URL, href.split('#')[0].split('?')[0])
-                    if BASE_URL in full_url and full_url not in visited and not full_url.endswith(('.pdf', '.jpg', '.png')):
+                    if BASE_URL in full_url and full_url not in visited and not full_url.endswith(('.pdf', '.jpg', '.png', '.zip')):
                         to_visit.append(full_url)
                     a['href'] = href.replace(BASE_URL, TARGET_URL)
 
-                parsed_url = urlparse(current_url)
-                filename = parsed_url.path.strip('/') or 'index'
-                filename = filename.replace('/', '_')
-                final_path = os.path.join(SAVE_DIR, f"{filename}.html")
+                # Nome do arquivo
+                filename = sanitize_filename(current_url)
+                if filename.endswith('.html'):
+                    final_path = os.path.join(STATIC_DIR, filename)
+                else:
+                    final_path = os.path.join(STATIC_DIR, f"{filename}.html")
+
                 os.makedirs(os.path.dirname(final_path), exist_ok=True)
                 with open(final_path, 'w', encoding='utf-8') as f:
                     f.write(str(soup))
 
-                logger.info(f"Salvo: {final_path}")
+                # Copia index.html se for a home
+                if current_url == BASE_URL:
+                    index_path = os.path.join(STATIC_DIR, "index.html")
+                    shutil.copyfile(final_path, index_path)
+
+                logger.info(f"✅ Salvo: {final_path}")
                 visited.add(current_url)
             except Exception as e:
-                logger.error(f"Erro na URL {current_url}: {e}")
+                logger.error(f"⛔ Erro na URL {current_url}: {e}")
 
         await context.close()
         await browser.close()
-        logger.info("Scraping completo.")
+        logger.info("🏁 Scraping finalizado.")
 
 async def main():
-    logger.info("🌀 Limpando conteúdo antigo...")
+    logger.info("🧹 Limpando pasta static...")
     limpar_static()
-    logger.info("🌀 Iniciando espelhamento completo do site Copart...")
+    logger.info("🚀 Iniciando espelhamento do Copart...")
     await crawl_site()
 
 if __name__ == "__main__":
