@@ -14,8 +14,3 @@ application = WhiteNoise(
     prefix='/static/',
 )
 
-# Adiciona suporte para arquivos estáticos adicionais
-application.add_files(
-    os.path.join(os.path.dirname(__file__), 'mirror/static'),
-    prefix='/mirror-static/'
-)
