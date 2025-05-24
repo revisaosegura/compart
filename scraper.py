@@ -1,69 +1,57 @@
 import asyncio
-from playwright.async_api import async_playwright
 import os
 import re
-from urllib.parse import urljoin, urlparse
-import mimetypes
-import hashlib
-import logging
 import shutil
+import mimetypes
 from bs4 import BeautifulSoup
+from urllib.parse import urljoin, urlparse
+from playwright.async_api import async_playwright
+import logging
 
-# Logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('scraper.log', encoding='utf-8'),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger(__name__)
+# CONFIG
+BASE_URL = "https://www.copart.com.br"
+TARGET_URL = "https://copartbr.com.br"
+STATIC_DIR = "copart_clone/static"
+SAVE_DIR = STATIC_DIR
+TIMEOUT = 30000
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/90.0.4430.85 Safari/537.36"
+VIEWPORT = {"width": 1280, "height": 720}
 
-# Configurações
-BASE_URL = 'https://www.copart.com.br'
-TARGET_DOMAIN = 'www.copartbr.com.br'
-TARGET_URL = f'https://{TARGET_DOMAIN}'
-USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
-VIEWPORT = {'width': 1280, 'height': 1024}
-TIMEOUT = 120000
-STATIC_DIR = os.path.join('copart_clone', 'static')
-
-# Substituições
 SUBSTITUTIONS = [
-    (r'\(\d{2}\)\s?\d{4,5}-\d{4}', '(11) 11 91471-9390'),
-    (r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', 'contato@copartbr.com.br'),
-    (r'https?://(www\.)?copart\.com\.br', TARGET_URL),
-    (r'//(www\.)?copart\.com\.br', f'//{TARGET_DOMAIN}'),
+    (r'https://www\.copart\.com\.br', TARGET_URL),
+    (r'https://copart\.com\.br', TARGET_URL),
+    (r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+', 'contato@copartbr.com.br'),
+    (r'\(?\d{2}\)?\s?\d{4,5}-?\d{4}', '(11) 4000-0000'),
+    (r'\d{3}\.\d{3}\.\d{3}-\d{2}', '000.000.000-00')
 ]
+
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+logger = logging.getLogger("COPART_SCRAPER")
 
 def sanitize_filename(url):
     parsed = urlparse(url)
-    hash_digest = hashlib.md5(url.encode()).hexdigest()
-    ext = os.path.splitext(parsed.path)[1] or '.bin'
-    return f"{hash_digest}{ext}"
+    filename = parsed.path.lstrip('/').replace('/', '_')
+    if not filename:
+        filename = "index"
+    if '.' not in os.path.basename(filename):
+        filename += '.bin'
+    return filename
 
-def is_valid_url(url):
-    try:
-        result = urlparse(url)
-        return all([result.scheme, result.netloc])
-    except:
-        return False
+def limpar_static():
+    if os.path.exists(STATIC_DIR):
+        shutil.rmtree(STATIC_DIR)
+    os.makedirs(STATIC_DIR, exist_ok=True)
 
 async def download_asset(page, url, base_url):
-    if not is_valid_url(url):
-        url = urljoin(base_url, url)
-
-    if url.startswith(('data:', 'javascript:', 'mailto:', 'tel:')):
-        return None, None
-
     try:
-        response = await page.request.get(url)
+        full_url = urljoin(base_url, url)
+        if not full_url.startswith("http"):
+            return None, None
+        response = await page.request.get(full_url, timeout=TIMEOUT)
         if response.status != 200:
             return None, None
-
         content = await response.body()
-        content_type = response.headers.get('content-type', '')
+        content_type = response.headers.get("content-type", "")
         ext = mimetypes.guess_extension(content_type.split(';')[0]) or '.bin'
         filename = sanitize_filename(url)
         filepath = os.path.join(STATIC_DIR, filename)
@@ -86,18 +74,12 @@ async def download_asset(page, url, base_url):
 
         return url, filename
     except Exception as e:
-        logger.warning(f"⚠️ Erro ao baixar {url}: {e}")
+        logger.warning(f"Erro ao baixar {url}: {e}")
         return None, None
 
 async def crawl_site():
     visited = set()
     to_visit = [BASE_URL]
-
-    # Limpar diretório static antes de iniciar
-    if os.path.exists(STATIC_DIR):
-        shutil.rmtree(STATIC_DIR)
-    os.makedirs(STATIC_DIR, exist_ok=True)
-
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         context = await browser.new_context(user_agent=USER_AGENT, viewport=VIEWPORT, locale='pt-BR')
@@ -107,9 +89,8 @@ async def crawl_site():
             current_url = to_visit.pop(0)
             if current_url in visited:
                 continue
-
             try:
-                logger.info(f"🌐 Visitando: {current_url}")
+                logger.info(f"Visitando: {current_url}")
                 await page.goto(current_url, timeout=TIMEOUT, wait_until='domcontentloaded')
                 html = await page.content()
 
@@ -135,23 +116,27 @@ async def crawl_site():
                         to_visit.append(full_url)
                     a['href'] = href.replace(BASE_URL, TARGET_URL)
 
-                final_path = os.path.join(STATIC_DIR, 'index.html') if current_url == BASE_URL else os.path.join(STATIC_DIR, sanitize_filename(current_url))
-
+                parsed_url = urlparse(current_url)
+                filename = parsed_url.path.strip('/') or 'index'
+                filename = filename.replace('/', '_')
+                final_path = os.path.join(SAVE_DIR, f"{filename}.html")
+                os.makedirs(os.path.dirname(final_path), exist_ok=True)
                 with open(final_path, 'w', encoding='utf-8') as f:
                     f.write(str(soup))
 
-                logger.info(f"✅ Salvo: {final_path}")
+                logger.info(f"Salvo: {final_path}")
                 visited.add(current_url)
-
             except Exception as e:
-                logger.error(f"❌ Erro na URL {current_url}: {e}")
+                logger.error(f"Erro na URL {current_url}: {e}")
 
         await context.close()
         await browser.close()
-        logger.info("✅ Espelhamento concluído com sucesso!")
+        logger.info("Scraping completo.")
 
 async def main():
-    logger.info("🚀 Iniciando espelhamento do site Copart...")
+    logger.info("🌀 Limpando conteúdo antigo...")
+    limpar_static()
+    logger.info("🌀 Iniciando espelhamento completo do site Copart...")
     await crawl_site()
 
 if __name__ == "__main__":

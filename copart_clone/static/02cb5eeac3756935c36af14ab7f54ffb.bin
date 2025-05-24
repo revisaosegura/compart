@@ -1,1 +1,0 @@
-This is moved to google analytics

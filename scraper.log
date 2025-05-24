@@ -3230,3 +3230,291 @@ Call log:
 2025-05-23 23:32:19,869 - INFO - 🌐 Visitando: https://www.copart.com.br/accountInformation/documentSetting
 2025-05-23 23:32:29,757 - INFO - ✅ Salvo: copart_clone\static\c0ab1cf82aa4c03b04c5eee1c57ad806.bin
 2025-05-23 23:32:30,359 - INFO - ✅ Espelhamento concluído com sucesso!
+2025-05-24 00:01:42,140 - INFO - 🚀 Iniciando espelhamento do site Copart...
+2025-05-24 00:01:46,985 - INFO - 🌐 Visitando: https://www.copart.com.br
+2025-05-24 00:02:01,073 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:02:01,404 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:02:01,710 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:02:04,373 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:02:06,657 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:02:07,602 - INFO - ✅ Salvo: copart_clone\static\index.html
+2025-05-24 00:02:07,604 - INFO - 🌐 Visitando: https://www.copart.com.br/
+2025-05-24 00:02:13,413 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:02:13,699 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:02:14,011 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:02:16,328 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:02:17,767 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:02:18,221 - INFO - ✅ Salvo: copart_clone\static\1f882d49b6190e89de5d712a2faf6fe9.bin
+2025-05-24 00:02:18,223 - INFO - 🌐 Visitando: https://www.copart.com.br/doRegistration
+2025-05-24 00:02:22,553 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:02:22,845 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:02:23,171 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:02:25,875 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:02:27,667 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:02:28,137 - INFO - ✅ Salvo: copart_clone\static\f3c733cb38c3a999a488435b5390cd1b.bin
+2025-05-24 00:02:28,143 - INFO - 🌐 Visitando: https://www.copart.com.br/login
+2025-05-24 00:02:32,298 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:02:32,599 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:02:32,890 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:02:35,202 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:02:36,771 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:02:37,378 - INFO - ✅ Salvo: copart_clone\static\7af621933e45ccefd6daad3faa93f894.bin
+2025-05-24 00:02:37,382 - INFO - 🌐 Visitando: https://www.copart.com.br/how-it-works
+2025-05-24 00:02:43,960 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:02:44,255 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:02:44,655 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:02:46,936 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/wro/CLDR_en_US.js: 404
+2025-05-24 00:02:47,126 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:02:48,492 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:02:49,020 - INFO - ✅ Salvo: copart_clone\static\b77b6ec5200a3887a64b245920912cde.bin
+2025-05-24 00:02:49,021 - INFO - 🌐 Visitando: https://www.copart.com.br/driverseat/mylots
+2025-05-24 00:02:52,762 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/driverseat/{{previousPage}}: 404
+2025-05-24 00:02:53,070 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/driverseat/{{nextPage}}: 404
+2025-05-24 00:02:53,369 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/driverseat/{{canonicalHref}}: 404
+2025-05-24 00:02:55,538 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/wro/CLDR_en_US.js: 404
+2025-05-24 00:02:55,700 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:02:57,247 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:02:57,773 - INFO - ✅ Salvo: copart_clone\static\18b7153e0e0c4b88f038c7d716ae365e.bin
+2025-05-24 00:02:57,775 - INFO - 🌐 Visitando: https://www.copart.com.br/vehicleFinder
+2025-05-24 00:03:01,700 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:03:02,000 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:03:02,321 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:03:04,542 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:03:05,910 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:03:06,460 - INFO - ✅ Salvo: copart_clone\static\8bc9e3672d2cb38233fb899fe31b46b0.bin
+2025-05-24 00:03:06,461 - INFO - 🌐 Visitando: https://www.copart.com.br/salesListResult
+2025-05-24 00:03:10,369 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:03:10,670 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:03:11,017 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:03:13,200 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:03:14,463 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:03:14,874 - INFO - ✅ Salvo: copart_clone\static\221eba7f93c5302a596e639d106a8d27.bin
+2025-05-24 00:03:14,875 - INFO - 🌐 Visitando: https://www.copart.com.br/public/watchList
+2025-05-24 00:03:19,427 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/public/{{previousPage}}: 404
+2025-05-24 00:03:19,778 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/public/{{nextPage}}: 404
+2025-05-24 00:03:20,085 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/public/{{canonicalHref}}: 404
+2025-05-24 00:03:22,510 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:03:23,958 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:03:24,450 - INFO - ✅ Salvo: copart_clone\static\7faf45f130a29ec962ca339d46fb0e72.bin
+2025-05-24 00:03:24,451 - INFO - 🌐 Visitando: https://www.copart.com.br/savedsearch
+2025-05-24 00:03:28,127 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:03:28,424 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:03:28,704 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:03:30,911 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:03:32,682 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:03:33,198 - INFO - ✅ Salvo: copart_clone\static\7c2bb6ded10032993a50d5f6d00418b7.bin
+2025-05-24 00:03:33,199 - INFO - 🌐 Visitando: https://www.copart.com.br/vehicleAlerts
+2025-05-24 00:03:37,359 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:03:37,937 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:03:38,414 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:03:40,783 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:03:42,294 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:03:43,269 - INFO - ✅ Salvo: copart_clone\static\1f1aee3ed7161d0b466d3bbe0e61275f.bin
+2025-05-24 00:03:43,271 - INFO - 🌐 Visitando: https://www.copart.com.br/todaysAuction
+2025-05-24 00:03:48,747 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:03:49,055 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:03:49,374 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:03:51,960 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:03:53,559 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:03:54,196 - INFO - ✅ Salvo: copart_clone\static\3ee9edeeb2cf2fa1a316d53e7e6bb470.bin
+2025-05-24 00:03:54,196 - INFO - 🌐 Visitando: https://www.copart.com.br/auctionCalendar
+2025-05-24 00:03:58,481 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:03:58,794 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:03:59,104 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:04:01,982 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:04:03,428 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:04:05,519 - INFO - ✅ Salvo: copart_clone\static\f80738af9d10b5f10f50c93608405f9e.bin
+2025-05-24 00:04:05,521 - INFO - 🌐 Visitando: https://www.copart.com.br/locations
+2025-05-24 00:04:12,924 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:04:13,204 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:04:13,487 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:04:31,605 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:04:33,014 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:04:36,687 - INFO - ✅ Salvo: copart_clone\static\eadcd550d4fcbf32934cf443fc90fc26.bin
+2025-05-24 00:04:36,690 - INFO - 🌐 Visitando: https://www.copart.com.br/{{(locale.messages['app.url.howToBuy']
+2025-05-24 00:04:38,280 - INFO - ✅ Salvo: copart_clone\static\bb4363e5a46873ac2a04c6d043d5afd8.howToBuy']
+2025-05-24 00:04:38,282 - INFO - 🌐 Visitando: https://www.copart.com.br/{{locale.messages['footer.label.faq']}}
+2025-05-24 00:04:38,915 - INFO - ✅ Salvo: copart_clone\static\c23bbdfbb060a139daad6aa794ba74c4.faq']}}
+2025-05-24 00:04:38,917 - INFO - 🌐 Visitando: https://www.copart.com.br/pt-BR/Content/br/pt-BR/Member-Protection-Pledge
+2025-05-24 00:04:43,010 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/pt-BR/Content/br/pt-BR/{{previousPage}}: 404
+2025-05-24 00:04:43,291 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/pt-BR/Content/br/pt-BR/{{nextPage}}: 404
+2025-05-24 00:04:43,605 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/pt-BR/Content/br/pt-BR/{{canonicalHref}}: 404
+2025-05-24 00:04:46,798 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/wro/CLDR_en_US.js: 404
+2025-05-24 00:04:46,943 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:04:48,229 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:04:48,778 - INFO - ✅ Salvo: copart_clone\static\adc03f226250218fe3e3e2cc0e409705.bin
+2025-05-24 00:04:48,779 - INFO - 🌐 Visitando: https://www.copart.com.br/pt-BR/Content/br/pt-BR/Support/Services/Category-B-Vehicles
+2025-05-24 00:04:53,619 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/pt-BR/Content/br/pt-BR/Support/Services/{{previousPage}}: 404
+2025-05-24 00:04:54,031 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/pt-BR/Content/br/pt-BR/Support/Services/{{nextPage}}: 404
+2025-05-24 00:04:54,356 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/pt-BR/Content/br/pt-BR/Support/Services/{{canonicalHref}}: 404
+2025-05-24 00:04:56,666 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/wro/CLDR_en_US.js: 404
+2025-05-24 00:04:56,838 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:04:58,254 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:05:00,123 - INFO - ✅ Salvo: copart_clone\static\e704a252abb71d240957c297a9e057f0.bin
+2025-05-24 00:05:00,126 - INFO - 🌐 Visitando: https://www.copart.com.br/content/br/en/videos/about-copart
+2025-05-24 00:05:13,868 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:05:15,447 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:05:16,516 - INFO - ✅ Salvo: copart_clone\static\3b06f3ed2e5af8921cf50a30cb0c946a.bin
+2025-05-24 00:05:16,516 - INFO - 🌐 Visitando: https://www.copart.com.br/{{locale.messages['app.url.contactUs']}}
+2025-05-24 00:05:17,570 - INFO - ✅ Salvo: copart_clone\static\ad471142d5c49a753e19c928d47bc27f.contactUs']}}
+2025-05-24 00:05:17,571 - INFO - 🌐 Visitando: https://www.copart.com.br/sellForIndividuals
+2025-05-24 00:05:22,421 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:05:22,743 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:05:23,038 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:05:25,325 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:05:26,991 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:05:27,507 - INFO - ✅ Salvo: copart_clone\static\f94d425c329cf5f73f85d3ce050c9bd2.bin
+2025-05-24 00:05:27,508 - INFO - 🌐 Visitando: https://www.copart.com.br/search/compre_agora/
+2025-05-24 00:05:35,339 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:05:37,145 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:05:37,728 - INFO - ✅ Salvo: copart_clone\static\0f80c8c7ab09e79ef6fdae97c47ec0e5.bin
+2025-05-24 00:05:37,730 - INFO - 🌐 Visitando: https://www.copart.com.br/content/br/en/buy-it-now
+2025-05-24 00:05:46,097 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:05:47,579 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:05:48,001 - INFO - ✅ Salvo: copart_clone\static\61f349e74248297ef0f37846e766b7d8.bin
+2025-05-24 00:05:48,002 - INFO - 🌐 Visitando: https://www.copart.com.br/accountInformation/documentSetting
+2025-05-24 00:05:56,456 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:05:58,081 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:05:58,517 - INFO - ✅ Salvo: copart_clone\static\c0ab1cf82aa4c03b04c5eee1c57ad806.bin
+2025-05-24 00:05:59,956 - INFO - ✅ Espelhamento concluído com sucesso!
+2025-05-24 00:08:07,040 - INFO - 🚀 Iniciando espelhamento do site Copart...
+2025-05-24 00:08:09,951 - INFO - 🌐 Visitando: https://www.copart.com.br
+2025-05-24 00:08:19,114 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:08:19,412 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:08:19,734 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:08:23,549 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:08:25,590 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:08:26,144 - INFO - ✅ Salvo: copart_clone\static\index.html
+2025-05-24 00:08:26,145 - INFO - 🌐 Visitando: https://www.copart.com.br/
+2025-05-24 00:08:31,844 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:08:32,626 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:08:33,015 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:08:37,555 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:08:39,074 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:08:39,583 - INFO - ✅ Salvo: copart_clone\static\1f882d49b6190e89de5d712a2faf6fe9.bin
+2025-05-24 00:08:39,584 - INFO - 🌐 Visitando: https://www.copart.com.br/doRegistration
+2025-05-24 00:08:43,510 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:08:43,988 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:08:44,309 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:08:46,431 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:08:48,017 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:08:48,532 - INFO - ✅ Salvo: copart_clone\static\f3c733cb38c3a999a488435b5390cd1b.bin
+2025-05-24 00:08:48,533 - INFO - 🌐 Visitando: https://www.copart.com.br/login
+2025-05-24 00:08:51,795 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:08:52,074 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:08:52,409 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:08:54,710 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:08:56,251 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:08:56,794 - INFO - ✅ Salvo: copart_clone\static\7af621933e45ccefd6daad3faa93f894.bin
+2025-05-24 00:08:56,794 - INFO - 🌐 Visitando: https://www.copart.com.br/how-it-works
+2025-05-24 00:09:03,324 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:09:03,723 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:09:04,047 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:09:06,496 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/wro/CLDR_en_US.js: 404
+2025-05-24 00:09:06,680 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:09:08,426 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:09:08,955 - INFO - ✅ Salvo: copart_clone\static\b77b6ec5200a3887a64b245920912cde.bin
+2025-05-24 00:09:08,956 - INFO - 🌐 Visitando: https://www.copart.com.br/driverseat/mylots
+2025-05-24 00:09:15,864 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/driverseat/{{previousPage}}: 404
+2025-05-24 00:09:16,147 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/driverseat/{{nextPage}}: 404
+2025-05-24 00:09:16,428 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/driverseat/{{canonicalHref}}: 404
+2025-05-24 00:09:19,084 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/wro/CLDR_en_US.js: 404
+2025-05-24 00:09:19,227 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:09:20,640 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:09:21,128 - INFO - ✅ Salvo: copart_clone\static\18b7153e0e0c4b88f038c7d716ae365e.bin
+2025-05-24 00:09:21,129 - INFO - 🌐 Visitando: https://www.copart.com.br/vehicleFinder
+2025-05-24 00:09:25,041 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:09:25,359 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:09:25,668 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:09:27,594 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:09:28,922 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:09:29,436 - INFO - ✅ Salvo: copart_clone\static\8bc9e3672d2cb38233fb899fe31b46b0.bin
+2025-05-24 00:09:29,437 - INFO - 🌐 Visitando: https://www.copart.com.br/salesListResult
+2025-05-24 00:09:32,854 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:09:33,168 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:09:33,479 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:09:36,213 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:09:37,539 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:09:37,926 - INFO - ✅ Salvo: copart_clone\static\221eba7f93c5302a596e639d106a8d27.bin
+2025-05-24 00:09:37,927 - INFO - 🌐 Visitando: https://www.copart.com.br/public/watchList
+2025-05-24 00:09:45,301 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/public/{{previousPage}}: 404
+2025-05-24 00:09:45,591 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/public/{{nextPage}}: 404
+2025-05-24 00:09:45,933 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/public/{{canonicalHref}}: 404
+2025-05-24 00:09:48,159 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:09:49,740 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:09:50,313 - INFO - ✅ Salvo: copart_clone\static\7faf45f130a29ec962ca339d46fb0e72.bin
+2025-05-24 00:09:50,317 - INFO - 🌐 Visitando: https://www.copart.com.br/savedsearch
+2025-05-24 00:09:54,943 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:09:55,235 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:09:55,559 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:09:57,559 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:09:59,009 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:09:59,509 - INFO - ✅ Salvo: copart_clone\static\7c2bb6ded10032993a50d5f6d00418b7.bin
+2025-05-24 00:09:59,510 - INFO - 🌐 Visitando: https://www.copart.com.br/vehicleAlerts
+2025-05-24 00:10:02,645 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:10:02,943 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:10:03,249 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:10:06,213 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:10:08,105 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:10:08,638 - INFO - ✅ Salvo: copart_clone\static\1f1aee3ed7161d0b466d3bbe0e61275f.bin
+2025-05-24 00:10:08,640 - INFO - 🌐 Visitando: https://www.copart.com.br/todaysAuction
+2025-05-24 00:10:15,312 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:10:15,719 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:10:16,026 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:10:18,221 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:10:19,493 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:10:19,900 - INFO - ✅ Salvo: copart_clone\static\3ee9edeeb2cf2fa1a316d53e7e6bb470.bin
+2025-05-24 00:10:19,901 - INFO - 🌐 Visitando: https://www.copart.com.br/auctionCalendar
+2025-05-24 00:10:23,941 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:10:24,220 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:10:24,485 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:10:27,250 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:10:28,604 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:10:29,021 - INFO - ✅ Salvo: copart_clone\static\f80738af9d10b5f10f50c93608405f9e.bin
+2025-05-24 00:10:29,022 - INFO - 🌐 Visitando: https://www.copart.com.br/locations
+2025-05-24 00:10:32,879 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:10:33,237 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:10:33,542 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:10:35,635 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:10:37,122 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:10:37,800 - INFO - ✅ Salvo: copart_clone\static\eadcd550d4fcbf32934cf443fc90fc26.bin
+2025-05-24 00:10:37,801 - INFO - 🌐 Visitando: https://www.copart.com.br/pt-BR/Content/br/pt-BR/Member-Protection-Pledge
+2025-05-24 00:10:42,648 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/pt-BR/Content/br/pt-BR/{{previousPage}}: 404
+2025-05-24 00:10:43,066 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/pt-BR/Content/br/pt-BR/{{nextPage}}: 404
+2025-05-24 00:10:43,340 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/pt-BR/Content/br/pt-BR/{{canonicalHref}}: 404
+2025-05-24 00:10:45,592 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/wro/CLDR_en_US.js: 404
+2025-05-24 00:10:45,739 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:10:47,136 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:10:47,571 - INFO - ✅ Salvo: copart_clone\static\adc03f226250218fe3e3e2cc0e409705.bin
+2025-05-24 00:10:47,573 - INFO - 🌐 Visitando: https://www.copart.com.br/pt-BR/Content/br/pt-BR/Support/Services/Category-B-Vehicles
+2025-05-24 00:10:52,005 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/pt-BR/Content/br/pt-BR/Support/Services/{{previousPage}}: 404
+2025-05-24 00:10:52,409 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/pt-BR/Content/br/pt-BR/Support/Services/{{nextPage}}: 404
+2025-05-24 00:10:52,691 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/pt-BR/Content/br/pt-BR/Support/Services/{{canonicalHref}}: 404
+2025-05-24 00:10:54,867 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/wro/CLDR_en_US.js: 404
+2025-05-24 00:10:55,017 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:10:56,360 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:10:56,990 - INFO - ✅ Salvo: copart_clone\static\e704a252abb71d240957c297a9e057f0.bin
+2025-05-24 00:10:56,990 - INFO - 🌐 Visitando: https://www.copart.com.br/content/br/en/videos/about-copart
+2025-05-24 00:11:05,005 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:11:06,460 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:11:06,959 - INFO - ✅ Salvo: copart_clone\static\3b06f3ed2e5af8921cf50a30cb0c946a.bin
+2025-05-24 00:11:06,965 - INFO - 🌐 Visitando: https://www.copart.com.br/sellForIndividuals
+2025-05-24 00:11:12,417 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{previousPage}}: 404
+2025-05-24 00:11:12,766 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{nextPage}}: 404
+2025-05-24 00:11:13,133 - WARNING - ⚠️ Erro ao acessar https://www.copart.com.br/{{canonicalHref}}: 404
+2025-05-24 00:11:17,119 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:11:18,983 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:11:19,563 - INFO - ✅ Salvo: copart_clone\static\f94d425c329cf5f73f85d3ce050c9bd2.bin
+2025-05-24 00:11:19,564 - INFO - 🌐 Visitando: https://www.copart.com.br/search/compre_agora/
+2025-05-24 00:11:27,069 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:11:28,589 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:11:29,324 - INFO - ✅ Salvo: copart_clone\static\0f80c8c7ab09e79ef6fdae97c47ec0e5.bin
+2025-05-24 00:11:29,327 - INFO - 🌐 Visitando: https://www.copart.com.br/content/br/en/buy-it-now
+2025-05-24 00:11:35,592 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:11:37,120 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:11:38,005 - INFO - ✅ Salvo: copart_clone\static\61f349e74248297ef0f37846e766b7d8.bin
+2025-05-24 00:11:38,005 - INFO - 🌐 Visitando: https://www.copart.com.br/accountInformation/documentSetting
+2025-05-24 00:11:45,277 - WARNING - ⚠️ Erro ao acessar https://fonts.gstatic.com/: 404
+2025-05-24 00:11:46,694 - WARNING - ⚠️ Erro ao acessar https://cdn.cookielaw.org/consent/cbcc1e50-27a9-4167-b662-9e5b98ce1302/OtAutoBlock.js: 404
+2025-05-24 00:11:47,131 - INFO - ✅ Salvo: copart_clone\static\c0ab1cf82aa4c03b04c5eee1c57ad806.bin
+2025-05-24 00:11:47,699 - INFO - ✅ Espelhamento concluído com sucesso!
