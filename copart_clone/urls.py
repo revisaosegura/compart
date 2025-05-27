@@ -2,11 +2,11 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView, RedirectView
 from mirror import views
-from .views import cadastro_view, agendar_scraper_view
+from .views import cadastro_view, agendar_scraper_view, home
 
 urlpatterns = [
     # Página inicial redireciona para index.html no static
-    path('', RedirectView.as_view(url='/static/index.html', permanent=False), name='home'),
+    path('', RedirectView.as_view(url='/copart/index.html', permanent=False), name='home'),
 
     # URLs do app mirror
     path('mirror/', include('mirror.urls')),
@@ -24,4 +24,5 @@ urlpatterns = [
     path('cadastro/', cadastro_view, name='cadastro'),
     path('admin/copart_clone/agendar/<int:pk>/', agendar_scraper_view, name='copart_clone_agendar_scraper'),
     path('admin/', admin.site.urls),
+    path("", home, name="home"),
 ]

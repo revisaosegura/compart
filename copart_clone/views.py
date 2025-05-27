@@ -7,6 +7,10 @@ from django.urls import path
 from .models import Cadastro
 from django.shortcuts import render, redirect
 from .forms import CadastroForm
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'copart/index.html')
 
 def cadastro_view(request):
     if request.method == "POST":
