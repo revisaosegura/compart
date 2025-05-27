@@ -1,0 +1,84 @@
+    <style>
+body {margin:0px;}
+#block-g2member-g2member-system-main {
+    width: 600px;
+    margin: auto;
+    padding-top: 105px;
+    padding-bottom: 150px;
+    line-height: 29px;
+}
+label {
+    font-family: 'Open Sans',sans-serif;
+    font-weight: normal;
+    display: block;
+    color: #000000;
+    text-align: left;
+    font-size: 14px;
+}
+button, input, select, textarea {
+    font-family: 'Open Sans',sans-serif;
+    font-size: inherit;
+    line-height: inherit;
+}	
+button, html input[type=button], input[type=reset], input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+.description {
+    font-size: 13px;
+    line-height: 20px;
+    color: #1d1d1d;
+    font-family: 'Open Sans',sans-serif;
+    color: #1d1d1d;    
+}
+#okta_login_btn img {
+    width: auto;
+}
+h1 {
+    font-family: monospace;
+    margin-bottom: 40px;
+}
+.okta-block {
+text-align: center;
+}
+h3 {
+    font-size: 16px;
+    font-family: monospace;
+}
+</style>
+<link rel="stylesheet" href="https://www.copart.com/content/drupal-login-page.css">
+<img src="https://www.copart.com/content/copart-login-top.png" width="100%">
+<div id="block-g2member-g2member-system-main">
+<h1>Log in to your account</h1>
+<div class="drupal_login_form">
+<h3 class="username_notice">Please use Email address as your username.</h3>
+<form class="user-login-form" data-drupal-selector="user-login-form" action="/index.php?q=content/de/en/images/memberprotection-pledge.gif" method="post" id="user-login-form" accept-charset="UTF-8">
+  <div class="js-form-item form-item js-form-type-textfield form-item-name js-form-item-name">
+      <label for="edit-name" class="js-form-required form-required">Username</label>
+        <input autocorrect="none" autocapitalize="none" spellcheck="false" autofocus="autofocus" autocomplete="username" data-drupal-selector="edit-name" type="text" id="edit-name" name="name" value="" size="60" maxlength="60" class="form-text required" required="required" aria-required="true" />
+
+        </div>
+<div class="js-form-item form-item js-form-type-password form-item-pass js-form-item-pass">
+      <label for="edit-pass" class="js-form-required form-required">Password</label>
+        <input autocomplete="current-password" data-drupal-selector="edit-pass" type="password" id="edit-pass" name="pass" size="60" maxlength="128" class="form-text required" required="required" aria-required="true" />
+
+        </div>
+<input autocomplete="off" data-drupal-selector="form-0hg-tvdvjf8dqeewe7ewynlnsxk4zb-ufe98fwondfa" type="hidden" name="form_build_id" value="form-0Hg-TVDVjf8DQEEwe7EWYNLNsXk4zb-Ufe98fWoNdFA" />
+<input data-drupal-selector="edit-user-login-form" type="hidden" name="form_id" value="user_login_form" />
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions"><input data-drupal-selector="edit-submit" type="submit" id="edit-submit" name="op" value="Log in" class="button js-form-submit form-submit" />
+</div>
+
+</form>
+
+
+OR <br/>
+</div>
+<div id="okta-block">
+<a href="/samllogin" id="okta_login_btn"><img src="https://www.copart.com/content/login-okta.png" width="100%"></a>
+
+<h3 class="login-notice"><p class="login_last_date">Note: After 19-Oct-2024, Only Okta Authentication will be active. </p>
+Please login with Okta and send an email to <br><a href="contato@copartbr.com.br">contato@copartbr.com.br</a> if you face any issues.</h3>
+</div>
+</div>
+<!--<img src="/themes/custom/g2member/images/static_footer.png" width="100%">-->
+
