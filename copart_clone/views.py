@@ -10,7 +10,10 @@ from .forms import CadastroForm
 from django.shortcuts import render
 
 def home(request):
-    return render(request, 'copart/index.html')
+    return render(request, "copart/index.html")
+
+def page(request, name):
+    return render(request, f"copart/{name}.html")
 
 def cadastro_view(request):
     if request.method == "POST":

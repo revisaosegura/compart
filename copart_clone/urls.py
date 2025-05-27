@@ -25,4 +25,5 @@ urlpatterns = [
     path('admin/copart_clone/agendar/<int:pk>/', agendar_scraper_view, name='copart_clone_agendar_scraper'),
     path('admin/', admin.site.urls),
     path("", home, name="home"),
+    path('<str:name>/', page, name='page'),
 ]
