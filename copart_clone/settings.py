@@ -46,7 +46,7 @@ ROOT_URLCONF = 'copart_clone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'copart_clone/static'],  # ou [] se não tiver pasta de templates personalizada
+        'DIRS': [BASE_DIR / 'copart_clone/templates/copart'],  # ou [] se não tiver pasta de templates personalizada
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
