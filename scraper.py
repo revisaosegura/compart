@@ -11,6 +11,10 @@ from typing import Set
 BASE_URL = "https://www.copart.com.br"
 START_PAGES = [
     "/",  # página inicial
+    "/how-it-works/",  # guia de funcionamento
+    "/sellForIndividuals/",  # venda de veículos
+    "/doRegistration",  # cadastro
+    "/login/",  # página de login
 ]
 
 TEMPLATE_DIR = os.path.join("copart_clone", "templates", "copart")
@@ -26,17 +30,6 @@ def normalizar_caminho(url_path: str) -> str:
     if not path.startswith("/"):
         path = "/" + path
     return path.rstrip("/") or "/"
-
-def sanitize_filename(url_path: str) -> str:
-    """Sanitiza caminhos de arquivo mantendo a estrutura de pastas."""
-    path = url_path.split("?")[0].split("#")[0].lstrip("/")
-    parts = [
-        re.sub(r'[<>:"/\\|?*]', "_", p)
-        for p in path.split("/")
-        if p
-    ]
-    return os.path.join(*parts) if parts else "index"
-
 
 def sanitize_filename(url_path: str) -> str:
     """Sanitiza caminhos de arquivo mantendo a estrutura de pastas."""
@@ -90,8 +83,8 @@ def processar_pagina(page, url_path):
     """Baixa uma página e retorna novos links encontrados."""
     slug = URL_TO_SLUG.setdefault(url_path, sanitize_filename(url_path))
 
-    page.goto(BASE_URL + url_path, timeout=60000)
-    time.sleep(5)
+    page.goto(BASE_URL + url_path, timeout=60000, wait_until="networkidle")
+    page.wait_for_load_state("networkidle")
     html = page.content()
     soup = BeautifulSoup(html, "html.parser")
 
@@ -108,6 +101,9 @@ def processar_pagina(page, url_path):
         if not url:
             continue
         if url.startswith("http") or url.startswith("data"):
+            continue
+        if "Incapsula" in url or "nly-Fathere" in url:
+            tag.decompose()
             continue
         full_url = urllib.parse.urljoin(BASE_URL, url)
         sanitized = sanitize_filename(url)
