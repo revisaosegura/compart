@@ -1,6 +1,7 @@
 from django.contrib import admin
-from django.urls import path, include
-from django.views.generic import TemplateView
+from django.urls import path, include, re_path
+from django.views.generic import TemplateView, RedirectView
+from django.conf import settings
 
 # Importa o módulo de views completo para evitar problemas de
 # referência a funções individuais durante o carregamento.
@@ -8,6 +9,10 @@ from . import views
 
 urlpatterns = [
     # Página inicial
+    re_path(r'^favicon\.ico/?$', RedirectView.as_view(
+        url=settings.STATIC_URL + 'images/favicon/copart/favicon.ico',
+        permanent=True
+    )),
     path('', views.home, name='home'),
 
     # URLs do app mirror
