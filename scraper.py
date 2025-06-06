@@ -13,8 +13,8 @@ START_PAGES = [
     "/",  # página inicial
 ]
 
-TEMPLATE_DIR = "templates/copart"
-STATIC_DIR = "static/copart"
+TEMPLATE_DIR = os.path.join("copart_clone", "templates", "copart")
+STATIC_DIR = os.path.join("copart_clone", "static", "copart")
 
 # Mapeia URL de origem para o nome do arquivo HTML local
 URL_TO_SLUG = {}
@@ -123,6 +123,7 @@ def processar_pagina(page, url_path):
     
 def salvar_site():
     os.makedirs(STATIC_DIR, exist_ok=True)
+    os.makedirs(TEMPLATE_DIR, exist_ok=True)
     fila = deque(normalizar_caminho(p) for p in START_PAGES)
     visitados = set()
 
