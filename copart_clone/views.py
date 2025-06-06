@@ -2,17 +2,27 @@ import subprocess
 import sys
 import os
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse, Http404
+from django.conf import settings
 from .models import Cadastro
 from django.shortcuts import render, redirect
 from .forms import CadastroForm
-from django.shortcuts import render
+
+def _serve_static_html(filename: str):
+    """Helper to return a static HTML file without template rendering."""
+    base = os.path.join(settings.BASE_DIR, 'copart_clone', 'templates', 'copart')
+    path = os.path.join(base, filename)
+    if not os.path.exists(path):
+        raise Http404
+    with open(path, 'r', encoding='utf-8') as f:
+        return HttpResponse(f.read())
+
 
 def home(request):
-    return render(request, "copart/index.html")
+    return _serve_static_html('index.html')
 
 def page(request, name):
-    return render(request, f"copart/{name}.html")
+    return _serve_static_html(f'{name}.html')
 
 def cadastro_view(request):
     if request.method == "POST":
