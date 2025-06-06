@@ -95,6 +95,12 @@ def processar_pagina(page, url_path):
     html = page.content()
     soup = BeautifulSoup(html, "html.parser")
 
+    base_tag = soup.find("base")
+    if base_tag:
+        base_tag["href"] = "/"
+    elif soup.head:
+        soup.head.insert(0, soup.new_tag("base", href="/"))
+
     # baixar e corrigir assets
     for tag in soup.find_all(["script", "link", "img"]):
         attr = "src" if tag.name != "link" else "href"
