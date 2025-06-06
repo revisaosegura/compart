@@ -14,6 +14,7 @@ urlpatterns = [
         permanent=True
     )),
     path('', views.home, name='home'),
+    path('index/', RedirectView.as_view(url='/', permanent=True)),
 
     # URLs do app mirror
     path('mirror/', include('mirror.urls')),
