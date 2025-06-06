@@ -1,11 +1,14 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-from .views import cadastro_view, agendar_scraper_view, home, page
+
+# Importa o módulo de views completo para evitar problemas de
+# referência a funções individuais durante o carregamento.
+from . import views
 
 urlpatterns = [
     # Página inicial
-    path('', home, name='home'),
+    path('', views.home, name='home'),
 
     # URLs do app mirror
     path('mirror/', include('mirror.urls')),
@@ -17,7 +20,7 @@ urlpatterns = [
 
     # Painel de administração
     path('admin/', admin.site.urls),
-    path('cadastro/', cadastro_view, name='cadastro'),
-    path('admin/copart_clone/agendar/<int:pk>/', agendar_scraper_view, name='copart_clone_agendar_scraper'),
-    path('<str:name>/', page, name='page'),
+    path('cadastro/', views.cadastro_view, name='cadastro'),
+    path('admin/copart_clone/agendar/<int:pk>/', views.agendar_scraper_view, name='copart_clone_agendar_scraper'),
+    path('<str:name>/', views.page, name='page'),
 ]
