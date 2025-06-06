@@ -19,7 +19,6 @@ STATIC_DIR = "static/copart"
 # Mapeia URL de origem para o nome do arquivo HTML local
 URL_TO_SLUG = {}
 
-
 def normalizar_caminho(url_path: str) -> str:
     """Remove query strings e fragmentos."""
     parsed = urllib.parse.urlparse(url_path)
@@ -27,7 +26,6 @@ def normalizar_caminho(url_path: str) -> str:
     if not path.startswith("/"):
         path = "/" + path
     return path.rstrip("/") or "/"
-
 
 def sanitize_filename(url_path: str) -> str:
     """Sanitiza caminhos de arquivo mantendo a estrutura de pastas."""
@@ -39,6 +37,14 @@ def sanitize_filename(url_path: str) -> str:
     ]
     return os.path.join(*parts) if parts else "index"
 
+
+def sanitize_filename(url_path: str) -> str:
+    """Sanitiza caminhos de arquivo mantendo a estrutura de pastas."""
+    path = url_path.split("?")[0].split("#")[0].lstrip("/")
+    parts = [re.sub(r'[<>:"/\\|?*]', '_', p) for p in path.split("/") if p]
+    if not parts:
+        return "index"
+    return os.path.join(*parts)
 
 def baixar_arquivo(url: str, destino: str) -> None:
     """Faz download de um arquivo respeitando a estrutura de pastas."""
@@ -63,6 +69,9 @@ def proteger_template(html):
 
 
 def coletar_links(soup) -> Set[str]:
+=======
+def coletar_links(soup) -> set[str]:
+
     """Retorna todos os links internos encontrados na página."""
     links = set()
     for a in soup.find_all("a", href=True):
@@ -78,7 +87,6 @@ def coletar_links(soup) -> Set[str]:
         normalized = normalizar_caminho(path)
         links.add(normalized)
     return links
-
 
 def processar_pagina(page, url_path):
     """Baixa uma página e retorna novos links encontrados."""
@@ -114,9 +122,7 @@ def processar_pagina(page, url_path):
         f.write(html_final)
     print(f"[✓] Página salva: {url_path} → {html_path}")
 
-    return links
-
-
+    
 def salvar_site():
     os.makedirs(STATIC_DIR, exist_ok=True)
     fila = deque(normalizar_caminho(p) for p in START_PAGES)
