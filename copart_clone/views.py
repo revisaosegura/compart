@@ -3,7 +3,6 @@ import sys
 import os
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.urls import path
 from .models import Cadastro
 from django.shortcuts import render, redirect
 from .forms import CadastroForm
