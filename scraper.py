@@ -69,8 +69,6 @@ def proteger_template(html):
 
 
 def coletar_links(soup) -> Set[str]:
-=======
-def coletar_links(soup) -> set[str]:
 
     """Retorna todos os links internos encontrados na página."""
     links = set()
