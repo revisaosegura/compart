@@ -6,6 +6,7 @@ from collections import deque
 import requests
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
+from typing import Set
 
 BASE_URL = "https://www.copart.com.br"
 START_PAGES = [
@@ -25,6 +26,17 @@ def normalizar_caminho(url_path: str) -> str:
     if not path.startswith("/"):
         path = "/" + path
     return path.rstrip("/") or "/"
+
+def sanitize_filename(url_path: str) -> str:
+    """Sanitiza caminhos de arquivo mantendo a estrutura de pastas."""
+    path = url_path.split("?")[0].split("#")[0].lstrip("/")
+    parts = [
+        re.sub(r'[<>:"/\\|?*]', "_", p)
+        for p in path.split("/")
+        if p
+    ]
+    return os.path.join(*parts) if parts else "index"
+
 
 def sanitize_filename(url_path: str) -> str:
     """Sanitiza caminhos de arquivo mantendo a estrutura de pastas."""
@@ -50,11 +62,16 @@ def baixar_arquivo(url: str, destino: str) -> None:
     except Exception as e:
         print(f"[!] Erro ao baixar {url}: {e}")
 
+
 def proteger_template(html):
     html = re.sub(r"{{(.*?)}}", r"{% raw %}{{\1}}{% endraw %}", html)
     return html
 
+
+def coletar_links(soup) -> Set[str]:
+=======
 def coletar_links(soup) -> set[str]:
+
     """Retorna todos os links internos encontrados na página."""
     links = set()
     for a in soup.find_all("a", href=True):
@@ -105,8 +122,7 @@ def processar_pagina(page, url_path):
         f.write(html_final)
     print(f"[✓] Página salva: {url_path} → {html_path}")
 
-    return links
-
+    
 def salvar_site():
     os.makedirs(STATIC_DIR, exist_ok=True)
     fila = deque(normalizar_caminho(p) for p in START_PAGES)
@@ -128,6 +144,7 @@ def salvar_site():
             except Exception as e:
                 print(f"[!] Erro na página {url_path}: {e}")
         browser.close()
+
 
 if __name__ == "__main__":
     salvar_site()
