@@ -19,7 +19,7 @@ def _serve_static_html(filename: str):
 
 
 def home(request):
-    return _serve_static_html('index.html')
+    return render(request, 'copart/index.html')
 
 def page(request, name):
     return _serve_static_html(f'{name}.html')
