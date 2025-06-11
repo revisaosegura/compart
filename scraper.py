@@ -56,6 +56,30 @@ def baixar_arquivo(url: str, destino: str) -> None:
         print(f"[!] Erro ao baixar {url}: {e}")
 
 
+def baixar_recursos_css(css_path: str, origem_url: str) -> None:
+    """Baixa recursos referenciados dentro de um CSS."""
+    try:
+        with open(css_path, "r", encoding="utf-8") as f:
+            conteudo = f.read()
+    except Exception:
+        return
+
+    def substituir(match: re.Match) -> str:
+        recurso = match.group(1).strip('"\' ')
+        if recurso.startswith("data:") or recurso.startswith("http"):
+            return match.group(0)
+        full = urllib.parse.urljoin(origem_url, recurso)
+        sanitized = sanitize_filename(recurso)
+        local = os.path.join(STATIC_DIR, sanitized)
+        baixar_arquivo(full, local)
+        return f"url('/static/copart/{sanitized}')"
+
+    novo_conteudo = re.sub(r"url\(([^)]+)\)", substituir, conteudo)
+    if novo_conteudo != conteudo:
+        with open(css_path, "w", encoding="utf-8") as f:
+            f.write(novo_conteudo)
+
+
 def proteger_template(html):
     html = re.sub(r"{{(.*?)}}", r"{% raw %}{{\1}}{% endraw %}", html)
     return html
@@ -109,6 +133,8 @@ def processar_pagina(page, url_path):
         sanitized = sanitize_filename(url)
         local_path = os.path.join(STATIC_DIR, sanitized)
         baixar_arquivo(full_url, local_path)
+        if local_path.endswith('.css'):
+            baixar_recursos_css(local_path, full_url)
         tag[attr] = f"/static/copart/{sanitized}"
 
     links = coletar_links(soup)
@@ -121,6 +147,8 @@ def processar_pagina(page, url_path):
     with open(html_path, "w", encoding="utf-8") as f:
         f.write(html_final)
     print(f"[✓] Página salva: {url_path} → {html_path}")
+
+    return links
 
     
 def salvar_site():
