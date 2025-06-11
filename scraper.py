@@ -122,6 +122,8 @@ def processar_pagina(page, url_path):
         f.write(html_final)
     print(f"[✓] Página salva: {url_path} → {html_path}")
 
+    return links
+
     
 def salvar_site():
     os.makedirs(STATIC_DIR, exist_ok=True)
