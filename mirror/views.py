@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 
 def home_redirect(request):
     """Redireciona para a página inicial do clone"""
-    return redirect('/static/index.html')  # ou outro HTML espelhado
+    return render(request, 'copart/index.html')
 
 def admin_redirect(request):
     """Redireciona tentativas de acessar /admin"""
