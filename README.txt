@@ -9,6 +9,8 @@ pip install -r requirements.txt
 playwright install
 
 3. Rode o scraper **antes de iniciar o Django** (execute novamente sempre que quiser atualizar as páginas espelhadas):
+=======
+3. Rode o scraper (execute novamente sempre que quiser atualizar as páginas espelhadas):
 python scraper.py
 
 4. Rode o Django:

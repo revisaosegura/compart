@@ -65,7 +65,11 @@ def baixar_recursos_css(css_path: str, origem_url: str) -> None:
         return
 
     def substituir(match: re.Match) -> str:
+
         recurso = match.group(1).strip(" '\"")
+=======
+        recurso = match.group(1).strip('"\' ')
+
         if recurso.startswith("data:") or recurso.startswith("http"):
             return match.group(0)
         full = urllib.parse.urljoin(origem_url, recurso)
