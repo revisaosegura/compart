@@ -8,12 +8,7 @@ venv\Scripts\activate
 pip install -r requirements.txt
 playwright install
 
-<<<<<<< HEAD
-=======
 3. Rode o scraper **antes de iniciar o Django** (execute novamente sempre que quiser atualizar as páginas espelhadas):
-=======
->>>>>>> f419c2e9050c98a7117cabca7a287923894cdad6
-3. Rode o scraper (execute novamente sempre que quiser atualizar as páginas espelhadas):
 python scraper.py
 
 4. Rode o Django:
