@@ -5,10 +5,15 @@ import urllib.parse
 from collections import deque
 import requests
 from bs4 import BeautifulSoup
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 from typing import Set
 
 BASE_URL = "https://www.copart.com.br"
+LOCALE = "pt-BR"
+HEADERS = {
+    "User-Agent": "Mozilla/5.0",
+    "Accept-Language": f"{LOCALE},{LOCALE.split('-')[0]};q=0.9",
+}
 START_PAGES = [
     "/",  # página inicial
     "/how-it-works/",  # guia de funcionamento
@@ -33,21 +38,47 @@ def normalizar_caminho(url_path: str) -> str:
 
 def sanitize_filename(url_path: str) -> str:
     """Sanitiza caminhos de arquivo mantendo a estrutura de pastas."""
-    path = url_path.split("?")[0].split("#")[0].lstrip("/")
-    parts = [re.sub(r'[<>:"/\\|?*]', '_', p) for p in path.split("/") if p]
-    if not parts:
-        return "index"
-    return os.path.join(*parts)
+    path = url_path.split("?")[0].split("#")[0]
+    path = path.replace("\\", "/").lstrip("/")
+
+    # remove prefixos "static/copart" mesmo que já tenham sido sanitizados
+    while True:
+        if path.startswith("static/copart/"):
+            path = path[len("static/copart/") :]
+            continue
+        if path.startswith("static_copart_"):
+            path = path[len("static_copart_") :]
+            continue
+        break
+
+    # normaliza componentes para evitar ".." ou "." no caminho
+    clean_parts = []
+    for part in os.path.normpath(path).split("/"):
+        if part in ("", ".", ".."):
+            continue
+        clean_parts.append(re.sub(r'[<>:"/\\|?*]', '_', part))
+
+    return "/".join(clean_parts) if clean_parts else "index"
+
+
+def ajustar_para_portugues(path: str) -> str:
+    """Força URLs para a versão em português."""
+    path = re.sub(r"/br/en/", "/br/pt-br/", path)
+    if path.startswith("/en/"):
+        path = "/pt-br/" + path[len("/en/") :]
+    return path
 
 def baixar_arquivo(url: str, destino: str) -> None:
     """Faz download de um arquivo respeitando a estrutura de pastas."""
     if "Incapsula" in url or "nly-Fathere" in url:
         return
+    destino = os.path.normpath(destino)
+    if not destino.startswith(os.path.normpath(STATIC_DIR)):
+        return
     if os.path.exists(destino):
         return
     try:
-        headers = {"User-Agent": "Mozilla/5.0"}
-        response = requests.get(url, headers=headers, timeout=30)
+        response = requests.get(url, headers=HEADERS, timeout=30)
         if response.status_code == 200:
             os.makedirs(os.path.dirname(destino), exist_ok=True)
             with open(destino, "wb") as f:
@@ -99,16 +130,21 @@ def coletar_links(soup) -> Set[str]:
             path = urllib.parse.urlparse(href).path
         else:
             path = href
-        normalized = normalizar_caminho(path)
+        normalized = ajustar_para_portugues(normalizar_caminho(path))
         links.add(normalized)
     return links
 
 def processar_pagina(page, url_path):
     """Baixa uma página e retorna novos links encontrados."""
+    url_path = ajustar_para_portugues(url_path)
     slug = URL_TO_SLUG.setdefault(url_path, sanitize_filename(url_path))
 
-    page.goto(BASE_URL + url_path, timeout=60000, wait_until="networkidle")
-    page.wait_for_load_state("networkidle")
+    try:
+        page.goto(BASE_URL + url_path, timeout=120000, wait_until="networkidle")
+        page.wait_for_load_state("networkidle")
+    except PlaywrightTimeoutError:
+        print(f"[!] Tempo esgotado ao acessar {url_path}")
+        return set()
     html = page.content()
     soup = BeautifulSoup(html, "html.parser")
 
@@ -159,7 +195,8 @@ def salvar_site():
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
+        context = browser.new_context(locale=LOCALE, extra_http_headers=HEADERS)
+        page = context.new_page()
         while fila:
             url_path = fila.popleft()
             if url_path in visitados:
@@ -172,6 +209,7 @@ def salvar_site():
                         fila.append(link)
             except Exception as e:
                 print(f"[!] Erro na página {url_path}: {e}")
+        context.close()
         browser.close()
 
 
