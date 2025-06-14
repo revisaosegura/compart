@@ -9,6 +9,11 @@ from playwright.sync_api import sync_playwright
 from typing import Set
 
 BASE_URL = "https://www.copart.com.br"
+LOCALE = "pt-BR"
+HEADERS = {
+    "User-Agent": "Mozilla/5.0",
+    "Accept-Language": f"{LOCALE},{LOCALE.split('-')[0]};q=0.9",
+}
 START_PAGES = [
     "/",  # página inicial
     "/how-it-works/",  # guia de funcionamento
@@ -34,10 +39,20 @@ def normalizar_caminho(url_path: str) -> str:
 def sanitize_filename(url_path: str) -> str:
     """Sanitiza caminhos de arquivo mantendo a estrutura de pastas."""
     path = url_path.split("?")[0].split("#")[0].lstrip("/")
+    while path.startswith("static/copart/"):
+        path = path[len("static/copart/") :]
     parts = [re.sub(r'[<>:"/\\|?*]', '_', p) for p in path.split("/") if p]
     if not parts:
         return "index"
     return os.path.join(*parts)
+
+
+def ajustar_para_portugues(path: str) -> str:
+    """Força URLs para a versão em português."""
+    path = re.sub(r"/br/en/", "/br/pt-br/", path)
+    if path.startswith("/en/"):
+        path = "/pt-br/" + path[len("/en/") :]
+    return path
 
 def baixar_arquivo(url: str, destino: str) -> None:
     """Faz download de um arquivo respeitando a estrutura de pastas."""
@@ -46,8 +61,7 @@ def baixar_arquivo(url: str, destino: str) -> None:
     if os.path.exists(destino):
         return
     try:
-        headers = {"User-Agent": "Mozilla/5.0"}
-        response = requests.get(url, headers=headers, timeout=30)
+        response = requests.get(url, headers=HEADERS, timeout=30)
         if response.status_code == 200:
             os.makedirs(os.path.dirname(destino), exist_ok=True)
             with open(destino, "wb") as f:
@@ -99,12 +113,13 @@ def coletar_links(soup) -> Set[str]:
             path = urllib.parse.urlparse(href).path
         else:
             path = href
-        normalized = normalizar_caminho(path)
+        normalized = ajustar_para_portugues(normalizar_caminho(path))
         links.add(normalized)
     return links
 
 def processar_pagina(page, url_path):
     """Baixa uma página e retorna novos links encontrados."""
+    url_path = ajustar_para_portugues(url_path)
     slug = URL_TO_SLUG.setdefault(url_path, sanitize_filename(url_path))
 
     page.goto(BASE_URL + url_path, timeout=60000, wait_until="networkidle")
@@ -159,7 +174,8 @@ def salvar_site():
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
+        context = browser.new_context(locale=LOCALE, extra_http_headers=HEADERS)
+        page = context.new_page()
         while fila:
             url_path = fila.popleft()
             if url_path in visitados:
@@ -172,6 +188,7 @@ def salvar_site():
                         fila.append(link)
             except Exception as e:
                 print(f"[!] Erro na página {url_path}: {e}")
+        context.close()
         browser.close()
 
 
