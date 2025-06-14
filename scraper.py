@@ -5,7 +5,7 @@ import urllib.parse
 from collections import deque
 import requests
 from bs4 import BeautifulSoup
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 from typing import Set
 
 BASE_URL = "https://www.copart.com.br"
@@ -38,16 +38,27 @@ def normalizar_caminho(url_path: str) -> str:
 
 def sanitize_filename(url_path: str) -> str:
     """Sanitiza caminhos de arquivo mantendo a estrutura de pastas."""
-    path = url_path.split("?")[0].split("#")[0].lstrip("/")
-    # Normaliza separadores para evitar duplicação de prefixo em sistemas Windows
-    path = path.replace("\\", "/")
-    while path.startswith("static/copart/"):
-        path = path[len("static/copart/") :]
-    parts = [re.sub(r'[<>:"/\\|?*]', '_', p) for p in path.split("/") if p]
-    if not parts:
-        return "index"
-    # Sempre usa '/' para os caminhos retornados independentemente do SO
-    return "/".join(parts)
+    path = url_path.split("?")[0].split("#")[0]
+    path = path.replace("\\", "/").lstrip("/")
+
+    # remove prefixos "static/copart" mesmo que já tenham sido sanitizados
+    while True:
+        if path.startswith("static/copart/"):
+            path = path[len("static/copart/") :]
+            continue
+        if path.startswith("static_copart_"):
+            path = path[len("static_copart_") :]
+            continue
+        break
+
+    # normaliza componentes para evitar ".." ou "." no caminho
+    clean_parts = []
+    for part in os.path.normpath(path).split("/"):
+        if part in ("", ".", ".."):
+            continue
+        clean_parts.append(re.sub(r'[<>:"/\\|?*]', '_', part))
+
+    return "/".join(clean_parts) if clean_parts else "index"
 
 
 def ajustar_para_portugues(path: str) -> str:
@@ -60,6 +71,9 @@ def ajustar_para_portugues(path: str) -> str:
 def baixar_arquivo(url: str, destino: str) -> None:
     """Faz download de um arquivo respeitando a estrutura de pastas."""
     if "Incapsula" in url or "nly-Fathere" in url:
+        return
+    destino = os.path.normpath(destino)
+    if not destino.startswith(os.path.normpath(STATIC_DIR)):
         return
     if os.path.exists(destino):
         return
@@ -125,8 +139,12 @@ def processar_pagina(page, url_path):
     url_path = ajustar_para_portugues(url_path)
     slug = URL_TO_SLUG.setdefault(url_path, sanitize_filename(url_path))
 
-    page.goto(BASE_URL + url_path, timeout=60000, wait_until="networkidle")
-    page.wait_for_load_state("networkidle")
+    try:
+        page.goto(BASE_URL + url_path, timeout=120000, wait_until="networkidle")
+        page.wait_for_load_state("networkidle")
+    except PlaywrightTimeoutError:
+        print(f"[!] Tempo esgotado ao acessar {url_path}")
+        return set()
     html = page.content()
     soup = BeautifulSoup(html, "html.parser")
 
