@@ -39,6 +39,8 @@ def normalizar_caminho(url_path: str) -> str:
 def sanitize_filename(url_path: str) -> str:
     """Sanitiza caminhos de arquivo mantendo a estrutura de pastas."""
     path = url_path.split("?")[0].split("#")[0].lstrip("/")
+    while path.startswith("static/copart/"):
+        path = path[len("static/copart/") :]
     parts = [re.sub(r'[<>:"/\\|?*]', '_', p) for p in path.split("/") if p]
     if not parts:
         return "index"
