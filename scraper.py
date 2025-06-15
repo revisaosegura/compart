@@ -62,10 +62,15 @@ def sanitize_filename(url_path: str) -> str:
 
 
 def ajustar_para_portugues(path: str) -> str:
-    """Força URLs para a versão em português."""
-    path = re.sub(r"/br/en/", "/br/pt-br/", path)
-    if path.startswith("/en/"):
-        path = "/pt-br/" + path[len("/en/") :]
+    """Força URLs para a versão em português.
+
+    Substitui qualquer segmento ``/en/`` por ``/pt-br/``. Isso evita que links
+    em inglês sejam seguidos e garante que todo o conteúdo espelhado use a
+    localização brasileira.
+    """
+
+    # converte '/br/en/' ou '/en/' e demais ocorrências isoladas de '/en/'
+    path = re.sub(r"(^|/)en(?=/)", r"\1pt-br", path)
     return path
 
 def baixar_arquivo(url: str, destino: str) -> None:
@@ -142,6 +147,10 @@ def processar_pagina(page, url_path):
     try:
         page.goto(BASE_URL + url_path, timeout=120000, wait_until="networkidle")
         page.wait_for_load_state("networkidle")
+        try:
+            page.wait_for_selector("body", timeout=5000)
+        except PlaywrightTimeoutError:
+            pass
     except PlaywrightTimeoutError:
         print(f"[!] Tempo esgotado ao acessar {url_path}")
         return set()
