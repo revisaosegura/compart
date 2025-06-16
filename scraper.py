@@ -62,10 +62,15 @@ def sanitize_filename(url_path: str) -> str:
 
 
 def ajustar_para_portugues(path: str) -> str:
-    """Força URLs para a versão em português."""
-    path = re.sub(r"/br/en/", "/br/pt-br/", path)
-    if path.startswith("/en/"):
-        path = "/pt-br/" + path[len("/en/") :]
+    """Força URLs para a versão em português.
+
+    Substitui qualquer segmento ``/en/`` por ``/pt-br/``. Isso evita que links
+    em inglês sejam seguidos e garante que todo o conteúdo espelhado use a
+    localização brasileira.
+    """
+
+    # converte '/br/en/' ou '/en/' e demais ocorrências isoladas de '/en/'
+    path = re.sub(r"(^|/)en(?=/)", r"\1pt-br", path)
     return path
 
 def baixar_arquivo(url: str, destino: str) -> None:
@@ -134,6 +139,41 @@ def coletar_links(soup) -> Set[str]:
         links.add(normalized)
     return links
 
+
+def carregar_links_sitemap(url: str = None, vistos=None) -> Set[str]:
+    """Recupera caminhos de um sitemap XML, seguindo índices recursivamente."""
+    if vistos is None:
+        vistos = set()
+    if url is None:
+        url = urllib.parse.urljoin(BASE_URL, "/sitemap.xml")
+    if url in vistos:
+        return set()
+    vistos.add(url)
+    try:
+        resp = requests.get(url, headers=HEADERS, timeout=30)
+    except Exception:
+        return set()
+    if resp.status_code != 200:
+        return set()
+    soup = BeautifulSoup(resp.text, "xml")
+    caminhos = set()
+    sitemap_tags = soup.find_all("sitemap")
+    if sitemap_tags:
+        for tag in sitemap_tags:
+            loc = tag.find("loc")
+            if loc and loc.text:
+                caminhos.update(carregar_links_sitemap(loc.text.strip(), vistos))
+    else:
+        for loc in soup.find_all("loc"):
+            loc_url = loc.text.strip()
+            if loc_url.endswith(".xml"):
+                caminhos.update(carregar_links_sitemap(loc_url, vistos))
+            else:
+                path = urllib.parse.urlparse(loc_url).path
+                path = ajustar_para_portugues(normalizar_caminho(path))
+                caminhos.add(path)
+    return caminhos
+
 def processar_pagina(page, url_path):
     """Baixa uma página e retorna novos links encontrados."""
     url_path = ajustar_para_portugues(url_path)
@@ -142,6 +182,10 @@ def processar_pagina(page, url_path):
     try:
         page.goto(BASE_URL + url_path, timeout=120000, wait_until="networkidle")
         page.wait_for_load_state("networkidle")
+        try:
+            page.wait_for_selector("body", timeout=5000)
+        except PlaywrightTimeoutError:
+            pass
     except PlaywrightTimeoutError:
         print(f"[!] Tempo esgotado ao acessar {url_path}")
         return set()
@@ -191,6 +235,10 @@ def salvar_site():
     os.makedirs(STATIC_DIR, exist_ok=True)
     os.makedirs(TEMPLATE_DIR, exist_ok=True)
     fila = deque(normalizar_caminho(p) for p in START_PAGES)
+    try:
+        fila.extend(carregar_links_sitemap())
+    except Exception:
+        pass
     visitados = set()
 
     with sync_playwright() as p:
@@ -205,7 +253,7 @@ def salvar_site():
                 novos_links = processar_pagina(page, url_path)
                 visitados.add(url_path)
                 for link in novos_links:
-                    if link not in visitados:
+                    if link not in visitados and link not in fila:
                         fila.append(link)
             except Exception as e:
                 print(f"[!] Erro na página {url_path}: {e}")
