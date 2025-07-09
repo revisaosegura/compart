@@ -8,6 +8,9 @@ venv\Scripts\activate
 pip install -r requirements.txt
 playwright install
 
+Ou execute `bash setup_codex.sh` para configurar tudo de uma vez
+em ambientes sem dependências pré-instaladas.
+
 3. Rode o scraper **antes de iniciar o Django** (execute novamente sempre que quiser atualizar as páginas espelhadas):
 python scraper.py
 
