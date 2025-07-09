@@ -6,8 +6,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'copart_clone.settings')
 
 application = get_wsgi_application()
 
-# Corrigido para apontar corretamente para a pasta 'static'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-application = WhiteNoise(application, root=os.path.join(BASE_DIR, 'copart_clone/static'))
+# Serve arquivos estaticos coletados
+application = WhiteNoise(application, root=os.path.join(BASE_DIR, 'staticfiles'))
