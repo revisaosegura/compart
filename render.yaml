@@ -3,13 +3,9 @@ services:
     name: copart-clone
     env: python
     buildCommand: |
-      pip install -r requirements.txt
-      playwright install
-      playwright install --with-deps
+      bash build.sh
     startCommand: |
-      python scraper.py &&
       python manage.py migrate &&
-      python manage.py collectstatic --noinput &&
       gunicorn copart_clone.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
