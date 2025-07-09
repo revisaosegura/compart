@@ -16,10 +16,24 @@ HEADERS = {
 }
 START_PAGES = [
     "/",  # página inicial
-    "/how-it-works/",  # guia de funcionamento
-    "/sellForIndividuals/",  # venda de veículos
-    "/doRegistration",  # cadastro
+    "/doRegistration/",  # cadastro
     "/login/",  # página de login
+    "/how-it-works/",  # guia de funcionamento
+    "/vehicleFinder/",  # buscador de veículos
+    "/salesListResult/",
+    "/public/watchList/",
+    "/savedsearch/",
+    "/vehicleAlerts/",
+    "/todaysAuction/",
+    "/auctionCalendar/",
+    "/locations/",
+    "/overview/",
+    "/content/br/pt-br/support/faq-topics/index",
+    "/Content/br/pt-BR/videos/about-copart",
+    "/content/br/pt-br/contact-us",
+    "/sellForIndividuals/",  # venda de veículos
+    "/search/compre_agora/",
+    "/Content/br/pt-BR/buy-it-now",
 ]
 
 TEMPLATE_DIR = os.path.join("copart_clone", "templates", "copart")
@@ -64,13 +78,12 @@ def sanitize_filename(url_path: str) -> str:
 def ajustar_para_portugues(path: str) -> str:
     """Força URLs para a versão em português.
 
-    Substitui qualquer segmento ``/en/`` por ``/pt-br/``. Isso evita que links
-    em inglês sejam seguidos e garante que todo o conteúdo espelhado use a
-    localização brasileira.
+    Converte segmentos ``/en/`` para ``/pt-br/`` apenas quando não estão
+    precedidos por ``/br``. Alguns caminhos do Copart utilizam ``/br/en`` mesmo
+    para conteúdo em português, por isso esses não devem ser alterados.
     """
 
-    # converte '/br/en/' ou '/en/' e demais ocorrências isoladas de '/en/'
-    path = re.sub(r"(^|/)en(?=/)", r"\1pt-br", path)
+    path = re.sub(r"(?<!/br)/en(?=/)", "/pt-br", path)
     return path
 
 def baixar_arquivo(url: str, destino: str) -> None:
