@@ -1,5 +1,9 @@
 #!/bin/bash
-# instala dependências e prepara o ambiente para execução local no Codex
+# Instala dependências e prepara o ambiente para execução local no Codex.
+#
+# Atenção: este script precisa de acesso à internet para baixar pacotes.
+# Caso sua sessão Codex esteja sem rede, forneça os arquivos *.whl
+# manualmente ou ajuste este script para usar um mirror interno.
 
 set -o errexit
 
