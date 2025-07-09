@@ -8,6 +8,9 @@ venv\Scripts\activate
 pip install -r requirements.txt
 playwright install
 
+Ou execute `bash setup_codex.sh` para configurar tudo de uma vez
+em ambientes sem dependências pré-instaladas.
+
 3. Rode o scraper **antes de iniciar o Django** (execute novamente sempre que quiser atualizar as páginas espelhadas):
 python scraper.py
 
@@ -20,7 +23,9 @@ http://127.0.0.1:8000/
 
 6. Para hospedar de forma gratuita na Render:
    - Conecte este repositório em um novo Web Service.
-   - A plataforma irá executar o `render.yaml`, instalar dependências, rodar o scraper e iniciar o Django automaticamente.
+   - A cada **Deploy latest commit**, o Render executará `build.sh` (conforme `render.yaml`).
+     Esse script instala dependências, roda o scraper e coleta arquivos estáticos
+     antes de iniciar o Django automaticamente.
 
 7. **Resolvido conflitos de merge:**
    - Caso o GitHub indique conflitos ao criar o pull request, clique em "Resolve conflicts".
