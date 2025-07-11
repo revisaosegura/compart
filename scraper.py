@@ -39,7 +39,6 @@ START_PAGES = [
 TEMPLATE_DIR = os.path.join("copart_clone", "templates", "copart")
 STATIC_DIR = os.path.join("copart_clone", "static", "copart")
 
-# Mapeia URL de origem para o nome do arquivo HTML local
 URL_TO_SLUG = {}
 
 def normalizar_caminho(url_path: str) -> str:
@@ -55,7 +54,6 @@ def sanitize_filename(url_path: str) -> str:
     path = url_path.split("?")[0].split("#")[0]
     path = path.replace("\\", "/").lstrip("/")
 
-    # remove prefixos "static/copart" mesmo que já tenham sido sanitizados
     while True:
         if path.startswith("static/copart/"):
             path = path[len("static/copart/") :]
@@ -65,7 +63,6 @@ def sanitize_filename(url_path: str) -> str:
             continue
         break
 
-    # normaliza componentes para evitar ".." ou "." no caminho
     clean_parts = []
     for part in os.path.normpath(path).split("/"):
         if part in ("", ".", ".."):
@@ -74,17 +71,18 @@ def sanitize_filename(url_path: str) -> str:
 
     return "/".join(clean_parts) if clean_parts else "index"
 
-
 def ajustar_para_portugues(path: str) -> str:
-    """Força URLs para a versão em português.
-
-    Converte segmentos ``/en/`` para ``/pt-br/`` apenas quando não estão
-    precedidos por ``/br``. Alguns caminhos do Copart utilizam ``/br/en`` mesmo
-    para conteúdo em português, por isso esses não devem ser alterados.
-    """
-
+    """Força URLs para a versão em português."""
     path = re.sub(r"(?<!/br)/en(?=/)", "/pt-br", path)
     return path
+
+def url_com_idioma(url: str) -> str:
+    if "lang=pt-BR" not in url:
+        if "?" in url:
+            url += "&lang=pt-BR"
+        else:
+            url += "?lang=pt-BR"
+    return url
 
 def baixar_arquivo(url: str, destino: str) -> None:
     """Faz download de um arquivo respeitando a estrutura de pastas."""
@@ -96,14 +94,13 @@ def baixar_arquivo(url: str, destino: str) -> None:
     if os.path.exists(destino):
         return
     try:
-        response = requests.get(url, headers=HEADERS, timeout=30)
+        response = requests.get(url_com_idioma(url), headers=HEADERS, cookies={"lang": "pt-BR"}, timeout=30)
         if response.status_code == 200:
             os.makedirs(os.path.dirname(destino), exist_ok=True)
             with open(destino, "wb") as f:
                 f.write(response.content)
     except Exception as e:
         print(f"[!] Erro ao baixar {url}: {e}")
-
 
 def baixar_recursos_css(css_path: str, origem_url: str) -> None:
     """Baixa recursos referenciados dentro de um CSS."""
@@ -128,14 +125,11 @@ def baixar_recursos_css(css_path: str, origem_url: str) -> None:
         with open(css_path, "w", encoding="utf-8") as f:
             f.write(novo_conteudo)
 
-
 def proteger_template(html):
     html = re.sub(r"{{(.*?)}}", r"{% raw %}{{\1}}{% endraw %}", html)
     return html
 
-
 def coletar_links(soup) -> Set[str]:
-
     """Retorna todos os links internos encontrados na página."""
     links = set()
     for a in soup.find_all("a", href=True):
@@ -152,7 +146,6 @@ def coletar_links(soup) -> Set[str]:
         links.add(normalized)
     return links
 
-
 def carregar_links_sitemap(url: str = None, vistos=None) -> Set[str]:
     """Recupera caminhos de um sitemap XML, seguindo índices recursivamente."""
     if vistos is None:
@@ -163,7 +156,7 @@ def carregar_links_sitemap(url: str = None, vistos=None) -> Set[str]:
         return set()
     vistos.add(url)
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=30)
+        resp = requests.get(url_com_idioma(url), headers=HEADERS, cookies={"lang": "pt-BR"}, timeout=30)
     except Exception:
         return set()
     if resp.status_code != 200:
@@ -191,9 +184,8 @@ def processar_pagina(page, url_path):
     """Baixa uma página e retorna novos links encontrados."""
     url_path = ajustar_para_portugues(url_path)
     slug = URL_TO_SLUG.setdefault(url_path, sanitize_filename(url_path))
-
     try:
-        page.goto(BASE_URL + url_path, timeout=120000, wait_until="networkidle")
+        page.goto(url_com_idioma(BASE_URL + url_path), timeout=120000, wait_until="networkidle")
         page.wait_for_load_state("networkidle")
         try:
             page.wait_for_selector("body", timeout=5000)
@@ -211,7 +203,6 @@ def processar_pagina(page, url_path):
     elif soup.head:
         soup.head.insert(0, soup.new_tag("base", href="/"))
 
-    # baixar e corrigir assets
     for tag in soup.find_all(["script", "link", "img"]):
         attr = "src" if tag.name != "link" else "href"
         url = tag.get(attr)
@@ -231,10 +222,8 @@ def processar_pagina(page, url_path):
         tag[attr] = f"/static/copart/{sanitized}"
 
     links = coletar_links(soup)
-
     html_final = proteger_template(str(soup))
 
-    # salvar HTML
     html_path = os.path.join(TEMPLATE_DIR, f"{slug}.html")
     os.makedirs(os.path.dirname(html_path), exist_ok=True)
     with open(html_path, "w", encoding="utf-8") as f:
@@ -243,7 +232,6 @@ def processar_pagina(page, url_path):
 
     return links
 
-    
 def salvar_site():
     os.makedirs(STATIC_DIR, exist_ok=True)
     os.makedirs(TEMPLATE_DIR, exist_ok=True)
@@ -253,10 +241,15 @@ def salvar_site():
     except Exception:
         pass
     visitados = set()
-
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         context = browser.new_context(locale=LOCALE, extra_http_headers=HEADERS)
+        context.add_cookies([{
+            "name": "lang",
+            "value": "pt-BR",
+            "domain": "www.copart.com.br",
+            "path": "/"
+        }])
         page = context.new_page()
         while fila:
             url_path = fila.popleft()
@@ -272,7 +265,6 @@ def salvar_site():
                 print(f"[!] Erro na página {url_path}: {e}")
         context.close()
         browser.close()
-
 
 if __name__ == "__main__":
     salvar_site()
