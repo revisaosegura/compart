@@ -22,9 +22,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',          # ✅ necessário para sessões
     'django.contrib.messages',          # ✅ necessário para mensagens
     'django.contrib.staticfiles',       # ✅ necessário para arquivos estáticos
-    'whitenoise.runserver_nostatic',    # ✅ otimização estática para produção
-    'mirror.apps.MirrorConfig',
-    'copart_clone',# ✅ seu app personalizado
+    'whitenoise.runserver_nostatic',
+    'core.apps.CoreConfig',
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -38,7 +37,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware', # ✅ necessário
     'django.contrib.messages.middleware.MessageMiddleware',  # ✅ necessário
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'mirror.middleware.ClonedSiteMiddleware',
+    'core.middleware.ClonedSiteMiddleware',
 ]
 
 ROOT_URLCONF = 'copart_clone.urls'
