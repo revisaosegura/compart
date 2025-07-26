@@ -37,7 +37,8 @@ START_PAGES = [
 ]
 
 TEMPLATE_DIR = os.path.join("copart_clone", "templates", "copart")
-STATIC_DIR = os.path.join("copart_clone", "static", "copart")
+# Directory where static files from the mirrored site will be stored
+STATIC_DIR = os.path.join("copart_clone", "static", "copart_site")
 
 URL_TO_SLUG = {}
 
