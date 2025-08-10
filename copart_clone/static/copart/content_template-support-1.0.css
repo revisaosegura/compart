@@ -320,7 +320,7 @@ h2.hero-subtext {
   background-color: #ffffff;
 }
 .sub-nav-items li::after {
-  content: url('/static/copart/images_nav_chevron.svg');
+  content: url('/static/copart/static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_images_nav_chevron.svg');
   float: right;
   position: absolute;
   top: 11px;
@@ -329,7 +329,7 @@ h2.hero-subtext {
   z-index: 2;
 }
 .sub-nav-items li:hover::after {
-  content: url('/static/copart/images_nav_chevron_active.svg');
+  content: url('/static/copart/static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_images_nav_chevron_active.svg');
 }
 .sub-nav-items li a {
   display: block;
@@ -352,7 +352,7 @@ h2.hero-subtext {
   border-left: solid 4px #4080e6;
 }
 .sub-nav-items li.active-nav::after {
-  content: url('/static/copart/images_nav_chevron_active.svg');
+  content: url('/static/copart/static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_images_nav_chevron_active.svg');
   float: right;
   position: absolute;
   top: 11px;
@@ -559,7 +559,7 @@ p.spacer {
     background-color: #ffffff;
   }
   .sub-nav-items li::after {
-    content: url('/static/copart/content_nav_chevron.svg');
+    content: url('/static/copart/static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_content_nav_chevron.svg');
     float: right;
     position: absolute;
     top: 8px;
@@ -568,7 +568,7 @@ p.spacer {
     z-index: 2;
   }
   .sub-nav-items li:hover::after {
-    content: url('/static/copart/content_nav_chevron_active.svg');
+    content: url('/static/copart/static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_content_nav_chevron_active.svg');
   }
   .sub-nav-items li a {
     display: block;
@@ -591,7 +591,7 @@ p.spacer {
     border-left: solid 4px #4080e6;
   }
   .sub-nav-items li.active-nav::after {
-    content: url('/static/copart/content_nav_chevron_active.svg');
+    content: url('/static/copart/static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_static_copart_content_nav_chevron_active.svg');
     float: right;
     position: absolute;
     top: 8px;

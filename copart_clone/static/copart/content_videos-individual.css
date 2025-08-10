@@ -242,7 +242,7 @@ img.fill-container {
     background-color: #ffffff;
 }
 .sub-nav-items li::after {
-    content: url('/static/copart/content_us_en_support_nav_chevron.svg');
+    content: url('/static/copart/static_copart_content_us_en_support_nav_chevron.svg');
     float: right;
     position: absolute;
     top: 10px;
@@ -251,7 +251,7 @@ img.fill-container {
     z-index: 2;
 }
 .sub-nav-items li:hover::after {
-    content: url('/static/copart/content_us_en_support_nav_chevron_active.svg');
+    content: url('/static/copart/static_copart_content_us_en_support_nav_chevron_active.svg');
 }
 .sub-nav-items li a {
 	display: block;
@@ -274,7 +274,7 @@ img.fill-container {
     border-left: solid 4px #4080E6;
 }
 .sub-nav-items li.active-nav::after {
-    content: url('/static/copart/content_us_en_support_nav_chevron_active.svg');
+    content: url('/static/copart/static_copart_content_us_en_support_nav_chevron_active.svg');
     float: right;
     position: absolute;
     top: 10px;
@@ -493,7 +493,7 @@ p.spacer {
     background-color: #ffffff;
 }
 .sub-nav-items li::after {
-    content: url('/static/copart/content_us_en_support_nav_chevron.svg');
+    content: url('/static/copart/static_copart_content_us_en_support_nav_chevron.svg');
     float: right;
     position: absolute;
     top: 10px;
@@ -502,7 +502,7 @@ p.spacer {
     z-index: 2;
 }
 .sub-nav-items li:hover::after {
-    content: url('/static/copart/content_us_en_support_nav_chevron_active.svg');
+    content: url('/static/copart/static_copart_content_us_en_support_nav_chevron_active.svg');
 }
 .sub-nav-items li a {
 	display: block;
@@ -525,7 +525,7 @@ p.spacer {
     border-left: solid 4px #4080E6;
 }
 .sub-nav-items li.active-nav::after {
-    content: url('/static/copart/content_us_en_support_nav_chevron_active.svg');
+    content: url('/static/copart/static_copart_content_us_en_support_nav_chevron_active.svg');
     float: right;
     position: absolute;
     top: 10px;
@@ -622,18 +622,18 @@ ul.video-info-items li {
 	padding-left: 20px;
 }
 li.video-info-time {
-	background-image: url('/static/copart/content_us_en_support_icon_time.svg');
+	background-image: url('/static/copart/static_copart_content_us_en_support_icon_time.svg');
 	background-repeat: no-repeat;
 	background-position-y: 3px;
 }
 li.video-info-category {
-	background-image: url('/static/copart/content_us_en_support_icon_category.svg');
+	background-image: url('/static/copart/static_copart_content_us_en_support_icon_category.svg');
 	background-repeat: no-repeat;
 	background-position-y: 4px;
 }
 li.video-info-transcript {
 	padding-left: 28px !important;
-	background-image: url('/static/copart/content_us_en_support_icon_transcript.svg');
+	background-image: url('/static/copart/static_copart_content_us_en_support_icon_transcript.svg');
 	background-repeat: no-repeat;
 	background-position-y: 5px;
 	/* font-weight: 700; */
