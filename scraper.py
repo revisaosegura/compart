@@ -184,8 +184,12 @@ def inject_whatsapp_button(soup: BeautifulSoup, numero: str) -> None:
     )
     soup.body.append(style_tag)
 
-    href = f"https://wa.me/{numero}" if numero else "#"
-    a = soup.new_tag("a", href=href, **{"class": "wa-fab", "target": "_blank", "rel": "noopener", "data-wa": "to-fill"})
+    href = f"https://wa.me/{numero}" if numero else "https://wa.me/"
+    a = soup.new_tag(
+        "a",
+        href=href,
+        **{"class": "wa-fab", "target": "_blank", "rel": "noopener", "data-wa": "to-fill"}
+    )
     a.append(BeautifulSoup(
         """
         <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
@@ -414,6 +418,29 @@ def processar_pagina(page, url_path: str, numero_whatsapp: str) -> Set[str]:
     return coletar_links(soup)
 
 
+# ===================== paginas dinamicas =====================
+
+def collect_dynamic_pages() -> Set[str]:
+    """Retorna caminhos que devem ser atualizados sempre.
+
+    Inclui a pagina inicial e todas as paginas de lote ja salvas,
+    pois sao conteudos que mudam diariamente.
+    """
+
+    paths: Set[str] = {"/"}
+    lot_dir = os.path.join(TEMPLATE_DIR, "lot")
+    if os.path.isdir(lot_dir):
+        for root, _, files in os.walk(lot_dir):
+            for fname in files:
+                if not fname.endswith(".html"):
+                    continue
+                rel = os.path.relpath(os.path.join(root, fname), TEMPLATE_DIR)
+                url_path = "/" + rel.replace(os.path.sep, "/")
+                url_path = url_path[:-5]  # remove .html
+                paths.add(url_path)
+    return paths
+
+
 # ===================== main =====================
 
 def salvar_site():
@@ -427,6 +454,10 @@ def salvar_site():
         fila.extend(carregar_links_sitemap())
     except Exception as e:
         print(f"[!] Falhou sitemap: {e}")
+
+    for dyn in collect_dynamic_pages():
+        if dyn not in fila:
+            fila.append(dyn)
 
     visitados = set()
     numero_whatsapp = get_whatsapp_number()  # pode ser vazio; editar depois
