@@ -50,3 +50,13 @@ def agendar_scraper_view(request, pk):
         messages.error(request, f"Erro ao agendar scraper: {str(e)}")
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/admin/'))
+
+
+def vehicle_alerts_overview(request):
+    """Return placeholder page for /vehicleAlerts/overview."""
+    return _serve_static_html('vehicleAlerts_overview.html')
+
+
+def vehicle_alerts_mylots(request):
+    """Return placeholder page for /vehicleAlerts/driverseat/mylots."""
+    return _serve_static_html('vehicleAlerts_driverseat_mylots.html')
