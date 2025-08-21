@@ -380,6 +380,11 @@ def rewrite_assets_and_links(soup: BeautifulSoup) -> None:
             baixar_recursos_css(local_path, full_url)
         tag[attr] = f"/static/copart/{sanitized}"
 
+        # Reduce memory usage by lazily loading images so they are only
+        # fetched when needed instead of all at once.
+        if tag.name == "img" and not tag.has_attr("loading"):
+            tag["loading"] = "lazy"
+
 
 def inject_js_wrapper(soup: BeautifulSoup) -> None:
     if not soup.body:
