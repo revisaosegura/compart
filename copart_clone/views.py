@@ -41,6 +41,21 @@ def home(request):
     return _serve_static_html('index.html')
 
 def page(request, name):
+    # Corrige URLs duplicadas como /public/public/watchList
+    match_public = re.match(r'^public/public/(.*)$', name)
+    if match_public:
+        return redirect('/public/' + match_public.group(1))
+    if name == 'public/public':
+        return redirect('/public/')
+
+    # Mapeia URLs de lotes para arquivos estáticos
+    lot_match = re.match(r'^lotSearchResults/lot/(\d+)(/Photos)?$', name)
+    if lot_match:
+        lot_id = lot_match.group(1)
+        suffix = '_Photos' if lot_match.group(2) else ''
+        filename = f'lot_{lot_id}{suffix}.html'
+        return _serve_static_html(filename)
+
     return _serve_static_html(f'{name}.html')
 
 def cadastro_view(request):

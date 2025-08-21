@@ -30,5 +30,5 @@ urlpatterns = [
     path('admin/copart_clone/agendar/<int:pk>/', views.agendar_scraper_view, name='copart_clone_agendar_scraper'),
     path('vehicleAlerts/overview', views.vehicle_alerts_overview, name='vehicle_alerts_overview'),
     path('vehicleAlerts/driverseat/mylots', views.vehicle_alerts_mylots, name='vehicle_alerts_mylots'),
-    path('<str:name>/', views.page, name='page'),
+    re_path(r'^(?P<name>.+)$', views.page, name='page'),
 ]
