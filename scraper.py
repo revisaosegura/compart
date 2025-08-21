@@ -60,8 +60,8 @@ def only_digits(s: str) -> str:
 
 
 def get_whatsapp_number() -> str:
-    # Será apenas placeholder; pode deixar vazio se quiser editar depois
-    return only_digits(os.environ.get("WHATSAPP_NUMBER", ""))
+    """Retorna o número de WhatsApp a ser usado nos links."""
+    return only_digits(os.environ.get("WHATSAPP_NUMBER", "5511958462009"))
 
 
 def normalizar_caminho(url_path: str) -> str:
@@ -171,37 +171,29 @@ def carregar_links_sitemap(url: Optional[str] = None, vistos=None) -> Set[str]:
 # ===================== WhatsApp =====================
 
 def inject_whatsapp_button(soup: BeautifulSoup, numero: str) -> None:
-    if not soup.body:
+    if not soup.body or soup.select_one(".wa-link"):
         return
 
-    style_tag = soup.new_tag("style")
-    style_tag.string = (
-        ".wa-fab{position:fixed;right:20px;bottom:20px;z-index:9999;display:flex;"
-        "align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;"
-        "background:#25D366;box-shadow:0 6px 16px rgba(0,0,0,.2);}"
-        ".wa-fab:hover{filter:brightness(0.95);}"
-        ".wa-fab svg{width:28px;height:28px;fill:#fff;}"
-    )
-    soup.body.append(style_tag)
-
-    href = f"https://wa.me/{numero}" if numero else "https://wa.me/"
+    href = f"http://wa.me/{numero}" if numero else "http://wa.me/"
     a = soup.new_tag(
         "a",
         href=href,
-        **{"class": "wa-fab", "target": "_blank", "rel": "noopener", "data-wa": "to-fill"}
+        **{"class": "wa-link", "target": "_self"}
     )
-    a.append(BeautifulSoup(
-        """
-        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-          <path d="M19.11 17.13c-.27-.13-1.59-.79-1.84-.88-.25-.09-.43-.13-.61.13-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.13-1.15-.42-2.2-1.34-.81-.72-1.36-1.6-1.52-1.87-.16-.27-.02-.41.12-.54.12-.12.27-.32.41-.47.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.47-.07-.13-.61-1.47-.84-2.02-.22-.53-.44-.46-.61-.47l-.52-.01c-.18 0-.47.07-.72.34-.25.27-.95.93-.95 2.26 0 1.33.98 2.62 1.12 2.8.14.18 1.93 2.94 4.69 4.1.66.29 1.18.46 1.59.59.67.21 1.28.18 1.76.11.54-.08 1.59-.65 1.81-1.28.22-.63.22-1.17.16-1.28-.07-.11-.25-.18-.52-.31z"/>
-          <path d="M16 3C9.37 3 4 8.37 4 15c0 2.65.87 5.1 2.33 7.08L4 29l7.11-2.29C13.05 27.54 14.48 28 16 28c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22.2c-1.33 0-2.56-.35-3.62-.96l-.26-.15-4.22 1.36 1.38-4.11-.17-.27A9.15 9.15 0 0 1 6.8 15c0-5.09 4.11-9.2 9.2-9.2s9.2 4.11 9.2 9.2-4.11 9.2-9.2 9.2z"/>
-        </svg>
-        """,
-        "html.parser",
-    ))
+    img = soup.new_tag(
+        "img",
+        src="/static/copart/content_br_pt-br_images_whatsapp_icone.png",
+        alt="WhatsApp",
+        height="45",
+        width="45",
+    )
+    a.append(img)
 
-    if not soup.select_one(".wa-fab"):
-        soup.body.append(a)
+    saiba = soup.find("a", href="/sellForIndividuals/")
+    if saiba and saiba.parent:
+        saiba.parent.insert(0, a)
+    else:
+        soup.body.insert(0, a)
 
 
 # ===================== API capture (manifest) =====================
