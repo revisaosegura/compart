@@ -24,10 +24,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',       # ✅ necessário para arquivos estáticos
     'whitenoise.runserver_nostatic',    # ✅ otimização estática para produção
     'mirror.apps.MirrorConfig',
-    'copart_clone',# ✅ seu app personalizado
+    'copart_clone.apps.CopartCloneConfig',# ✅ seu app personalizado
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ADMINS = [('Admin', 'admin@example.com')]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
