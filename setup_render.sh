@@ -8,8 +8,7 @@ playwright install
 playwright install-deps
 playwright install --with-deps
 
-# Executa o scraper
-python scraper.py
+# O scraper demanda muita memória e deve ser executado apenas sob demanda.
 
 # Configuração do Django
 python manage.py migrate
