@@ -14,8 +14,8 @@ python -m playwright install
 python -m playwright install-deps
 playwright install --with-deps
 
-# Executa o scraper
-python scraper.py
+# O scraper consome muitos recursos e não deve rodar durante o build.
+# Execute-o separadamente quando necessário.
 
 # Coleta arquivos estáticos
 python manage.py collectstatic --noinput
