@@ -7,6 +7,7 @@ from django.conf import settings
 from .models import Cadastro
 from django.shortcuts import render, redirect
 from .forms import CadastroForm
+from django.core.mail import mail_admins
 
 def _serve_static_html(filename: str):
     """Helper to return a static HTML file without template rendering."""
@@ -28,7 +29,10 @@ def cadastro_view(request):
     if request.method == "POST":
         form = CadastroForm(request.POST)
         if form.is_valid():
-            form.save()
+            cadastro = form.save()
+            # Envia notificações para o admin
+            message = f"Novo cadastro: {cadastro.nome} {cadastro.sobrenome}\nEmail: {cadastro.email}\nCPF/CNPJ: {cadastro.cpf_cnpj}"
+            mail_admins('Novo cadastro', message)
             return redirect('sucesso')
     else:
         form = CadastroForm()
