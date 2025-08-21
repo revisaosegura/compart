@@ -48,8 +48,8 @@ def page(request, name):
     if name == 'public/public':
         return redirect('/public/')
 
-    # Mapeia URLs de lotes para arquivos estáticos
-    lot_match = re.match(r'^lotSearchResults/lot/(\d+)(/Photos)?$', name)
+    # Mapeia URLs de lotes para arquivos estáticos em diferentes prefixos
+    lot_match = re.match(r'^(?:lotSearchResults|vehicleFinderSearch)/lot/(\d+)(/Photos)?$', name)
     if lot_match:
         lot_id = lot_match.group(1)
         suffix = '_Photos' if lot_match.group(2) else ''
