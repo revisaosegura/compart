@@ -1,0 +1,66 @@
+<html style="height:100%"><head><base href="/"/><meta content="NOINDEX, NOFOLLOW" name="ROBOTS"/><meta content="telephone=no" name="format-detection"/><meta content="initial-scale=1.0" name="viewport"/><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/><script async="" src="/static/copart/nly-Fathere-Heeresembraue-of-your-His-Cesse-pass"></script><script type="text/javascript">if (sessionStorage) { sessionStorage.setItem('distil_referrer', document.referrer); }</script></head><body style="margin:0px;height:100%"><a class="wa-link" href="http://wa.me/5511958462009" target="_self"><img alt="WhatsApp" height="45" src="/static/copart/content_br_pt-br_images_whatsapp_icone.png" width="45"/></a><iframe frameborder="0" height="100%" id="main-iframe" marginheight="0px" marginwidth="0px" src="/_Incapsula_Resource?SWUDNSAI=31&amp;xinfo=62-87534402-0%200NNN%20RT%281755880473979%2020%29%20q%280%20-1%20-1%20-1%29%20r%280%20-1%29%20B12%284%2c315%2c0%29%20U18&amp;incident_id=525000400260348678-501060303649049150&amp;edet=12&amp;cinfo=04000000&amp;rpinfo=0&amp;cts=4kMyx%2b22EsKbwRx%2fXTKq%2fOwXnL37ynXMuUEun1mHRWI69pRr7ZF%2fxYq96PRuW%2bAO&amp;mth=GET" width="100%">Request unsuccessful. Incapsula incident ID: 525000400260348678-501060303649049150</iframe><script>
+(function(){
+  const MANIFEST_URL = '/static/copart/api/api_manifest.json';
+  let __apiManifest = null;
+  async function loadManifest(){
+    if (__apiManifest) return __apiManifest;
+    try {
+      const res = await fetch(MANIFEST_URL, {cache:'no-store'});
+      if(res.ok){ __apiManifest = await res.json(); }
+    } catch(e) {}
+    return __apiManifest || {};
+  }
+
+  function urlToKey(u){
+    // normaliza URL absoluta para bate com manifest
+    try { return new URL(u, window.location.origin).href; } catch(e){ return u; }
+  }
+
+  async function tryLocalFirst(u, opts){
+    const manifest = await loadManifest();
+    const key = urlToKey(u);
+    const mapped = manifest[key];
+    if(mapped){
+      try{
+        const r = await fetch(mapped, {cache:'no-store'});
+        if(r.ok){ return r; }
+      }catch(e){}
+    }
+    // fallback para original (ou seu proxy reverso)
+    return fetch(u, opts);
+  }
+
+  // Wrap fetch
+  const _fetch = window.fetch;
+  window.fetch = function(u, opts){
+    return tryLocalFirst(u, opts);
+  };
+
+  // Wrap XMLHttpRequest
+  const _open = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(method, url){
+    this.__originalURL = url;
+    return _open.apply(this, arguments);
+  };
+  const _send = XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.send = async function(){
+    try{
+      const manifest = await loadManifest();
+      const key = urlToKey(this.__originalURL || '');
+      const mapped = manifest[key];
+      if(mapped){
+        const r = await fetch(mapped, {cache:'no-store'});
+        const txt = await r.text();
+        Object.defineProperty(this, 'responseText', {value: txt});
+        Object.defineProperty(this, 'response', {value: txt});
+        Object.defineProperty(this, 'status', {value: 200});
+        Object.defineProperty(this, 'readyState', {value: 4});
+        if(this.onreadystatechange) this.onreadystatechange();
+        if(this.onload) this.onload();
+        return;
+      }
+    }catch(e){}
+    return _send.apply(this, arguments);
+  };
+})();
+</script></body></html>

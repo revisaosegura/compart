@@ -11,6 +11,14 @@ import requests
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 
+# Tentar importar psutil para monitoramento de memória (opcional)
+try:
+    import psutil
+    HAS_PSUTIL = True
+except ImportError:
+    HAS_PSUTIL = False
+    print("[INFO] psutil não instalado. Instale com: pip install psutil")
+
 """
 Copart → CopartBR (espelho completo)
 -------------------------------------------------
@@ -86,6 +94,16 @@ def sanitize_filename(url_path: str) -> str:
 def proteger_template(html: str) -> str:
     # Evita conflitos com templating engines
     return re.sub(r"{{(.*?)}}", r"{% raw %}{{\1}}{% endraw %}", html)
+
+
+def log_memory_usage():
+    """Log do uso de memória atual (se psutil estiver disponível)"""
+    if HAS_PSUTIL:
+        process = psutil.Process(os.getpid())
+        memory_mb = process.memory_info().rss / 1024 / 1024
+        print(f"[MEM] Uso de memória: {memory_mb:.2f} MB")
+    else:
+        print("[MEM] psutil não disponível para monitoramento")
 
 
 # ===================== downloads =====================
@@ -338,10 +356,19 @@ def coletar_links(soup: BeautifulSoup) -> Set[str]:
 def rewrite_assets_and_links(soup: BeautifulSoup) -> None:
     if soup.head:
         base_tag = soup.find("base")
-        if base_tag: base_tag["href"] = "/"
-        else: soup.head.insert(0, soup.new_tag("base", href="/"))
+        if base_tag: 
+            base_tag["href"] = "/"
+        else: 
+            soup.head.insert(0, soup.new_tag("base", href="/"))
 
+    # Limitar número de assets processados por página
+    asset_count = 0
+    max_assets_per_page = 50
+    
     for tag in soup.find_all(["script", "link", "img", "source"]):
+        if asset_count >= max_assets_per_page:
+            break
+            
         attr = "src" if tag.name in ("script", "img", "source") else "href"
         url = tag.get(attr)
         if not url:
@@ -367,10 +394,15 @@ def rewrite_assets_and_links(soup: BeautifulSoup) -> None:
         full_url = urllib.parse.urljoin(BASE_URL, url)
         sanitized = sanitize_filename(url)
         local_path = os.path.join(ASSET_DIR, sanitized)
-        baixar_arquivo(full_url, local_path)
-        if local_path.endswith(".css"):
-            baixar_recursos_css(local_path, full_url)
+        
+        # Baixar apenas se não existir
+        if not os.path.exists(local_path):
+            baixar_arquivo(full_url, local_path)
+            if local_path.endswith(".css"):
+                baixar_recursos_css(local_path, full_url)
+        
         tag[attr] = f"/static/copart/{sanitized}"
+        asset_count += 1
 
         # Reduce memory usage by lazily loading images so they are only
         # fetched when needed instead of all at once.
@@ -388,11 +420,22 @@ def inject_js_wrapper(soup: BeautifulSoup) -> None:
 
 def processar_pagina(page, url_path: str, numero_whatsapp: str) -> Set[str]:
     slug = URL_TO_SLUG.setdefault(url_path, sanitize_filename(url_path))
+    
     try:
-        page.goto(BASE_URL + url_path, timeout=160_000, wait_until="networkidle")
-        page.wait_for_load_state("networkidle")
+        # Timeout mais razoável
+        page.goto(BASE_URL + url_path, timeout=60000, wait_until="domcontentloaded")
+        # Espera mais curta
+        page.wait_for_timeout(3000)
+        
     except PlaywrightTimeoutError:
         print(f"[!] Timeout {url_path}")
+        try:
+            # Tenta pelo menos pegar o conteúdo atual
+            html = page.content()
+        except:
+            return set()
+    except Exception as e:
+        print(f"[!] Erro navegando para {url_path}: {e}")
         return set()
 
     html = page.content()
@@ -408,9 +451,13 @@ def processar_pagina(page, url_path: str, numero_whatsapp: str) -> Set[str]:
     html_final = proteger_template(str(soup))
     html_path = os.path.join(TEMPLATE_DIR, f"{slug}.html")
     os.makedirs(os.path.dirname(html_path), exist_ok=True)
-    with open(html_path, "w", encoding="utf-8") as f:
-        f.write(html_final)
-    print(f"[✓] Página salva: {url_path} → {html_path}")
+    
+    try:
+        with open(html_path, "w", encoding="utf-8") as f:
+            f.write(html_final)
+        print(f"[✓] Página salva: {url_path}")
+    except Exception as e:
+        print(f"[!] Erro salvando {html_path}: {e}")
 
     return coletar_links(soup)
 
@@ -448,7 +495,10 @@ def salvar_site():
     fila = deque(normalizar_caminho(p) for p in START_PAGES)
     # sitemap completa
     try:
-        fila.extend(carregar_links_sitemap())
+        sitemap_links = carregar_links_sitemap()
+        for link in sitemap_links:
+            if link not in fila:
+                fila.append(link)
     except Exception as e:
         print(f"[!] Falhou sitemap: {e}")
 
@@ -460,29 +510,69 @@ def salvar_site():
     numero_whatsapp = get_whatsapp_number()  # pode ser vazio; editar depois
     manifest = ensure_manifest()
 
+    # Processar em lotes para evitar memory leak
+    batch_size = 10  # Reduzido para mais segurança
+    current_batch = 0
+    max_batches = 50  # Limite máximo de batches
+    
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        context = browser.new_context(extra_http_headers=HEADERS)
-        page = context.new_page()
-        wire_response_capture(page, manifest, BASE_URL)
-
-        while fila:
-            url_path = fila.popleft()
-            if url_path in visitados:
-                continue
-            try:
-                novos_links = processar_pagina(page, url_path, numero_whatsapp)
-                visitados.add(url_path)
-                for link in novos_links:
-                    if link not in visitados and link not in fila:
-                        fila.append(link)
-            except Exception as e:
-                print(f"[!] Erro {url_path}: {e}")
-
-        # salva manifest ao final
-        save_manifest(manifest)
-        context.close()
+        
+        while fila and current_batch < max_batches:
+            # Reiniciar contexto a cada batch para liberar memória
+            context = browser.new_context(extra_http_headers=HEADERS)
+            page = context.new_page()
+            wire_response_capture(page, manifest, BASE_URL)
+            
+            # Processar batch
+            batch_processed = 0
+            for _ in range(min(batch_size, len(fila))):
+                if not fila:
+                    break
+                    
+                url_path = fila.popleft()
+                if url_path in visitados:
+                    continue
+                    
+                try:
+                    print(f"[*] Processando ({current_batch+1}.{batch_processed+1}): {url_path}")
+                    novos_links = processar_pagina(page, url_path, numero_whatsapp)
+                    visitados.add(url_path)
+                    
+                    for link in novos_links:
+                        if link not in visitados and link not in fila:
+                            fila.append(link)
+                            
+                    batch_processed += 1
+                    
+                except Exception as e:
+                    print(f"[!] Erro {url_path}: {e}")
+                    # Re-adiciona à fila para tentar novamente
+                    if url_path not in visitados:
+                        fila.append(url_path)
+            
+            # Fechar contexto para liberar memória
+            page.close()
+            context.close()
+            current_batch += 1
+            
+            # Log de memória
+            log_memory_usage()
+            
+            # Pequena pausa entre batches
+            print(f"[BATCH] Batch {current_batch} completo. Pausa...")
+            time.sleep(3)
+            
+            # Salvar manifest periodicamente
+            if current_batch % 3 == 0:
+                save_manifest(manifest)
+                print("[MANIFEST] Manifest salvo")
+        
         browser.close()
+    
+    # Salvar manifest final
+    save_manifest(manifest)
+    print("[FINAL] Processamento concluído")
 
 
 if __name__ == "__main__":

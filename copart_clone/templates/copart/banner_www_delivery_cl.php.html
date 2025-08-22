@@ -1,0 +1,66 @@
+<html><head><base href="/"/></head><body><a class="wa-link" href="http://wa.me/5511958462009" target="_self"><img alt="WhatsApp" height="45" src="/static/copart/content_br_pt-br_images_whatsapp_icone.png" width="45"/></a><script>
+(function(){
+  const MANIFEST_URL = '/static/copart/api/api_manifest.json';
+  let __apiManifest = null;
+  async function loadManifest(){
+    if (__apiManifest) return __apiManifest;
+    try {
+      const res = await fetch(MANIFEST_URL, {cache:'no-store'});
+      if(res.ok){ __apiManifest = await res.json(); }
+    } catch(e) {}
+    return __apiManifest || {};
+  }
+
+  function urlToKey(u){
+    // normaliza URL absoluta para bate com manifest
+    try { return new URL(u, window.location.origin).href; } catch(e){ return u; }
+  }
+
+  async function tryLocalFirst(u, opts){
+    const manifest = await loadManifest();
+    const key = urlToKey(u);
+    const mapped = manifest[key];
+    if(mapped){
+      try{
+        const r = await fetch(mapped, {cache:'no-store'});
+        if(r.ok){ return r; }
+      }catch(e){}
+    }
+    // fallback para original (ou seu proxy reverso)
+    return fetch(u, opts);
+  }
+
+  // Wrap fetch
+  const _fetch = window.fetch;
+  window.fetch = function(u, opts){
+    return tryLocalFirst(u, opts);
+  };
+
+  // Wrap XMLHttpRequest
+  const _open = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(method, url){
+    this.__originalURL = url;
+    return _open.apply(this, arguments);
+  };
+  const _send = XMLHttpRequest.prototype.send;
+  XMLHttpRequest.prototype.send = async function(){
+    try{
+      const manifest = await loadManifest();
+      const key = urlToKey(this.__originalURL || '');
+      const mapped = manifest[key];
+      if(mapped){
+        const r = await fetch(mapped, {cache:'no-store'});
+        const txt = await r.text();
+        Object.defineProperty(this, 'responseText', {value: txt});
+        Object.defineProperty(this, 'response', {value: txt});
+        Object.defineProperty(this, 'status', {value: 200});
+        Object.defineProperty(this, 'readyState', {value: 4});
+        if(this.onreadystatechange) this.onreadystatechange();
+        if(this.onload) this.onload();
+        return;
+      }
+    }catch(e){}
+    return _send.apply(this, arguments);
+  };
+})();
+</script></body></html>
