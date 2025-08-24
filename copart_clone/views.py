@@ -23,6 +23,8 @@ WHATSAPP_SNIPPET = (
 
 
 def _inject_whatsapp(html: str) -> str:
+    if re.search(r'wa-(?:fab|button|link)', html):
+        return html
     return re.sub(r'</body\s*>', WHATSAPP_SNIPPET + '</body>', html, flags=re.IGNORECASE)
 
 def _serve_static_html(filename: str):
@@ -38,7 +40,14 @@ def _serve_static_html(filename: str):
 
 
 def home(request):
-    return _serve_static_html('index.html')
+    base = os.path.join(settings.BASE_DIR, 'public')
+    path = os.path.join(base, 'index.html')
+    if not os.path.exists(path):
+        raise Http404
+    with open(path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    content = _inject_whatsapp(content)
+    return HttpResponse(content)
 
 def page(request, name):
     # Corrige URLs duplicadas como /public/public/watchList
