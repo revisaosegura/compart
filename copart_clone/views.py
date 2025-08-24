@@ -23,6 +23,8 @@ WHATSAPP_SNIPPET = (
 
 
 def _inject_whatsapp(html: str) -> str:
+    if re.search(r'wa-(?:fab|button|link)', html):
+        return html
     return re.sub(r'</body\s*>', WHATSAPP_SNIPPET + '</body>', html, flags=re.IGNORECASE)
 
 def _serve_static_html(filename: str):
