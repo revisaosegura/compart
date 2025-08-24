@@ -1,26 +1,18 @@
 import os
 import re
-import json
 import time
 import hashlib
 import urllib.parse
 import gc
 from collections import deque
-from typing import Dict, Set, Optional, List, Tuple
+from typing import Set, Optional
 
 import requests
 from bs4 import BeautifulSoup
 
-# Playwright só será usado quando absolutamente necessário
-try:
-    from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
-    HAS_PLAYWRIGHT = True
-except ImportError:
-    HAS_PLAYWRIGHT = False
-    print("[INFO] Playwright não instalado. Usando apenas requests.")
-
 """
-Versão otimizada e corrigida para o Render
+Espelhamento Direto do Copart - Sem Flask
+Gera arquivos HTML estáticos prontos para deploy
 """
 
 BASE_URL = "https://www.copart.com.br"
@@ -28,14 +20,11 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
-    "Connection": "keep-alive"
 }
 
-TEMPLATE_DIR = os.path.join("templates", "copart")
-STATIC_DIR = os.path.join("static", "copart")
-ASSET_DIR = STATIC_DIR
-API_DIR = os.path.join(STATIC_DIR, "api")
-MANIFEST_PATH = os.path.join(API_DIR, "api_manifest.json")
+# Diretórios de output
+OUTPUT_DIR = "public"  # Tudo vai para esta pasta (ideal para GitHub Pages, Netlify, etc.)
+STATIC_DIR = os.path.join(OUTPUT_DIR, "static")
 
 # ===================== utils =====================
 
@@ -65,9 +54,6 @@ def sanitize_filename(url_path: str) -> str:
         clean_parts.append(clean_part)
     return "/".join(clean_parts) if clean_parts else "index"
 
-def proteger_template(html: str) -> str:
-    return re.sub(r"{{(.*?)}}", r"{% raw %}{{\1}}{% endraw %}", html)
-
 # ===================== downloads =====================
 
 def baixar_arquivo(url: str, destino: str) -> bool:
@@ -75,9 +61,6 @@ def baixar_arquivo(url: str, destino: str) -> bool:
         return False
 
     try:
-        destino = os.path.normpath(destino)
-        if not destino.startswith(os.path.normpath(STATIC_DIR)):
-            return False
         if os.path.exists(destino):
             return True
             
@@ -103,34 +86,6 @@ def baixar_pagina_html(url: str) -> Optional[str]:
     except Exception as e:
         print(f"[!] Erro ao baixar página {url}: {e}")
     return None
-
-# ===================== sitemap =====================
-
-def carregar_links_sitemap() -> Set[str]:
-    """Carrega links do sitemap"""
-    sitemap_urls = ["/sitemap.xml"]
-    
-    all_links = set()
-    
-    for sitemap_url in sitemap_urls:
-        full_url = urllib.parse.urljoin(BASE_URL, sitemap_url)
-        
-        try:
-            resp = requests.get(full_url, headers=HEADERS, timeout=30)
-            if resp.status_code != 200:
-                continue
-                
-            soup = BeautifulSoup(resp.text, "xml")
-            
-            for loc in soup.find_all("loc"):
-                if loc.text and not loc.text.endswith(".xml"):
-                    path = urllib.parse.urlparse(loc.text.strip()).path
-                    all_links.add(normalizar_caminho(path))
-                        
-        except Exception as e:
-            print(f"[!] Erro no sitemap {sitemap_url}: {e}")
-    
-    return all_links
 
 # ===================== processamento =====================
 
@@ -188,27 +143,41 @@ def processar_recursos(soup: BeautifulSoup, page_url: str) -> None:
         
         # Sanitizar nome do arquivo
         sanitized = sanitize_filename(url)
-        local_path = os.path.join(ASSET_DIR, sanitized)
+        local_path = os.path.join(STATIC_DIR, sanitized)
         
         # Baixar se não existir
         if not os.path.exists(local_path):
-            baixar_arquivo(abs_url, local_path)
+            success = baixar_arquivo(abs_url, local_path)
+            if not success:
+                continue
         
-        # Atualizar tag
-        tag[attr] = f"/static/copart/{sanitized}"
+        # Atualizar tag para caminho relativo
+        tag[attr] = f"./static/{sanitized}"
 
 def inject_whatsapp_button(soup: BeautifulSoup, numero: str) -> None:
     if not soup.body or soup.select_one(".wa-link"):
         return
 
-    # Criar a tag <a> primeiro
+    # Criar botão do WhatsApp
     a = soup.new_tag("a")
     a['href'] = f"https://wa.me/{numero}" if numero else "https://wa.me/"
     a['class'] = "wa-link"
     a['target'] = "_blank"
-    a['style'] = "position:fixed;bottom:20px;right:20px;z-index:1000;background:#25D366;color:white;padding:10px;border-radius:50px;text-decoration:none;"
+    a['style'] = """
+        position:fixed;
+        bottom:20px;
+        right:20px;
+        z-index:1000;
+        background:#25D366;
+        color:white;
+        padding:12px 20px;
+        border-radius:25px;
+        text-decoration:none;
+        font-weight:bold;
+        box-shadow:0 4px 8px rgba(0,0,0,0.2);
+        font-family:Arial, sans-serif;
+    """
     
-    # Adicionar texto simples em vez de SVG complexo
     a.string = "💬 WhatsApp"
     
     if soup.body:
@@ -235,7 +204,14 @@ def garantir_html_base(soup: BeautifulSoup) -> None:
             meta['content'] = 'width=device-width, initial-scale=1.0'
             soup.head.insert(1, meta)
 
-def salvar_pagina_html(url_path: str, html: str, numero_whatsapp: str) -> bool:
+        # Adicionar base tag para recursos relativos
+        base_tag = soup.find('base')
+        if not base_tag:
+            base = soup.new_tag('base')
+            base['href'] = './'
+            soup.head.insert(0, base)
+
+def processar_pagina(url_path: str, html: str, numero_whatsapp: str) -> bool:
     """Processa e salva uma página HTML"""
     try:
         # Remover Incapsula primeiro
@@ -256,16 +232,20 @@ def salvar_pagina_html(url_path: str, html: str, numero_whatsapp: str) -> bool:
         # Adicionar WhatsApp
         inject_whatsapp_button(soup, numero_whatsapp)
         
-        # Sanitizar nome do arquivo
-        slug = sanitize_filename(url_path)
-        html_path = os.path.join(TEMPLATE_DIR, f"{slug}.html")
-        os.makedirs(os.path.dirname(html_path), exist_ok=True)
+        # Determinar caminho do arquivo de saída
+        if url_path == "/":
+            output_path = os.path.join(OUTPUT_DIR, "index.html")
+        else:
+            slug = sanitize_filename(url_path)
+            output_path = os.path.join(OUTPUT_DIR, f"{slug}.html")
+        
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
         
         # Salvar HTML
-        with open(html_path, "w", encoding="utf-8") as f:
-            f.write(proteger_template(str(soup)))
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write(str(soup))
         
-        print(f"[✓] Página salva: {url_path}")
+        print(f"[✓] Página salva: {url_path} -> {output_path}")
         return True
         
     except Exception as e:
@@ -274,57 +254,43 @@ def salvar_pagina_html(url_path: str, html: str, numero_whatsapp: str) -> bool:
         traceback.print_exc()
         return False
 
-# ===================== main otimizada =====================
+# ===================== espelhamento principal =====================
 
-def salvar_site():
-    """Versão otimizada para o Render"""
+def espelhar_site():
+    """Função principal de espelhamento"""
     
-    # Criar diretórios
+    # Criar diretórios de output
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs(STATIC_DIR, exist_ok=True)
-    os.makedirs(TEMPLATE_DIR, exist_ok=True)
-    os.makedirs(API_DIR, exist_ok=True)
     
-    print("[+] Coletando links importantes...")
+    print("[🚀] Iniciando espelhamento do Copart...")
+    print(f"[📁] Output: {os.path.abspath(OUTPUT_DIR)}")
     
-    # Links essenciais para começar
-    links_essenciais = {
+    # Páginas prioritárias para espelhar
+    paginas_prioritarias = [
         "/",
         "/about",
         "/contact", 
         "/services",
         "/vehicles",
-        "/how-it-works"
-    }
-    
-    try:
-        sitemap_links = carregar_links_sitemap()
-        links_essenciais.update(sitemap_links)
-        print(f"[+] Encontrados {len(sitemap_links)} links no sitemap")
-    except Exception as e:
-        print(f"[!] Erro ao carregar sitemap: {e}")
-        print("[!] Usando apenas links padrão")
-    
-    # Fila de processamento
-    fila = deque(["/"])  # Página inicial primeiro
-    for link in links_essenciais:
-        if link not in fila:
-            fila.append(link)
+        "/how-it-works",
+        "/buy",
+        "/sell",
+        "/register",
+        "/login"
+    ]
     
     visitados = set()
     numero_whatsapp = get_whatsapp_number()
     total_processados = 0
-    max_paginas = 20  # Reduzido ainda mais para teste
     
-    print(f"[+] Processando até {max_paginas} páginas...")
-    print(f"[+] Fila inicial: {len(fila)} páginas")
+    print(f"[📄] Processando {len(paginas_prioritarias)} páginas prioritárias...")
     
-    while fila and total_processados < max_paginas:
-        url_path = fila.popleft()
-        
+    for url_path in paginas_prioritarias:
         if url_path in visitados:
             continue
             
-        print(f"[{total_processados+1}/{max_paginas}] Processando: {url_path}")
+        print(f"[{total_processados+1}/{len(paginas_prioritarias)}] 📋 Processando: {url_path}")
         
         # Baixar página
         full_url = BASE_URL + url_path
@@ -332,91 +298,155 @@ def salvar_site():
         
         if html:
             # Processar e salvar página
-            if salvar_pagina_html(url_path, html, numero_whatsapp):
-                # Coletar links da página
-                soup = BeautifulSoup(html, "html.parser")
-                novos_links = coletar_links(soup)
-                
-                # Adicionar novos links à fila (limitando)
-                for link in list(novos_links)[:5]:  # Apenas 5 links por página
-                    if (link not in visitados and link not in fila and 
-                        len(link) > 1 and not link.startswith(('/api/', '/cdn-cgi/'))):
-                        fila.append(link)
+            success = processar_pagina(url_path, html, numero_whatsapp)
+            if success:
+                total_processados += 1
             
-            visitados.add(url_path)
-            total_processados += 1
+            # Coletar links para processamento adicional
+            soup = BeautifulSoup(html, "html.parser")
+            novos_links = coletar_links(soup)
+            
+            # Adicionar links interessantes à lista de prioritárias
+            for link in novos_links:
+                if (link not in visitados and link not in paginas_prioritarias and 
+                    len(link) > 1 and not link.startswith(('/api/', '/cdn-cgi/', '/admin/'))):
+                    paginas_prioritarias.append(link)
             
             # Limpeza de memória
-            if total_processados % 3 == 0:
-                gc.collect()
-                print(f"[PROGRESSO] {total_processados} páginas processadas, {len(fila)} na fila")
+            gc.collect()
             
             # Pausa entre requisições
             time.sleep(1)
         else:
-            print(f"[!] Falha ao baixar: {url_path}")
-            # Adicionar à lista de visitados mesmo com falha para não tentar novamente
-            visitados.add(url_path)
+            print(f"[❌] Falha ao baixar: {url_path}")
+        
+        visitados.add(url_path)
+        
+        # Limitar para não ficar muito tempo
+        if total_processados >= 20:
+            print("[⏹️] Limite de 20 páginas atingido")
+            break
     
-    print(f"[+] Processamento concluído! {total_processados} páginas salvas.")
+    # Criar arquivo de redirecionamento para páginas não encontradas
+    criar_redirect_html()
+    
+    print(f"[✅] Espelhamento concluído! {total_processados} páginas salvas em '{OUTPUT_DIR}'")
+    print(f"[🌐] Abra '{os.path.join(OUTPUT_DIR, 'index.html')}' no navegador")
 
-# ===================== SERVER PARA RENDER =====================
+def criar_redirect_html():
+    """Cria página de redirecionamento para links quebrados"""
+    redirect_html = """
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página não encontrada - CopartBR</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+        }
+        h1 { 
+            font-size: 2.5em; 
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .btn {
+            background: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 10px;
+        }
+        .btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn-home {
+            background: #667eea;
+        }
+        .btn-home:hover {
+            background: #5a67d8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Página não encontrada</h1>
+        <p>Esta página ainda não foi espelhada ou não existe em nosso sistema.</p>
+        <p>Você será redirecionado automaticamente para a página inicial em <span id="countdown">10</span> segundos.</p>
+        
+        <div>
+            <a href="./index.html" class="btn btn-home">🏠 Página Inicial</a>
+            <a href="https://wa.me/5511958462009" class="btn" target="_blank">💬 WhatsApp</a>
+        </div>
+    </div>
 
-def criar_app_flask():
-    """Cria uma aplicação Flask simples para servir as páginas"""
-    try:
-        from flask import Flask, render_template, send_from_directory
+    <script>
+        // Redirecionamento automático
+        let seconds = 10;
+        const countdown = document.getElementById('countdown');
         
-        app = Flask(__name__)
-        
-        @app.route('/')
-        def home():
-            try:
-                return render_template('copart/index.html')
-            except:
-                return "<h1>Bem-vindo ao CopartBR</h1><p>Site em espelhamento</p>"
-        
-        @app.route('/<path:path>')
-        def serve_page(path):
-            try:
-                # Tentar encontrar a página exata
-                return render_template(f'copart/{path}.html')
-            except:
-                try:
-                    # Tentar encontrar como diretório/index
-                    return render_template(f'copart/{path}/index.html')
-                except:
-                    # Fallback para página inicial
-                    try:
-                        return render_template('copart/index.html')
-                    except:
-                        return "<h1>Página não encontrada</h1><p><a href='/'>Voltar à página inicial</a></p>"
-        
-        @app.route('/static/copart/<path:path>')
-        def serve_static(path):
-            return send_from_directory(STATIC_DIR, path)
-        
-        return app
-        
-    except ImportError:
-        print("[!] Flask não instalado. Instale com: pip install flask")
-        return None
+        const interval = setInterval(() => {
+            seconds--;
+            countdown.textContent = seconds;
+            
+            if (seconds <= 0) {
+                clearInterval(interval);
+                window.location.href = './index.html';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
+    """
+    
+    # Salvar como 404.html para redirecionamento
+    with open(os.path.join(OUTPUT_DIR, "404.html"), "w", encoding="utf-8") as f:
+        f.write(redirect_html)
+    
+    print("[📄] Página de redirecionamento 404.html criada")
 
 if __name__ == "__main__":
-    # Verificar se estamos no Render (variável de ambiente específica)
-    is_render = os.environ.get('RENDER', False)
+    # Executar espelhamento
+    espelhar_site()
     
-    if is_render:
-        print("[+] Ambiente Render detectado - Iniciando servidor...")
-        app = criar_app_flask()
-        if app:
-            # No Render, usar a porta fornecida
-            port = int(os.environ.get('PORT', 10000))
-            app.run(host='0.0.0.0', port=port, debug=False)
-        else:
-            print("[!] Não foi possível iniciar o servidor Flask")
-    else:
-        # Ambiente local - fazer espelhamento
-        print("[+] Ambiente local - Iniciando espelhamento...")
-        salvar_site()
-        print("[+] Espelhamento concluído!")
+    # Mensagem final
+    print("\n" + "="*60)
+    print("🎉 ESPELHAMENTO CONCLUÍDO!")
+    print("="*60)
+    print("📂 Os arquivos estão na pasta 'public/'")
+    print("🌐 Você pode:")
+    print("   1. Abrir 'public/index.html' no navegador")
+    print("   2. Fazer deploy da pasta 'public/' no GitHub Pages, Netlify, etc.")
+    print("   3. Usar um servidor local: python -m http.server -d public 8000")
+    print("💬 WhatsApp: https://wa.me/5511958462009")
+    print("="*60)
