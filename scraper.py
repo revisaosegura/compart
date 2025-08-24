@@ -11,8 +11,7 @@ import requests
 from bs4 import BeautifulSoup
 
 """
-Espelhamento Direto do Copart - Sem Flask
-Gera arquivos HTML estáticos prontos para deploy
+Espelhamento Direto do Copart - Correção do Ícone WhatsApp
 """
 
 BASE_URL = "https://www.copart.com.br"
@@ -23,8 +22,9 @@ HEADERS = {
 }
 
 # Diretórios de output
-OUTPUT_DIR = "public"  # Tudo vai para esta pasta (ideal para GitHub Pages, Netlify, etc.)
+OUTPUT_DIR = "public"
 STATIC_DIR = os.path.join(OUTPUT_DIR, "static")
+ICONS_DIR = os.path.join(STATIC_DIR, "icons")
 
 # ===================== utils =====================
 
@@ -78,7 +78,6 @@ def baixar_arquivo(url: str, destino: str) -> bool:
     return False
 
 def baixar_pagina_html(url: str) -> Optional[str]:
-    """Baixa página HTML usando requests"""
     try:
         resp = requests.get(url, headers=HEADERS, timeout=30)
         if resp.status_code == 200:
@@ -106,7 +105,6 @@ def coletar_links(soup: BeautifulSoup) -> Set[str]:
     return links
 
 def remover_incapsula(html: str) -> str:
-    """Remove todas as referências ao Incapsula/WAF"""
     patterns = [
         r'_Incapsula_Resource[^"]*',
         r'incapsula[^"]*',
@@ -120,7 +118,6 @@ def remover_incapsula(html: str) -> str:
     return html
 
 def processar_recursos(soup: BeautifulSoup, page_url: str) -> None:
-    """Processa recursos removendo Incapsula"""
     for tag in soup.find_all(["link", "script", "img", "source"]):
         attr = "src" if tag.name in ["script", "img", "source"] else "href"
         url = tag.get(attr, "")
@@ -128,12 +125,10 @@ def processar_recursos(soup: BeautifulSoup, page_url: str) -> None:
         if not url or url.startswith(("data:", "blob:", "javascript:")):
             continue
             
-        # Pular recursos do Incapsula
         if "incapsula" in url.lower() or "_Incapsula_Resource" in url:
             tag.decompose()
             continue
             
-        # Converter para URL absoluta
         if url.startswith("http"):
             if not url.startswith(BASE_URL):
                 continue
@@ -141,54 +136,110 @@ def processar_recursos(soup: BeautifulSoup, page_url: str) -> None:
         else:
             abs_url = urllib.parse.urljoin(BASE_URL, url)
         
-        # Sanitizar nome do arquivo
         sanitized = sanitize_filename(url)
         local_path = os.path.join(STATIC_DIR, sanitized)
         
-        # Baixar se não existir
         if not os.path.exists(local_path):
             success = baixar_arquivo(abs_url, local_path)
             if not success:
                 continue
         
-        # Atualizar tag para caminho relativo
         tag[attr] = f"./static/{sanitized}"
+
+def baixar_icone_whatsapp():
+    """Baixa o ícone do WhatsApp se não existir"""
+    icone_path = os.path.join(ICONS_DIR, "whatsapp.png")
+    
+    if os.path.exists(icone_path):
+        return icone_path
+    
+    # URLs comuns de ícones do WhatsApp
+    urls_icones = [
+        "https://web.whatsapp.com/favicon.ico",
+        "https://static.whatsapp.net/rsrc.php/v3/yP/r/rYZqCPRbYc-.png",
+        "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg",
+        "https://cdn-icons-png.flaticon.com/512/124/124034.png"
+    ]
+    
+    os.makedirs(ICONS_DIR, exist_ok=True)
+    
+    for url in urls_icones:
+        try:
+            if baixar_arquivo(url, icone_path):
+                print(f"[✓] Ícone WhatsApp baixado: {icone_path}")
+                return icone_path
+        except:
+            continue
+    
+    # Se não conseguir baixar, criar um ícone simples com CSS
+    return None
 
 def inject_whatsapp_button(soup: BeautifulSoup, numero: str) -> None:
     if not soup.body or soup.select_one(".wa-link"):
         return
 
-    # Criar botão do WhatsApp
+    # Baixar ou usar ícone do WhatsApp
+    icone_path = baixar_icone_whatsapp()
+    
     a = soup.new_tag("a")
     a['href'] = f"https://wa.me/{numero}" if numero else "https://wa.me/"
     a['class'] = "wa-link"
     a['target'] = "_blank"
-    a['style'] = """
-        position:fixed;
-        bottom:20px;
-        right:20px;
-        z-index:1000;
-        background:#25D366;
-        color:white;
-        padding:12px 20px;
-        border-radius:25px;
-        text-decoration:none;
-        font-weight:bold;
-        box-shadow:0 4px 8px rgba(0,0,0,0.2);
-        font-family:Arial, sans-serif;
-    """
+    a['title'] = "Fale conosco no WhatsApp"
     
-    a.string = "💬 WhatsApp"
+    if icone_path and os.path.exists(icone_path):
+        # Usar imagem do ícone
+        img = soup.new_tag("img")
+        img['src'] = f"./static/icons/whatsapp.png"
+        img['alt'] = "WhatsApp"
+        img['width'] = "50"
+        img['height'] = "50"
+        img['style'] = "display: block;"
+        a.append(img)
+        a['style'] = """
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        """
+        a['onmouseover'] = "this.style.transform='scale(1.1)'"
+        a['onmouseout'] = "this.style.transform='scale(1)'"
+    else:
+        # Fallback para CSS button
+        a['style'] = """
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: #25D366;
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        """
+        a.string = "💬"
+        a['onmouseover'] = "this.style.transform='scale(1.1)'"
+        a['onmouseout'] = "this.style.transform='scale(1)'"
     
     if soup.body:
         soup.body.append(a)
 
 def garantir_html_base(soup: BeautifulSoup) -> None:
-    """Garante que o HTML tenha estrutura básica correta"""
     if not soup.find('html'):
         return
         
-    # Garantir charset UTF-8
     if soup.head:
         meta_charset = soup.head.find('meta', attrs={'charset': True})
         if not meta_charset:
@@ -196,7 +247,6 @@ def garantir_html_base(soup: BeautifulSoup) -> None:
             meta['charset'] = 'utf-8'
             soup.head.insert(0, meta)
         
-        # Garantir viewport
         meta_viewport = soup.head.find('meta', attrs={'name': 'viewport'})
         if not meta_viewport:
             meta = soup.new_tag('meta')
@@ -204,7 +254,6 @@ def garantir_html_base(soup: BeautifulSoup) -> None:
             meta['content'] = 'width=device-width, initial-scale=1.0'
             soup.head.insert(1, meta)
 
-        # Adicionar base tag para recursos relativos
         base_tag = soup.find('base')
         if not base_tag:
             base = soup.new_tag('base')
@@ -212,27 +261,17 @@ def garantir_html_base(soup: BeautifulSoup) -> None:
             soup.head.insert(0, base)
 
 def processar_pagina(url_path: str, html: str, numero_whatsapp: str) -> bool:
-    """Processa e salva uma página HTML"""
     try:
-        # Remover Incapsula primeiro
         html = remover_incapsula(html)
-        
-        # Remover domínio original
         html = html.replace(BASE_URL, "")
         html = html.replace("www.copart.com.br", "")
         
         soup = BeautifulSoup(html, "html.parser")
         
-        # Garantir estrutura HTML básica
         garantir_html_base(soup)
-        
-        # Processar recursos
         processar_recursos(soup, BASE_URL + url_path)
-        
-        # Adicionar WhatsApp
         inject_whatsapp_button(soup, numero_whatsapp)
         
-        # Determinar caminho do arquivo de saída
         if url_path == "/":
             output_path = os.path.join(OUTPUT_DIR, "index.html")
         else:
@@ -241,7 +280,6 @@ def processar_pagina(url_path: str, html: str, numero_whatsapp: str) -> bool:
         
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         
-        # Salvar HTML
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(str(soup))
         
@@ -257,16 +295,13 @@ def processar_pagina(url_path: str, html: str, numero_whatsapp: str) -> bool:
 # ===================== espelhamento principal =====================
 
 def espelhar_site():
-    """Função principal de espelhamento"""
-    
-    # Criar diretórios de output
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs(STATIC_DIR, exist_ok=True)
+    os.makedirs(ICONS_DIR, exist_ok=True)
     
     print("[🚀] Iniciando espelhamento do Copart...")
     print(f"[📁] Output: {os.path.abspath(OUTPUT_DIR)}")
     
-    # Páginas prioritárias para espelhar
     paginas_prioritarias = [
         "/",
         "/about",
@@ -292,49 +327,39 @@ def espelhar_site():
             
         print(f"[{total_processados+1}/{len(paginas_prioritarias)}] 📋 Processando: {url_path}")
         
-        # Baixar página
         full_url = BASE_URL + url_path
         html = baixar_pagina_html(full_url)
         
         if html:
-            # Processar e salvar página
             success = processar_pagina(url_path, html, numero_whatsapp)
             if success:
                 total_processados += 1
             
-            # Coletar links para processamento adicional
             soup = BeautifulSoup(html, "html.parser")
             novos_links = coletar_links(soup)
             
-            # Adicionar links interessantes à lista de prioritárias
             for link in novos_links:
                 if (link not in visitados and link not in paginas_prioritarias and 
                     len(link) > 1 and not link.startswith(('/api/', '/cdn-cgi/', '/admin/'))):
                     paginas_prioritarias.append(link)
             
-            # Limpeza de memória
             gc.collect()
-            
-            # Pausa entre requisições
             time.sleep(1)
         else:
             print(f"[❌] Falha ao baixar: {url_path}")
         
         visitados.add(url_path)
         
-        # Limitar para não ficar muito tempo
-        if total_processados >= 20:
-            print("[⏹️] Limite de 20 páginas atingido")
+        if total_processados >= 15:
+            print("[⏹️] Limite de 15 páginas atingido")
             break
     
-    # Criar arquivo de redirecionamento para páginas não encontradas
     criar_redirect_html()
     
     print(f"[✅] Espelhamento concluído! {total_processados} páginas salvas em '{OUTPUT_DIR}'")
     print(f"[🌐] Abra '{os.path.join(OUTPUT_DIR, 'index.html')}' no navegador")
 
 def criar_redirect_html():
-    """Cria página de redirecionamento para links quebrados"""
     redirect_html = """
 <!DOCTYPE html>
 <html>
@@ -411,7 +436,6 @@ def criar_redirect_html():
     </div>
 
     <script>
-        // Redirecionamento automático
         let seconds = 10;
         const countdown = document.getElementById('countdown');
         
@@ -429,24 +453,18 @@ def criar_redirect_html():
 </html>
     """
     
-    # Salvar como 404.html para redirecionamento
     with open(os.path.join(OUTPUT_DIR, "404.html"), "w", encoding="utf-8") as f:
         f.write(redirect_html)
     
     print("[📄] Página de redirecionamento 404.html criada")
 
 if __name__ == "__main__":
-    # Executar espelhamento
     espelhar_site()
     
-    # Mensagem final
     print("\n" + "="*60)
     print("🎉 ESPELHAMENTO CONCLUÍDO!")
     print("="*60)
     print("📂 Os arquivos estão na pasta 'public/'")
-    print("🌐 Você pode:")
-    print("   1. Abrir 'public/index.html' no navegador")
-    print("   2. Fazer deploy da pasta 'public/' no GitHub Pages, Netlify, etc.")
-    print("   3. Usar um servidor local: python -m http.server -d public 8000")
+    print("🌐 Abra 'public/index.html' no navegador ou faça deploy")
     print("💬 WhatsApp: https://wa.me/5511958462009")
     print("="*60)
