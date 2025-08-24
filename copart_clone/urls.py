@@ -19,10 +19,10 @@ urlpatterns = [
     # URLs do app mirror
     path('mirror/', include('mirror.urls')),
 
-    # Páginas estáticas comuns
-    path('login/', TemplateView.as_view(template_name='login.html'), name='login'),
-    path('sobre/', TemplateView.as_view(template_name='sobre.html'), name='about'),
-    path('contato/', TemplateView.as_view(template_name='contato.html'), name='contact'),
+    # Páginas estáticas vindas do espelhamento
+    path('login/', views.page, {'name': 'login'}, name='login'),
+    path('sobre/', views.page, {'name': 'about'}, name='about'),
+    path('contato/', views.page, {'name': 'contact'}, name='contact'),
 
     # Painel de administração
     path('admin/', admin.site.urls),
